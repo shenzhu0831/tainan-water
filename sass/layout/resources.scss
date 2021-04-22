@@ -16,6 +16,32 @@
   }
 }
 
+.resources_stand {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  div {
+    flex: 1 0 0;
+    text-align: center;
+  }
+  &_title {
+    position: relative;
+    &::after {
+      content: "";
+      width: 1px;
+      height: 68px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: color.$gray-900;
+    }
+  }
+  &_value {
+    font-size: 50px;
+    font-weight: 800;
+  }
+}
+
 .resources_region {
   &_category {
     margin-bottom: 40px;
