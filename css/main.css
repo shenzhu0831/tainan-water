@@ -1,0 +1,47 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+}
+*::after {
+  box-sizing: border-box;
+}
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-family: "PingFang TC", "微軟正黑體", Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h1, h2, h3, h4, h5, p, ol, ul, li, label, input {
+  margin: 0;
+}
+
+ol, ul, li {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+}
+
+.home {
+  height: 100vh;
+  background-image: url(../image/pic/home-bg.png);
+}
+
+/*# sourceMappingURL=main.css.map */
