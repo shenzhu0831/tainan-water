@@ -19,17 +19,29 @@ body {
   line-height: 1.2;
 }
 
-h1, h2, h3, h4, h5, p, ol, ul, li, label, input {
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ol,
+ul,
+li,
+label,
+input {
   margin: 0;
 }
 
-ol, ul, li {
+ol,
+ul,
+li {
   list-style: none;
   padding: 0;
 }
 
 a {
-  display: block;
+  color: #EEEEEE;
   text-decoration: none;
 }
 a:hover {
@@ -41,8 +53,16 @@ button {
 }
 
 .home {
-  height: 100vh;
+  height: auto;
   background-image: url(../image/pic/home-bg.png);
+}
+
+.navbar {
+  width: 246px;
+  margin: 0 auto;
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-around;
 }
 
 /*# sourceMappingURL=main.css.map */
