@@ -6,16 +6,20 @@
   color: #333333;
 }
 
-.reservoir_title h4 {
-  font-size: 20px;
-  font-weight: 400;
-  text-transform: capitalize;
-  line-height: 1;
-  color: #333333;
-}
-
 .reservoir {
   padding: 50px;
+}
+
+.total_storage {
+  display: flex;
+  flex-direction: column;
+}
+.total_storage_value {
+  font-size: 60px;
+  font-weight: 700;
+}
+.total_storage_unit {
+  font-size: 15px;
 }
 
 /*# sourceMappingURL=reservoir.css.map */

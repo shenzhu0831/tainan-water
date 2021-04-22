@@ -7,7 +7,7 @@
   color: #333333;
 }
 
-.resources_title h4, .resources_region_title h5, .reservoir_title h4 {
+.resources_title h4, .resources_region_title h5 {
   font-size: 20px;
   font-weight: 400;
   text-transform: capitalize;
@@ -175,6 +175,18 @@ button {
   padding: 50px;
 }
 
+.total_storage {
+  display: flex;
+  flex-direction: column;
+}
+.total_storage_value {
+  font-size: 60px;
+  font-weight: 700;
+}
+.total_storage_unit {
+  font-size: 15px;
+}
+
 .resources_region_table {
   width: 100%;
   border-collapse: collapse;
@@ -223,6 +235,19 @@ button {
 .resources_title {
   margin-bottom: 1.5rem;
 }
+.resources_stand {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.resources_stand div {
+  text-align: center;
+}
+.resources_stand_value {
+  font-size: 50px;
+  font-weight: 800;
+}
+
 .resources_region_category {
   margin-bottom: 40px;
 }
