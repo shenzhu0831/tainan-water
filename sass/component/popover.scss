@@ -5,6 +5,7 @@
   width: 900px;
   height: 480px;
   margin: auto;
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -14,6 +15,7 @@
   background-color: color.$white;
   border-radius: 15px;
   &_background {
+    display: none;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -83,4 +85,8 @@
     flex: 2 0 0;
     font-weight: typography.$font-weight-regular;
   }
+}
+
+.open {
+  display: block;
 }

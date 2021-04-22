@@ -2,6 +2,7 @@
   width: 900px;
   height: 480px;
   margin: auto;
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -12,6 +13,7 @@
   border-radius: 15px;
 }
 .popover_background {
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -80,6 +82,10 @@
 .light_sign_content {
   flex: 2 0 0;
   font-weight: 400;
+}
+
+.open {
+  display: block;
 }
 
 /*# sourceMappingURL=popover.css.map */
