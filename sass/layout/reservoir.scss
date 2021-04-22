@@ -1,0 +1,14 @@
+@use '../utility/color';
+@use '../utility/typography';
+
+.reservoir {
+  padding: 50px;
+}
+.reservoir_title {
+  h3 {
+    @extend %page_title;
+  }
+  h4 {
+    @extend %page_subtitle
+  }
+}
