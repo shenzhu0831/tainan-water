@@ -2,7 +2,7 @@
   margin: 0 70px;
   padding: 40px 0;
   display: flex;
-  border-top: solid 1px #EEEEEE;
+  border-top: solid 1px #FFFFFF;
 }
 
 .water_regime {
@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: center;
   flex: 1 0 0;
-  color: #EEEEEE;
+  color: #FFFFFF;
 }
 .water_regime_name {
   margin-bottom: 6px;
@@ -47,7 +47,7 @@
   align-items: center;
   flex: 1 0 0;
   position: relative;
-  color: #EEEEEE;
+  color: #FFFFFF;
 }
 .reservoir_regime::before {
   content: "";
@@ -55,7 +55,7 @@
   height: 100%;
   position: absolute;
   left: 0;
-  background-color: #EEEEEE;
+  background-color: #FFFFFF;
 }
 .reservoir_regime_name {
   margin-bottom: 6px;

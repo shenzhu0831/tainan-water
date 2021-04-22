@@ -48,7 +48,7 @@ li {
 
 a {
   display: block;
-  color: #EEEEEE;
+  color: #FFFFFF;
   text-decoration: none;
 }
 a:hover {
@@ -75,7 +75,7 @@ button {
   margin: 0 70px;
   padding: 40px 0;
   display: flex;
-  border-top: solid 1px #EEEEEE;
+  border-top: solid 1px #FFFFFF;
 }
 
 .water_regime {
@@ -83,7 +83,7 @@ button {
   flex-direction: column;
   align-items: center;
   flex: 1 0 0;
-  color: #EEEEEE;
+  color: #FFFFFF;
 }
 .water_regime_name {
   margin-bottom: 6px;
@@ -120,7 +120,7 @@ button {
   align-items: center;
   flex: 1 0 0;
   position: relative;
-  color: #EEEEEE;
+  color: #FFFFFF;
 }
 .reservoir_regime::before {
   content: "";
@@ -128,7 +128,7 @@ button {
   height: 100%;
   position: absolute;
   left: 0;
-  background-color: #EEEEEE;
+  background-color: #FFFFFF;
 }
 .reservoir_regime_name {
   margin-bottom: 6px;
@@ -161,12 +161,12 @@ button {
 }
 .web_info_subtitle {
   margin-bottom: 20px;
-  color: #EEEEEE;
+  color: #FFFFFF;
   font-size: 36px;
   font-weight: 600;
 }
 .web_info .update_time {
-  color: #EEEEEE;
+  color: #FFFFFF;
   font-size: 20px;
   font-weight: 400;
 }
@@ -235,7 +235,7 @@ button {
   border-radius: 5px;
 }
 .resources_region_category button:hover {
-  color: #EEEEEE;
+  color: #FFFFFF;
   background-color: #333333;
 }
 
