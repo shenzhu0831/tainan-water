@@ -1,0 +1,62 @@
+[
+  {
+    "CatchmentAreaRainfall": 0,
+    "CrossFlow": 0,
+    "DeadStorageLevel": 104.58,
+    "EffectiveCapacity": 1173.45,
+    "FullWaterLevel": 109,
+    "InflowVolume": 0.4101,
+    "Outflow": 0,
+    "OutflowDischarge": "",
+    "OutflowTotal": 0,
+    "RecordTime": "2021-04-21T08:00:00",
+    "RegulatoryDischarge": 0,
+    "ReservoirIdentifier": 30401,
+    "ReservoirName": "白河水庫"
+  },
+  {
+    "CatchmentAreaRainfall": 0.8,
+    "CrossFlow": 485,
+    "DeadStorageLevel": 171,
+    "EffectiveCapacity": 50956,
+    "FullWaterLevel": 230,
+    "InflowVolume": 4,
+    "Outflow": "",
+    "OutflowDischarge": 0,
+    "OutflowTotal": 485,
+    "RecordTime": "2021-04-21T00:00:00",
+    "RegulatoryDischarge": 0,
+    "ReservoirIdentifier": 30502,
+    "ReservoirName": "曾文水庫"
+  },
+  {
+    "CatchmentAreaRainfall": 0,
+    "CrossFlow": 0,
+    "DeadStorageLevel": 34.88,
+    "EffectiveCapacity": 7876.5,
+    "FullWaterLevel": 58.18,
+    "InflowVolume": 461.4,
+    "Outflow": 71.4,
+    "OutflowDischarge": "",
+    "OutflowTotal": 71.4,
+    "RecordTime": "2021-04-21T07:00:00",
+    "RegulatoryDischarge": 0,
+    "ReservoirIdentifier": 30501,
+    "ReservoirName": "烏山頭水庫"
+  },
+  {
+    "CatchmentAreaRainfall": 0,
+    "CrossFlow": 5.6,
+    "DeadStorageLevel": 131,
+    "EffectiveCapacity": 9097.9,
+    "FullWaterLevel": 180,
+    "InflowVolume": 0.1,
+    "Outflow": 52.1,
+    "OutflowDischarge": 0,
+    "OutflowTotal": 57.7,
+    "RecordTime": "2021-04-21T00:00:00",
+    "RegulatoryDischarge": 0,
+    "ReservoirIdentifier": 30503,
+    "ReservoirName": "南化水庫"
+  }
+]
