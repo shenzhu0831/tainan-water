@@ -1,0 +1,24 @@
+{
+  "name": "tainan-water",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "sass": "^1.32.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build-css": "sass --watch sass/:css/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenzhu0831/tainan-water.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shenzhu0831/tainan-water/issues"
+  },
+  "homepage": "https://github.com/shenzhu0831/tainan-water#readme"
+}
