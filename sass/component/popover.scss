@@ -1,0 +1,86 @@
+@use '../utility/color';
+@use '../utility/typography';
+
+.popover {
+  width: 900px;
+  height: 480px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: color.$white;
+  border-radius: 15px;
+  &_background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: color.$black-20;
+  }
+}
+
+.popover_header {
+  padding: 20px;
+  position: relative;
+  font-size: 20px;
+  color: color.$gray-900;
+  text-align: center;
+  &_close {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background-color: transparent;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.popover_body {
+  padding: 37px;
+}
+
+.light_sign {
+  padding: 16px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: solid 1px color.$gray-400;
+  &:last-child {
+    border: none;
+  }
+  &_badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 26px;
+  }
+  .green {
+    background-color: color.$green;
+  }
+  .yellow {
+    background-color: color.$yellow;
+  }
+  .orange_400 {
+    background-color: color.$orange_400;
+  }
+  .orange_600 {
+    background-color: color.$orange_600;
+  }
+  &_name {
+    flex: 1 0 0;
+    text-align: center;
+    font-weight: typography.$font-weight-medium;
+  }
+  &_content {
+    flex: 2 0 0;
+    font-weight: typography.$font-weight-regular;
+  }
+}

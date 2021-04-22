@@ -1,0 +1,85 @@
+.popover {
+  width: 900px;
+  height: 480px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: #FFFFFF;
+  border-radius: 15px;
+}
+.popover_background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popover_header {
+  padding: 20px;
+  position: relative;
+  font-size: 20px;
+  color: #333333;
+  text-align: center;
+}
+.popover_header_close {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background-color: transparent;
+}
+.popover_header_close img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.popover_body {
+  padding: 37px;
+}
+
+.light_sign {
+  padding: 16px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: solid 1px #E0E0E0;
+}
+.light_sign:last-child {
+  border: none;
+}
+.light_sign_badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 26px;
+}
+.light_sign .green {
+  background-color: #27AE60;
+}
+.light_sign .yellow {
+  background-color: #F2C94C;
+}
+.light_sign .orange_400 {
+  background-color: #F88824;
+}
+.light_sign .orange_600 {
+  background-color: #EB5757;
+}
+.light_sign_name {
+  flex: 1 0 0;
+  text-align: center;
+  font-weight: 600;
+}
+.light_sign_content {
+  flex: 2 0 0;
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=popover.css.map */

@@ -3,12 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
     <title>台南水資源</title>
 
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
+    <div class="popover">
+      <div class="popover_card">
+        <div class="popover_header">
+          <h3 class="popover_header_title">水情燈號意義</h3>
+          <button class="popover_header_close">
+            <img src="./image/icon/close.png" alt="close bottom">
+          </button>
+        </div>
+        <div class="popover_body">
+          <div class="light_sign">
+            <div class="light_sign_badge green" ></div>
+            <span class="light_sign_name">水情提醒</span>
+            <p class="light_sign_content">加強水源調度及研擬措施。</p>
+          </div>
+          <div class="light_sign">
+            <div class="light_sign_badge yellow"></div>
+            <span class="light_sign_name">減壓供水</span>
+            <p class="light_sign_content">
+              減壓供水：離峰及特定時段降低管壓供水 <br />
+              停止供水：停供行政機關及國營事業轄管噴水池、澆灌、沖洗外牆、街道及水溝等非急需或非必要之用水。
+            </p>
+          </div>
+          <div class="light_sign">
+            <div class="light_sign_badge orange_400"></div>
+            <span class="light_sign_name">水情提醒</span>
+            <p class="light_sign_content">
+              停止供水：試放消防栓、露天屋頂放流及其他供水之用 <br />
+              減量供水：每月用水超過一千度大用水戶之非工業用水戶減供 20%、工業用戶減 5~10%，但醫療或其他性質特殊者，不在此限。 <br />
+              減量供水：游泳池、洗車、三溫暖、水療業者、及其他不急需之用水，減供 20%
+            </p>
+          </div>
+          <div class="light_sign">
+            <div class="light_sign_badge orange_600"></div>
+            <span class="light_sign_name">水情提醒</span>
+            <p class="light_sign_content">
+              停止供水：分區輪流或全區停止供水 <br />
+              定點供水：優先順序為 1.居民維生 2.醫療 3.國防事業 4.工商事業 5.其他
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popover_background"></div>
     <section class="home">
       <nav class="navbar">
         <a href="#">水庫狀況</a>
