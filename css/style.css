@@ -7,7 +7,7 @@
   color: #333333;
 }
 
-.resources_title h4, .resources_region_title h5 {
+.resources_title h4 {
   font-size: 20px;
   font-weight: 400;
   text-transform: capitalize;
@@ -344,83 +344,32 @@ button {
   font-size: 15px;
 }
 
-.resources_region_table {
-  width: 100%;
-  border-collapse: collapse;
+.resources_region_list {
+  display: flex;
 }
-.resources_region_table thead {
-  border-bottom: solid 1px #bdbdbd;
-  color: #bdbdbd;
-  text-align: left;
-}
-.resources_region_table thead th {
+
+.resources_region_item {
+  width: 110px;
+  height: 110px;
   padding: 15px 0;
+  text-align: center;
 }
-.resources_region_table tbody tr {
-  border-bottom: solid 1px #bdbdbd;
+.resources_region_item span {
+  font-size: 12px;
 }
-.resources_region_table tbody td {
-  padding: 15px 0;
-  font-weight: 400;
+.resources_region_icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 12px;
 }
-.resources_region_table tbody td span {
-  font-size: 17px;
-  line-height: 1.5;
-}
-.resources_region_table tbody td a {
-  color: #828282;
-  font-size: 15px;
-  line-height: 1.2;
-}
-.resources_region_table tbody td .address_icon {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  line-height: 1.2;
-  vertical-align: middle;
-}
-.resources_region_table tbody td .address_icon img {
+.resources_region_icon img {
   width: 100%;
   object-fit: cover;
 }
 
-.resources_stand_list {
-  margin: 0 70px;
-  padding: 40px 0;
-  display: flex;
-}
-.resources_stand_list .resources_stand {
-  flex: 1 0 0;
-  position: relative;
-  color: #ffffff;
-  text-align: center;
-}
-.resources_stand_list .resources_stand::before {
-  content: "";
-  width: 1px;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  background-color: #FFFFFF;
-}
-.resources_stand_list .resources_stand:last-child::before {
-  display: none;
-}
-.resources_stand_list .resources_stand_title {
-  position: relative;
-}
-.resources_stand_list .resources_stand_title::after {
-  content: "";
-  width: 1px;
-  height: 68px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #333333;
-}
-.resources_stand_list .resources_stand_value {
-  font-size: 50px;
-  font-weight: 800;
+.on-click {
+  border: solid 1px;
+  border-radius: 10px;
 }
 
 .resources {

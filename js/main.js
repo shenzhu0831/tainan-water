@@ -9,8 +9,9 @@ async function getTainanReservoirData() {
   return response.json();
 }
 
+
 // 計算台南目前蓄水率
-async function getReservoir() {
+async function getTotalReservoir() {
   const reservoirDatum = await getTainanReservoirData();
   const reservoirRegimeValue = document.querySelector(".reservoir_regime_value")
 
@@ -24,6 +25,30 @@ async function getReservoir() {
   const reservoirRegimeData = (effectiveCapacity / FullWaterLevel).toFixed(2)
 
   reservoirRegimeValue.innerText = `${reservoirRegimeData}%`
+}
+
+// 計算單一水庫數據
+async function getReservoir() {
+  const reservoirDatum = await getTainanReservoirData();
+  const reservoirChartBody = await document.querySelector(".reservoir_chart_body")
+  console.log(reservoirChartBody);
+  reservoirChartBody.innerHTML = reservoirDatum.forEach(reservoir => {
+    // console.log(reservoir);
+    return `
+    <div class="reservoir_chart_item">
+      <div class="reservoir_name">
+        <div></div>
+        <span class="reservoir_counties">嘉義</span>
+        <span class="reservoir_counties">台南</span>
+      </div>
+      <div class="reservoir_chart_line">
+        <div class="reservoir_chart_value"></div>
+      </div>
+      <div class="reservoir_capacity">5.6%</div>
+      <div class="reservoir_storage">169.10</div>
+    </div>
+    `
+  })
 }
 
 // 目前水情元件效果
@@ -41,6 +66,7 @@ function popoverClose(event){
   }
 }
 
+getTotalReservoir()
 getReservoir()
 
 waterRegimeInfo.addEventListener("click", popoverOpen)

@@ -1,7 +1,7 @@
 @use '../utility/color';
 @use '../utility/typography';
-@use '../component/resources-table.scss';
-@use '../component/resources-stand.scss';
+@use '../component/resources-region-list.scss';
+
 
 .resources {
   padding: 50px;
@@ -31,11 +31,6 @@
         color: color.$white;
         background-color: color.$gray-900;
       }
-    }
-  }
-  &_title {
-    h5 {
-      @extend %page_subtitle
     }
   }
 }
