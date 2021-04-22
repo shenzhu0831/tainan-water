@@ -2,7 +2,6 @@
 // # font-family
 
 $font-family-sans-serif: "PingFang TC", "微軟正黑體", Roboto, sans-serif;
-
 $font-family-base: $font-family-sans-serif;
 
 // ====================================
@@ -16,12 +15,29 @@ $font-size-base: $font-size-root;
 
 $font-weight-light: 300;
 $font-weight-regular: 400;
-$font-weight-medium: 500;
+$font-weight-medium: 600;
 $font-weight-bold: 700;
 
-$font-weight-base: $font-weight-regular;
+
 
 // ====================================
 // # line height
 
 $line-height-base: 1.2;
+
+// ====================================
+// # font style
+
+%title{
+  font-size: 30px;
+  font-weight: $font-weight-medium;
+  text-transform: capitalize;
+  line-height: 1.2;
+}
+
+%subtitle{
+  font-size: 17px;
+  font-weight: $font-weight-regular;
+  text-transform: capitalize;
+  line-height: 1;
+}
