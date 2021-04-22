@@ -3,15 +3,15 @@
   border-collapse: collapse;
 }
 .resources_region_table thead {
-  border-bottom: solid 1px #BDBDBD;
-  color: #BDBDBD;
+  border-bottom: solid 1px #bdbdbd;
+  color: #bdbdbd;
   text-align: left;
 }
 .resources_region_table thead th {
   padding: 15px 0;
 }
 .resources_region_table tbody tr {
-  border-bottom: solid 1px #BDBDBD;
+  border-bottom: solid 1px #bdbdbd;
 }
 .resources_region_table tbody td {
   padding: 15px 0;

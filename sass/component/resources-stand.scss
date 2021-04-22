@@ -1,0 +1,43 @@
+@use '../utility/color';
+@use '../utility/typography';
+
+.resources_stand_list {
+  margin: 0 70px;
+  padding: 40px 0;
+  display: flex;
+  .resources_stand {
+    flex: 1 0 0;
+    position: relative;
+    color: color.$white;
+    text-align: center;
+    &::before {
+      content: "";
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      background-color: #FFFFFF;
+    }
+    &:last-child {
+      &::before {
+        display: none;
+      }
+    }
+    &_title {
+      position: relative;
+      &::after {
+        content: "";
+        width: 1px;
+        height: 68px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: color.$gray-900;
+      }
+    }
+    &_value {
+      font-size: 50px;
+      font-weight: 800;
+    }
+  }
+}

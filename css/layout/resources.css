@@ -19,15 +19,15 @@
   border-collapse: collapse;
 }
 .resources_region_table thead {
-  border-bottom: solid 1px #BDBDBD;
-  color: #BDBDBD;
+  border-bottom: solid 1px #bdbdbd;
+  color: #bdbdbd;
   text-align: left;
 }
 .resources_region_table thead th {
   padding: 15px 0;
 }
 .resources_region_table tbody tr {
-  border-bottom: solid 1px #BDBDBD;
+  border-bottom: solid 1px #bdbdbd;
 }
 .resources_region_table tbody td {
   padding: 15px 0;
@@ -54,27 +54,32 @@
   object-fit: cover;
 }
 
-.resources {
-  padding: 50px;
-  background-color: #EEEEEE;
-}
-
-.resources_title {
-  margin-bottom: 1.5rem;
-}
-.resources_stand {
-  margin-bottom: 1.5rem;
+.resources_stand_list {
+  margin: 0 70px;
+  padding: 40px 0;
   display: flex;
-  justify-content: space-between;
 }
-.resources_stand div {
+.resources_stand_list .resources_stand {
   flex: 1 0 0;
+  position: relative;
+  color: #ffffff;
   text-align: center;
 }
-.resources_stand_title {
+.resources_stand_list .resources_stand::before {
+  content: "";
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  background-color: #FFFFFF;
+}
+.resources_stand_list .resources_stand:last-child::before {
+  display: none;
+}
+.resources_stand_list .resources_stand_title {
   position: relative;
 }
-.resources_stand_title::after {
+.resources_stand_list .resources_stand_title::after {
   content: "";
   width: 1px;
   height: 68px;
@@ -83,11 +88,19 @@
   right: 0;
   background-color: #333333;
 }
-.resources_stand_value {
+.resources_stand_list .resources_stand_value {
   font-size: 50px;
   font-weight: 800;
 }
 
+.resources {
+  padding: 50px;
+  background-color: #eeeeee;
+}
+
+.resources_title {
+  margin-bottom: 1.5rem;
+}
 .resources_region_category {
   margin-bottom: 40px;
 }
@@ -100,7 +113,7 @@
   border-radius: 5px;
 }
 .resources_region_category button:hover {
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: #333333;
 }
 

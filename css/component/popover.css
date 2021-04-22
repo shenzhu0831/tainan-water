@@ -9,7 +9,7 @@
   left: 0;
   right: 0;
   z-index: 2;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 15px;
 }
 .popover_background {
@@ -52,7 +52,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  border-bottom: solid 1px #E0E0E0;
+  border-bottom: solid 1px #e0e0e0;
 }
 .light_sign:last-child {
   border: none;
@@ -63,16 +63,16 @@
   border-radius: 26px;
 }
 .light_sign .green {
-  background-color: #27AE60;
+  background-color: #27ae60;
 }
 .light_sign .yellow {
-  background-color: #F2C94C;
+  background-color: #f2c94c;
 }
 .light_sign .orange_400 {
-  background-color: #F88824;
+  background-color: #f88824;
 }
 .light_sign .orange_600 {
-  background-color: #EB5757;
+  background-color: #eb5757;
 }
 .light_sign_name {
   flex: 1 0 0;

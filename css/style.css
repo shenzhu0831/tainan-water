@@ -31,7 +31,7 @@ body {
   padding: 0;
   position: relative;
   font-size: 1rem;
-  font-family: "PingFang TC", "微軟正黑體", Roboto, sans-serif;
+  font-family: "PingFang TC", "微軟正黑體", "Roboto", sans-serif;
   line-height: 1.2;
 }
 
@@ -46,7 +46,7 @@ ol, ul, li {
 
 a {
   display: block;
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
 }
 a:hover {
@@ -70,7 +70,7 @@ button {
   left: 0;
   right: 0;
   z-index: 2;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 15px;
 }
 .popover_background {
@@ -113,7 +113,7 @@ button {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  border-bottom: solid 1px #E0E0E0;
+  border-bottom: solid 1px #e0e0e0;
 }
 .light_sign:last-child {
   border: none;
@@ -124,16 +124,16 @@ button {
   border-radius: 26px;
 }
 .light_sign .green {
-  background-color: #27AE60;
+  background-color: #27ae60;
 }
 .light_sign .yellow {
-  background-color: #F2C94C;
+  background-color: #f2c94c;
 }
 .light_sign .orange_400 {
-  background-color: #F88824;
+  background-color: #f88824;
 }
 .light_sign .orange_600 {
-  background-color: #EB5757;
+  background-color: #eb5757;
 }
 .light_sign_name {
   flex: 1 0 0;
@@ -165,7 +165,8 @@ button {
   margin: 0 70px;
   padding: 40px 0;
   display: flex;
-  border-top: solid 1px #FFFFFF;
+  border-top: solid 1px #ffffff;
+  border-bottom: solid 1px #ffffff;
 }
 
 .water_regime {
@@ -173,7 +174,7 @@ button {
   flex-direction: column;
   align-items: center;
   flex: 1 0 0;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .water_regime_name {
   margin-bottom: 6px;
@@ -191,7 +192,7 @@ button {
 .water_regime_badge {
   width: 20px;
   height: 20px;
-  background-color: #F2C94C;
+  background-color: #f2c94c;
   border-radius: 20px;
 }
 .water_regime_info {
@@ -210,7 +211,7 @@ button {
   align-items: center;
   flex: 1 0 0;
   position: relative;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .reservoir_regime::before {
   content: "";
@@ -218,7 +219,7 @@ button {
   height: 100%;
   position: absolute;
   left: 0;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 .reservoir_regime_name {
   margin-bottom: 6px;
@@ -230,7 +231,7 @@ button {
 
 .home {
   height: auto;
-  background: url(../image/pic/home-bg.png), no-repeat, center;
+  background: url("../image/pic/home-bg.png") center/cover no-repeat;
 }
 
 .web_info {
@@ -251,14 +252,75 @@ button {
 }
 .web_info_subtitle {
   margin-bottom: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 36px;
   font-weight: 600;
 }
 .web_info .update_time {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 20px;
   font-weight: 400;
+}
+
+.reservoir_chart_header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  color: #828282;
+}
+.reservoir_chart_header .header {
+  flex: 0 0 70%;
+  font-size: 1rem;
+}
+
+.reservoir_chart_item {
+  padding: 24px 0;
+  display: flex;
+  align-items: center;
+}
+
+.reservoir_name {
+  flex: 0 0 20%;
+}
+.reservoir_name div {
+  padding: 6px;
+  font-size: 20px;
+}
+
+.reservoir_counties {
+  margin: 0 4px;
+  padding: 2px 6px;
+  background-color: #828282;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #ffffff;
+}
+.reservoir_counties:last-child {
+  margin: 0;
+}
+
+.reservoir_chart_line {
+  height: 29px;
+  flex: 0 0 50%;
+  position: relative;
+  background-color: #eeeeee;
+}
+.reservoir_chart_line .reservoir_chart_value {
+  width: 239px;
+  height: 29px;
+  position: absolute;
+  left: 0;
+  background: linear-gradient(90deg, rgba(240, 43, 74, 0.37) 0%, #f02b4a 100%);
+}
+
+.reservoir_capacity {
+  flex: 0 0 10%;
+  text-align: right;
+}
+
+.reservoir_storage {
+  flex: 0 0 20%;
+  text-align: right;
 }
 
 .reservoir {
@@ -266,9 +328,10 @@ button {
 }
 
 .reservoir_title {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.25rem;
 }
 .total_storage {
+  margin-bottom: 2.25rem;
   display: flex;
   flex-direction: column;
 }
@@ -286,15 +349,15 @@ button {
   border-collapse: collapse;
 }
 .resources_region_table thead {
-  border-bottom: solid 1px #BDBDBD;
-  color: #BDBDBD;
+  border-bottom: solid 1px #bdbdbd;
+  color: #bdbdbd;
   text-align: left;
 }
 .resources_region_table thead th {
   padding: 15px 0;
 }
 .resources_region_table tbody tr {
-  border-bottom: solid 1px #BDBDBD;
+  border-bottom: solid 1px #bdbdbd;
 }
 .resources_region_table tbody td {
   padding: 15px 0;
@@ -321,27 +384,32 @@ button {
   object-fit: cover;
 }
 
-.resources {
-  padding: 50px;
-  background-color: #EEEEEE;
-}
-
-.resources_title {
-  margin-bottom: 1.5rem;
-}
-.resources_stand {
-  margin-bottom: 1.5rem;
+.resources_stand_list {
+  margin: 0 70px;
+  padding: 40px 0;
   display: flex;
-  justify-content: space-between;
 }
-.resources_stand div {
+.resources_stand_list .resources_stand {
   flex: 1 0 0;
+  position: relative;
+  color: #ffffff;
   text-align: center;
 }
-.resources_stand_title {
+.resources_stand_list .resources_stand::before {
+  content: "";
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  background-color: #FFFFFF;
+}
+.resources_stand_list .resources_stand:last-child::before {
+  display: none;
+}
+.resources_stand_list .resources_stand_title {
   position: relative;
 }
-.resources_stand_title::after {
+.resources_stand_list .resources_stand_title::after {
   content: "";
   width: 1px;
   height: 68px;
@@ -350,11 +418,19 @@ button {
   right: 0;
   background-color: #333333;
 }
-.resources_stand_value {
+.resources_stand_list .resources_stand_value {
   font-size: 50px;
   font-weight: 800;
 }
 
+.resources {
+  padding: 50px;
+  background-color: #eeeeee;
+}
+
+.resources_title {
+  margin-bottom: 1.5rem;
+}
 .resources_region_category {
   margin-bottom: 40px;
 }
@@ -367,7 +443,7 @@ button {
   border-radius: 5px;
 }
 .resources_region_category button:hover {
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: #333333;
 }
 

@@ -1,17 +1,19 @@
 @use '../utility/color';
 @use '../utility/typography';
+@use '../component/reservoir-chart.scss';
 
 .reservoir {
   padding: 50px;
 }
 .reservoir_title {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.25rem;
   h3 {
     @extend %page_title;
   }
 }
 
 .total_storage {
+  margin-bottom: 2.25rem;
   display: flex;
   flex-direction: column;
   &_value {
