@@ -1,0 +1,65 @@
+@use '../utility/color';
+@use '../utility/typography';
+
+.reservoir_info {
+  margin: 0 70px;
+  padding: 40px 0;
+  display: flex;
+  border-top: solid 1px color.$gray-200;
+}
+
+.water_regime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 0;
+  color: color.$gray-200;
+  &_name {
+    margin-bottom: 6px;
+  }
+  &_content {
+    width: 226px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &_value {
+    font-size: 40px;
+    font-weight: typography.$font-weight-medium;
+  }
+  &_badge {
+    width: 20px;
+    height: 20px;
+    background-color: color.$yellow;
+    border-radius: 20px;
+  }
+  &_info {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+}
+
+.reservoir_regime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 0;
+  position: relative;
+  color: color.$gray-200;
+  &::before {
+    content: "";
+    width: 1px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background-color: color.$gray-200;
+  }
+  &_name {
+    margin-bottom: 6px;
+  }
+  &_value {
+    font-size: 40px;
+    font-weight: typography.$font-weight-medium;
+  }
+}

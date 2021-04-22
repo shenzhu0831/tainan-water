@@ -1,12 +1,37 @@
-.home{
+@use '../utility/color';
+@use '../utility/typography';
+@use '../component/navbar.scss';
+@use  '../component/reservoir-info.scss';
+
+.home {
   height: auto;
-  background-image: url(../image/pic/home-bg.png);
+  background: url(../image/pic/home-bg.png),no-repeat, center;
 }
 
-.navbar {
-  width: 246px;
+.web_info {
+  width: 523px;
   margin: 0 auto;
-  padding-top: 30px;
+  padding: 190px 0;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  &_title {
+    margin-bottom: 20px;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  &_subtitle {
+    margin-bottom: 20px;
+    color: color.$gray-200;
+    font-size: 36px;
+    font-weight: typography.$font-weight-medium;
+  }
+  .update_time {
+    color: color.$gray-200;
+    font-size: 20px;
+    font-weight: typography.$font-weight-regular;
+  }
 }

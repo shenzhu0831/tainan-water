@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>台南水資源</title>
-  
-  <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-  <section class="home">
-    <nav class="navbar">
-      <a href="#">水庫狀況</a>
-      <a href="#">取水資源</a>
-      <a href="#">節約用水</a>
-    </nav>
-    <div class="web_info">
-      <h1 class="title">
-        <img src="./image/title/水資源保衛戰.png" alt="水資源保衛戰">
-      </h1>
-      <h3 class="subtitle">台南水情即時數據及取水情報站</h3>
-      <span class="update_time">
-        上次更新時間
-        <time datetime="2001-05-15T19:00"></time>
-      </span>
-    </div>
-    <div class="reservoir_info">
-      <div class="water_regime">
-        <span class="water_regime_name">目前水情</span>
-        <span class="water_regime_badge"></span>
-        <span>減量供水</span>
-        <span class="water_regime_info">
-          <img src="./image/icon/information 1.png" alt="water_regime_info">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>台南水資源</title>
+
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <section class="home">
+      <nav class="navbar">
+        <a href="#">水庫狀況</a>
+        <a href="#">取水資源</a>
+        <a href="#">節約用水</a>
+      </nav>
+      <div class="web_info">
+        <h1 class="web_info_title">
+          <img src="./image/title/水資源保衛戰.png" alt="水資源保衛戰" />
+        </h1>
+        <h3 class="web_info_subtitle">台南水情即時數據及取水情報站</h3>
+        <span class="update_time">
+          上次更新時間
+          <time datetime="2021-04-21T12:00:00">2021.04.21 12:00:00</time>
         </span>
       </div>
-    </div>
-  </section>
-</body>
+      <div class="reservoir_info">
+        <div class="water_regime">
+          <span class="water_regime_name">目前水情</span>
+          <div class="water_regime_content">
+            <div class="water_regime_badge"></div>
+            <span class="water_regime_value">減量供水</span>
+            <div class="water_regime_info">
+              <img src="./image/icon/information 1.png" alt="water_regime_info" />
+            </div>
+          </div>
+        </div>
+        <div class="reservoir_regime">
+          <span class="reservoir_regime_name">水庫有效蓄水量</span>
+          <span class="reservoir_regime_value">24.5%</span>
+        </div>
+        <div class="reservoir_regime">
+          <span class="reservoir_regime_name">水庫有效蓄水量</span>
+          <span class="reservoir_regime_value">24.5%</span>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>

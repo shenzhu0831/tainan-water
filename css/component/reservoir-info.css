@@ -1,15 +1,3 @@
-.navbar {
-  width: 246px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  top: 30px;
-  left: 0;
-  right: 0;
-  font-weight: 600;
-}
-
 .reservoir_info {
   margin: 0 70px;
   padding: 40px 0;
@@ -73,37 +61,4 @@
   font-weight: 600;
 }
 
-.home {
-  height: auto;
-  background: url(../image/pic/home-bg.png), no-repeat, center;
-}
-
-.web_info {
-  width: 523px;
-  margin: 0 auto;
-  padding: 190px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-}
-.web_info_title {
-  margin-bottom: 20px;
-}
-.web_info_title img {
-  width: 100%;
-  object-fit: cover;
-}
-.web_info_subtitle {
-  margin-bottom: 20px;
-  color: #EEEEEE;
-  font-size: 36px;
-  font-weight: 600;
-}
-.web_info .update_time {
-  color: #EEEEEE;
-  font-size: 20px;
-  font-weight: 400;
-}
-
-/*# sourceMappingURL=home.css.map */
+/*# sourceMappingURL=reservoir-info.css.map */

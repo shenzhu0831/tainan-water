@@ -1,0 +1,13 @@
+.navbar {
+  width: 246px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0;
+  font-weight: 600;
+}
+
+/*# sourceMappingURL=navbar.css.map */

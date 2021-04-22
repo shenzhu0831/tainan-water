@@ -1,0 +1,14 @@
+@use '../utility/color';
+@use '../utility/typography';
+
+.navbar {
+  width: 246px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0;
+  font-weight: typography.$font-weight-medium;
+}
