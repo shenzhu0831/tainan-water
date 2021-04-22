@@ -48,6 +48,10 @@
   height: 20px;
   line-height: 20px;
 }
+.water_regime_info img {
+  width: 100%;
+  object-fit: cover;
+}
 
 .reservoir_regime {
   display: flex;

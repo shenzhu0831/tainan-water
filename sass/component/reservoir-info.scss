@@ -37,6 +37,10 @@
     width: 20px;
     height: 20px;
     line-height: 20px;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
   }
 }
 

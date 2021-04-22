@@ -1,0 +1,40 @@
+@use '../utility/color';
+@use '../utility/typography';
+@use '../component/resources-table.scss';
+
+.resources {
+  padding: 50px;
+  background-color: color.$gray-200;
+}
+.resources_title {
+  margin-bottom: 1.5rem;
+  h3 {
+    @extend %page_title;
+  }
+  h4 {
+    @extend %page_subtitle
+  }
+}
+
+.resources_region {
+  &_category {
+    margin-bottom: 40px;
+    button {
+      width: 97px;
+      height: 40px;
+      color: color.$gray-900;
+      background-color: transparent;
+      border: solid 1px color.$gray-900;
+      border-radius: 5px;
+      &:hover {
+        color: color.$gray-200;
+        background-color: color.$gray-900;
+      }
+    }
+  }
+  &_title {
+    h5 {
+      @extend %page_subtitle
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@use '../utility/color';
+@use '../utility/typography';
+
+.resources_region_table {
+  width: 100%;
+  border-collapse: collapse;
+  thead {
+    border-bottom: solid 1px color.$gray-300;
+    color: color.$gray-300;
+    text-align: left;
+    th {
+      padding: 15px 0;
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: solid 1px color.$gray-300;
+    }
+    td {
+      padding: 15px 0;
+      font-weight: typography.$font-weight-regular;
+      span {
+        font-size: 17px;
+        line-height: 1.5;
+      }
+      a {
+        color: color.$gray-500;
+        font-size: 15px;
+        line-height: 1.2;
+      }
+      .address_icon {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        line-height: 1.2;
+        vertical-align: middle;
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

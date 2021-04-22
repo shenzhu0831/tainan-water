@@ -22,17 +22,7 @@ body {
   line-height: typography.$line-height-base;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-p,
-ol,
-ul,
-li,
-label,
-input {
+h1,h2,h3,h4,h5,p,ol,ul,li,label,input {
   margin: 0;
 }
 
@@ -47,6 +37,7 @@ li {
 // # links
 
 a {
+  display: block;
   color: color.$gray-200;
   text-decoration: none;
   &:hover {

@@ -1,0 +1,81 @@
+.resources_title h3 {
+  font-size: 30px;
+  font-weight: 600;
+  text-transform: capitalize;
+  line-height: 1.5;
+  color: #333333;
+}
+
+.resources_title h4, .resources_region_title h5 {
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 1;
+  color: #333333;
+}
+
+.resources_region_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.resources_region_table thead {
+  border-bottom: solid 1px #BDBDBD;
+  color: #BDBDBD;
+  text-align: left;
+}
+.resources_region_table thead th {
+  padding: 15px 0;
+}
+.resources_region_table tbody tr {
+  border-bottom: solid 1px #BDBDBD;
+}
+.resources_region_table tbody td {
+  padding: 15px 0;
+  font-weight: 400;
+}
+.resources_region_table tbody td span {
+  font-size: 17px;
+  line-height: 1.5;
+}
+.resources_region_table tbody td a {
+  color: #828282;
+  font-size: 15px;
+  line-height: 1.2;
+}
+.resources_region_table tbody td .address_icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+.resources_region_table tbody td .address_icon img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.resources {
+  padding: 50px;
+  background-color: #EEEEEE;
+}
+
+.resources_title {
+  margin-bottom: 1.5rem;
+}
+.resources_region_category {
+  margin-bottom: 40px;
+}
+.resources_region_category button {
+  width: 97px;
+  height: 40px;
+  color: #333333;
+  background-color: transparent;
+  border: solid 1px #333333;
+  border-radius: 5px;
+}
+.resources_region_category button:hover {
+  color: #EEEEEE;
+  background-color: #333333;
+}
+
+/*# sourceMappingURL=resources.css.map */

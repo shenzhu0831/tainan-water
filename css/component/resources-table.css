@@ -1,0 +1,41 @@
+.resources_region_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.resources_region_table thead {
+  border-bottom: solid 1px #BDBDBD;
+  color: #BDBDBD;
+  text-align: left;
+}
+.resources_region_table thead th {
+  padding: 15px 0;
+}
+.resources_region_table tbody tr {
+  border-bottom: solid 1px #BDBDBD;
+}
+.resources_region_table tbody td {
+  padding: 15px 0;
+  font-weight: 400;
+}
+.resources_region_table tbody td span {
+  font-size: 17px;
+  line-height: 1.5;
+}
+.resources_region_table tbody td a {
+  color: #828282;
+  font-size: 15px;
+  line-height: 1.2;
+}
+.resources_region_table tbody td .address_icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+.resources_region_table tbody td .address_icon img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=resources-table.css.map */
