@@ -175,6 +175,9 @@ button {
   padding: 50px;
 }
 
+.reservoir_title {
+  margin-bottom: 1.5rem;
+}
 .total_storage {
   display: flex;
   flex-direction: column;
