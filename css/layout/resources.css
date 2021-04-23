@@ -6,14 +6,6 @@
   color: #333333;
 }
 
-.resources_title h4 {
-  font-size: 20px;
-  font-weight: 400;
-  text-transform: capitalize;
-  line-height: 1;
-  color: #333333;
-}
-
 .resources_region_list {
   display: flex;
 }
@@ -27,6 +19,10 @@
 .resources_region_item span {
   font-size: 12px;
 }
+.resources_region_item:hover {
+  border: solid 1px;
+  border-radius: 10px;
+}
 .resources_region_icon {
   width: 40px;
   height: 40px;
@@ -35,6 +31,40 @@
 .resources_region_icon img {
   width: 100%;
   object-fit: cover;
+}
+.resources_region_content {
+  padding: 16px;
+  flex: 2 0 0;
+  background-color: #F2F2F2;
+}
+.resources_region_content button {
+  width: 26px;
+  height: 26px;
+  background-color: transparent;
+}
+.resources_region_content button img {
+  width: 100%;
+  object-fit: contain;
+}
+.resources_region_sort {
+  margin-right: 13px;
+}
+.resources_region_stand {
+  padding: 1.2rem 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px #e0e0e0;
+}
+
+.stand_info {
+  display: flex;
+  flex: 2 0 0;
+  flex-direction: column;
+  font-size: 17px;
+}
+
+.resources_address {
+  margin-right: 25px;
 }
 
 .on-click {
@@ -49,7 +79,17 @@
 
 .resources_title {
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
 }
+.resources_title .reserv_button {
+  padding: 10px 20px;
+  background-color: #333333;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 17px;
+}
+
 .resources_region_category {
   margin-bottom: 40px;
 }

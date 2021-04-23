@@ -38,6 +38,7 @@ a {
   display: block;
   color: color.$white;
   text-decoration: none;
+  cursor: pointer;
   &:hover {
     text-decoration: none;
   }
@@ -47,4 +48,5 @@ button {
   margin: 0;
   padding: 0;
   border: none;
+  cursor: pointer;
 }

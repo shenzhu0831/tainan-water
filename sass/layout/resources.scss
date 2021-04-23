@@ -9,11 +9,17 @@
 }
 .resources_title {
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
   h3 {
     @extend %page_title;
   }
-  h4 {
-    @extend %page_subtitle
+  .reserv_button {
+    padding: 10px 20px;
+    background-color: color.$gray-900;
+    border-radius: 4px;
+    color: color.$white;
+    font-size: 17px;
   }
 }
 
