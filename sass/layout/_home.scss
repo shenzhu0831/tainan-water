@@ -1,7 +1,8 @@
 @use '../utility/color';
 @use '../utility/typography';
 @use '../component/navbar.scss';
-@use  '../component/reservoir-info.scss';
+@use  '../component/reservoir-info';
+@use '../component/resources-stand-info';
 
 .home {
   height: auto;
