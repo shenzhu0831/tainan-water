@@ -103,7 +103,7 @@
           <span class="reservoir_regime_name">台南水庫總蓄水率</span>
           <span
             class="reservoir_regime_value resources_stand_value"
-            @click="display.reservoir = !display.reservoir"
+            @click="showReservoir()"
             >{{ totalPercentage }}</span
           >
         </div>
@@ -141,7 +141,7 @@
         </div>
       </div>
     </section>
-    <section class="reservoir" v-if="display.reservoir">
+    <section ref="reservoir" class="reservoir" v-if="display.reservoir">
       <div class="reservoir_title">
         <h3>台灣水庫蓄水情況</h3>
       </div>
@@ -186,7 +186,7 @@
         </div>
       </div>
     </section>
-    <section class="resources" v-if="display.resource">
+    <section ref="resource" class="resources" v-if="display.resource">
       <div class="resources_title">
         <h3>台南取水資源</h3>
         <!-- <button class="reserv_button">預約取水系統</button> -->
@@ -413,6 +413,7 @@ import recycleData from "@/assets/open-data/recycle.json";
 import roData from "@/assets/open-data/ro.json";
 import carData from "@/assets/open-data/car.json";
 
+import VueScrollTo from "vue-scrollto";
 import Economy from "@/components/Economy.vue";
 
 export default {
@@ -490,9 +491,20 @@ export default {
     },
   },
   methods: {
+    showReservoir() {
+      this.display.reservoir = true;
+      this.display.resource = false;
+      this.$nextTick(() => {
+        VueScrollTo.scrollTo(this.$refs.reservoir, 500);
+      });
+    },
     show(resourceType) {
+      this.display.reservoir = false;
       this.display.resource = true;
       this.resourceType = resourceType;
+      this.$nextTick(() => {
+        VueScrollTo.scrollTo(this.$refs.resource, 500);
+      });
     },
     getPercentage(reservoir) {
       return (
