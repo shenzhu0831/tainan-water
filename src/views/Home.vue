@@ -79,7 +79,9 @@
         <h3 class="web_info_subtitle">台南水情即時數據及取水情報站</h3>
         <span class="update_time">
           上次更新時間
-          <time datetime="2021-04-23T12:00:00">2021.04.23 12:00:00</time>
+          <time :datetime="reservoirInfo.曾文水庫.ObservationTime">{{
+            getLastUpdate()
+          }}</time>
         </span>
       </div>
       <div class="reservoir_info">
@@ -157,14 +159,15 @@
           <span class="reservoir_storage">有效蓄水量/萬立方公尺</span>
         </div>
         <div class="reservoir_chart_body">
-          <div class="reservoir_chart_item" v-for="reservoir in reservoirs">
+          <div
+            class="reservoir_chart_item"
+            v-for="(reservoir, ReservoirName) in reservoirInfo"
+          >
             <div class="reservoir_name">
-              <div>{{ reservoir.ReservoirName }}</div>
-              <span
-                class="reservoir_counties"
-                v-for="city in reservoirInfo[reservoir.ReservoirName].tabs"
-                >{{ city }}</span
-              >
+              <div>{{ ReservoirName }}</div>
+              <span class="reservoir_counties" v-for="city in reservoir.tabs">{{
+                city
+              }}</span>
             </div>
             <div class="reservoir_chart_line">
               <div
@@ -176,11 +179,7 @@
               {{ getPercentage(reservoir) }}%
             </div>
             <div class="reservoir_storage">
-              {{
-                getLastEffectiveWaterStorageCapacity(
-                  reservoir.ReservoirIdentifier
-                )
-              }}
+              {{ reservoir.EffectiveWaterStorageCapacity }}
             </div>
           </div>
         </div>
@@ -404,6 +403,9 @@
 <script>
 // @ is an alias to /src
 import _ from "lodash";
+import dayjs from "dayjs";
+import axios from "axios";
+
 import "@/assets/style.scss";
 import tainanReservoirData from "@/assets/open-data/tainan-reservoir-data.json";
 import reservoirLiveData from "@/assets/open-data/reservoir-live-data.json";
@@ -432,22 +434,27 @@ export default {
       reservoirInfo: {
         白河水庫: {
           ReservoirIdentifier: 30401,
+          EffectiveCapacity: 1173.45,
           tabs: ["台南"],
         },
         曾文水庫: {
           ReservoirIdentifier: 30502,
+          EffectiveCapacity: 50956,
           tabs: ["嘉義", "台南"],
         },
         烏山頭水庫: {
           ReservoirIdentifier: 30501,
+          EffectiveCapacity: 7876.5,
           tabs: ["台南"],
         },
         南化水庫: {
           ReservoirIdentifier: 30503,
+          EffectiveCapacity: 9097.9,
           tabs: ["台南", "高雄"],
         },
       },
       resourceType: null,
+      totalStorage: 0,
       resource: {
         well: wellData,
         farmwell: farmwellData,
@@ -462,24 +469,17 @@ export default {
   },
   mounted() {
     this.reservoirs = tainanReservoirData;
-    this.reservoirLiveData = reservoirLiveData.ReservoirConditionData_OPENDATA;
+    // this.reservoirLiveData = reservoirLiveData.ReservoirConditionData_OPENDATA;
+    axios.get("https://goodideas-studio.com/water/").then((res) => {
+      this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
+      this.setLastEffectiveWaterStorageCapacity();
+      this.setTotalStorage();
+    });
   },
   computed: {
-    totalStorage() {
-      return _.reduce(
-        this.reservoirInfo,
-        (sum, reservoir) => {
-          return (sum +=
-            this.getLastEffectiveWaterStorageCapacity(
-              reservoir.ReservoirIdentifier
-            ) * 1);
-        },
-        0
-      );
-    },
     totalCapacity() {
       return _.reduce(
-        this.reservoirs,
+        this.reservoirInfo,
         (sum, reservoir) => {
           return (sum += reservoir.EffectiveCapacity * 1);
         },
@@ -491,6 +491,22 @@ export default {
     },
   },
   methods: {
+    getLastUpdate() {
+      return this.reservoirInfo.曾文水庫.ObservationTime
+        ? dayjs(this.reservoirInfo.曾文水庫.ObservationTime).format(
+            "YYYY.MM.DD HH:mm:ss"
+          )
+        : "-";
+    },
+    setTotalStorage() {
+      this.totalStorage = _.reduce(
+        this.reservoirInfo,
+        (sum, reservoir) => {
+          return (sum += reservoir.EffectiveWaterStorageCapacity);
+        },
+        0
+      );
+    },
     showReservoir() {
       this.display.reservoir = true;
       this.display.resource = false;
@@ -508,18 +524,24 @@ export default {
     },
     getPercentage(reservoir) {
       return (
-        (this.getLastEffectiveWaterStorageCapacity(
-          reservoir.ReservoirIdentifier
-        ) /
+        (reservoir.EffectiveWaterStorageCapacity /
           reservoir.EffectiveCapacity) *
         100
       ).toFixed(2);
     },
-    getLastEffectiveWaterStorageCapacity(id) {
-      let last = _.findLast(this.reservoirLiveData, (row) => {
-        return String(row.ReservoirIdentifier) == String(id);
+    setLastEffectiveWaterStorageCapacity() {
+      _.each(this.reservoirInfo, (reservoir) => {
+        let last = _.findLast(this.reservoirLiveData, (row) => {
+          return (
+            String(row.ReservoirIdentifier) ==
+            String(reservoir.ReservoirIdentifier)
+          );
+        });
+        reservoir.EffectiveWaterStorageCapacity = parseFloat(
+          last.EffectiveWaterStorageCapacity
+        );
+        reservoir.ObservationTime = last.ObservationTime;
       });
-      return last ? last.EffectiveWaterStorageCapacity : 0;
     },
     direct(value) {
       window.open(value, "_blank");
