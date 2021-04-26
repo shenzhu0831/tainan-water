@@ -2,11 +2,12 @@
 @use '../utility/typography';
 
 .resources_stand_info {
-  margin: 0 70px;
+  padding: 16px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   @media (min-width: 1024px) {
+    margin: 0 70px;
     padding: 40px 0;
     flex-direction: row;
   }

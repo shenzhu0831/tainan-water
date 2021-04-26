@@ -2,10 +2,11 @@
 @use '../utility/typography';
 
 .reservoir_info {
-  margin: 0 70px;
+  margin: 0 16px;
   display: flex;
   flex-direction: column;
   @media (min-width: 768px) {
+    margin: 0 70px;
     padding: 40px 0;
     flex-direction: row;
     border-top: solid 1px color.$white;
