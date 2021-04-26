@@ -2,11 +2,15 @@
 @use '../utility/typography';
 
 .economy {
-  padding: 60px 50px;
+  padding: 40px 16px;
   background-color: color.$gray-600;
+  @media (min-width: 768px) {
+    padding: 60px 50px;
+  }
   &_title {
     @extend %page_title;
     margin-bottom: 16px;
+    text-align: center;
     color: color.$white;
   }
   &_table {
@@ -21,9 +25,14 @@
       text-align: left;
     }
     td {
-      padding: 23px 0;
+      width: 10%;
+      padding: 23px 10px;
       border-bottom: solid 1px color.$white;
       line-height: 23px;
+      @media (min-width: 768px) {
+        width: 0;
+        padding: 23px 0;
+      }
     }
   }
 }
