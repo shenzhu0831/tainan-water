@@ -5,6 +5,8 @@ import store from "./store";
 import { LMap, LTileLayer, LMarker, LPopup, LFeatureGroup } from "vue2-leaflet";
 import "leaflet/dist/leaflet.css";
 
+import "./assets/scss/style.scss"
+
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({

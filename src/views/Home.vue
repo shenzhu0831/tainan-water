@@ -406,7 +406,7 @@ import _ from "lodash";
 import dayjs from "dayjs";
 import axios from "axios";
 
-import "@/assets/style.scss";
+// import "@/assets/scss/style.scss";
 import tainanReservoirData from "@/assets/open-data/tainan-reservoir-data.json";
 import reservoirLiveData from "@/assets/open-data/reservoir-live-data.json";
 import wellData from "@/assets/open-data/well.json";
