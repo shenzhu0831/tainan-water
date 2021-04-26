@@ -160,17 +160,21 @@
                 city
               }}</span>
             </div>
-            <div class="reservoir_chart_line">
-              <div
-                class="reservoir_chart_value"
-                :style="{ width: getPercentage(reservoir) + '%' }"
-              ></div>
-            </div>
-            <div class="reservoir_capacity">
-              {{ getPercentage(reservoir) }}%
-            </div>
-            <div class="reservoir_storage">
-              {{ reservoir.EffectiveWaterStorageCapacity }}
+            <div class="reservoir_chart_content">
+              <div class="reservoir_chart_bar">
+                <div class="reservoir_chart_capacity">
+                  <div
+                    class="reservoir_chart_value"
+                    :style="{ width: getPercentage(reservoir) + '%' }"
+                  ></div>
+                </div>
+              </div>
+              <div class="reservoir_capacity">
+                {{ getPercentage(reservoir) }}%
+              </div>
+              <div class="reservoir_storage">
+                {{ reservoir.EffectiveWaterStorageCapacity }}
+              </div>
             </div>
           </div>
         </div>
