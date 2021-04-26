@@ -52,8 +52,22 @@
       }
     }
     &_value {
+      margin-bottom: 8px;
       font-size: 50px;
       font-weight: 800;
+    }
+    &_badge{
+      width: 70px;
+      height: 26px;
+      margin-right: 5px;
+      padding: 4px 8px;
+      border-radius: 26px;
+      background-color: color.$white;
+      font-size: 13px;
+      color: color.$gray-900;
+      &:last-child {
+        margin: 0;
+      }
     }
   }
 }

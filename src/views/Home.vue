@@ -103,34 +103,40 @@
       </div>
       <div class="resources_stand_info">
         <div class="resources_stand">
+          <div class="resources_stand_name">水資源回收中心</div>
+          <div class="resources_stand_value" @click="show('recycle')">
+            {{ resource.recycle.length }}
+          </div>
+          <span class="resources_stand_badge">企業取水</span>
+          <span class="resources_stand_badge">民眾取水</span>
+        </div>
+        <div class="resources_stand">
           <div class="resources_stand_name">抗旱水井</div>
           <div class="resources_stand_value" @click="show('well')">
             {{ resource.well.length }}
           </div>
+          <span class="resources_stand_badge">企業取水</span>
         </div>
         <div class="resources_stand">
           <div class="resources_stand_name">農業水井</div>
           <div class="resources_stand_value" @click="show('farmwell')">
             {{ resource.farmwell.length }}
           </div>
-        </div>
-        <div class="resources_stand">
-          <div class="resources_stand_name">RO等級移動式淨水設備</div>
-          <div class="resources_stand_value" @click="show('ro')">
-            {{ resource.ro.length }}
-          </div>
+          <span class="resources_stand_badge">企業取水</span>
         </div>
         <div class="resources_stand">
           <div class="resources_stand_name">民間水車</div>
           <div class="resources_stand_value" @click="show('car')">
             {{ resource.car.length }}
           </div>
+          <span class="resources_stand_badge">企業取水</span>
         </div>
         <div class="resources_stand">
-          <div class="resources_stand_name">水資源回收中心</div>
-          <div class="resources_stand_value" @click="show('recycle')">
-            {{ resource.recycle.length }}
+          <div class="resources_stand_name">RO等級移動式淨水設備</div>
+          <div class="resources_stand_value" @click="show('ro')">
+            {{ resource.ro.length }}
           </div>
+          <span class="resources_stand_badge">企業取水</span>
         </div>
       </div>
     </section>
