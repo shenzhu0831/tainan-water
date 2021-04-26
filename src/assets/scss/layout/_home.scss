@@ -1,7 +1,8 @@
 @use '../utility/color';
 @use '../utility/typography';
+@use '../module/breakpoint';
 @use '../component/navbar';
-@use  '../component/reservoir-info';
+@use '../component/reservoir-info';
 @use '../component/resources-stand-info';
 
 .home {
@@ -10,29 +11,33 @@
 }
 
 .web_info {
-  width: 523px;
   margin: 0 auto;
   padding: 190px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  @media (min-width: 768px) {
+    width: 759px;
+  }
   &_title {
     margin-bottom: 20px;
-    img {
+    display: none;
+    @media (min-width: 768px) {
       width: 100%;
-      object-fit: cover;
+      display: block;
     }
-  }
-  &_subtitle {
-    margin-bottom: 20px;
-    color: color.$white;
-    font-size: 36px;
-    font-weight: typography.$font-weight-medium;
   }
   .update_time {
     color: color.$white;
     font-size: 20px;
     font-weight: typography.$font-weight-regular;
+  }
+}
+
+.sm-size {
+  display: block;
+  @media (min-width: 768px) {
+    display: none;
   }
 }
