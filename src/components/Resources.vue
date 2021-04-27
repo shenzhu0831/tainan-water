@@ -221,15 +221,21 @@
                       />
                     </a>
                   </div>
-                  <div
-                    v-if="resource.聯絡方式 || resource.聯絡資訊"
-                    class="connect-icon"
-                  >
+                  <div v-if="resource.聯絡方式" class="connect-icon">
                     <a
-                      :href="`tel:${
-                        resource.聯絡方式.split('\n')[0] ||
-                        resource.聯絡資訊.split('\n')[0]
-                      }`"
+                      :href="`tel:${resource.聯絡方式.split('\n')[0]}`"
+                      class="resources_telephone"
+                    >
+                      <img
+                        class="phone-icon"
+                        src="@/assets/image/icon/phone.png"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                  <div v-if="resource.聯絡資訊" class="connect-icon">
+                    <a
+                      :href="`tel:${resource.聯絡資訊.split('\n')[0]}`"
                       class="resources_telephone"
                     >
                       <img
