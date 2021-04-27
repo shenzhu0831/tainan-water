@@ -232,17 +232,12 @@ export default {
     };
   },
   methods:{
-    changeResourceType(value){
-      this.$emit('changeResourceType', value)
-    }
-  },
-  mounted(){
-    this.resourceType = this.resourceType
   },
   watch: {
-    resourceType(value){
-      this.changeResourceType(value)
-    }
+    parentResourceType(newValue){
+      this.resourceType = newValue
+      console.log(this.resourceType);
+    },
   }
 }
 </script>
