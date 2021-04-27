@@ -9,6 +9,19 @@
       <div class="resources_region_sort_laptop">
         <div
           class="resources_region_item pointer"
+          :class="{ active: resourceType == 'recycle' }"
+          @click="resourceType = 'recycle'"
+        >
+          <div class="resources_region_icon">
+            <img
+              src="@/assets/image/icon/water-recycling-center.png"
+              alt="water-recycling-center"
+            />
+          </div>
+          <span>水資源回收中心</span>
+        </div>
+        <div
+          class="resources_region_item pointer"
           :class="{ active: resourceType == 'well' }"
           @click="resourceType = 'well'"
         >
@@ -35,29 +48,6 @@
         </div>
         <div
           class="resources_region_item pointer"
-          :class="{ active: resourceType == 'recycle' }"
-          @click="resourceType = 'recycle'"
-        >
-          <div class="resources_region_icon">
-            <img
-              src="@/assets/image/icon/water-recycling-center.png"
-              alt="water-recycling-center"
-            />
-          </div>
-          <span>水資源回收中心</span>
-        </div>
-        <div
-          class="resources_region_item pointer"
-          :class="{ active: resourceType == 'ro' }"
-          @click="resourceType = 'ro'"
-        >
-          <div class="resources_region_icon">
-            <img src="@/assets/image/icon/RO-icon.png" alt="RO-icon" />
-          </div>
-          <span>RO等級移動式淨水設備</span>
-        </div>
-        <div
-          class="resources_region_item pointer"
           :class="{ active: resourceType == 'car' }"
           @click="resourceType = 'car'"
         >
@@ -68,6 +58,16 @@
             />
           </div>
           <span>民間水車</span>
+        </div>
+        <div
+          class="resources_region_item pointer"
+          :class="{ active: resourceType == 'ro' }"
+          @click="resourceType = 'ro'"
+        >
+          <div class="resources_region_icon">
+            <img src="@/assets/image/icon/RO-icon.png" alt="RO-icon" />
+          </div>
+          <span>RO等級移動式淨水設備</span>
         </div>
       </div>
       <div class="resources_region_content" v-if="resourceType == 'well'">
@@ -169,7 +169,7 @@
         >
           <div class="stand_info">
             [{{ row["單位名稱"] }}] {{ row["地址"] }}
-            <span class="open_time">08：00 - 17：00</span>
+            <span class="open_time">{{ row["可取水時間"] }}</span>
           </div>
           <button
             class="resources_address"
