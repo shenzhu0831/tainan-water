@@ -3,6 +3,10 @@
 
 .resources_region_list {
   display: flex;
+  flex-direction: column;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 }
 
 .resources_region{
@@ -29,26 +33,27 @@
     }
   }
   &_content {
-    display: none;
-    @media (min-width:768px) {
-      padding: 16px;
-      display: block;
-      flex: 1 0 0;
-      background-color: color.$gray-100;
-      button {
-        width: 26px;
-        height: 26px;
-        background-color: transparent;
-        img {
-          width: 100%;
-          object-fit: contain;
-        }
+    padding: 16px;
+    display: block;
+    flex: 1 0 0;
+    background-color: color.$gray-100;
+    @media (min-width: 768px) {
+      height: 600px;
+      overflow: scroll;
+    }
+    button {
+      width: 26px;
+      height: 26px;
+      background-color: transparent;
+      img {
+        width: 100%;
+        object-fit: contain;
       }
     }
   }
-  &_sort_laptop{
+  &_sort_laptop {
     display: none;
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       margin-right: 13px;
       display: block;
     }
@@ -58,6 +63,19 @@
     display: flex;
     justify-content: space-between;
     border-bottom: solid 1px color.$gray-400;
+  }
+}
+
+.resources_map {
+  height: 400px;
+  margin-bottom: 30px;
+  flex: 1 0 0;
+  order: -1;
+  position: relative;
+  text-align: center;
+  @media (min-width: 768px) {
+    height: 600px;
+    order: 1;
   }
 }
 
@@ -76,4 +94,10 @@
 .on-click {
   border: solid 1px;
   border-radius: 10px;
+}
+
+.custom-select {
+  @media (min-width:768px) {
+    display: none;
+  }
 }

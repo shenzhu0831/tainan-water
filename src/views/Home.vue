@@ -186,200 +186,7 @@
         </div>
       </div>
     </section>
-    <section ref="resource" class="resources" v-if="display.resource">
-      <div class="resources_title">
-        <h3>台南取水資源</h3>
-        <!-- <button class="reserv_button">預約取水系統</button> -->
-      </div>
-      <div class="resources_region"></div>
-      <div class="resources_region_list">
-        <div class="resources_region_sort_laptop">
-          <div
-            class="resources_region_item pointer"
-            :class="{ active: resourceType == 'well' }"
-            @click="resourceType = 'well'"
-          >
-            <div class="resources_region_icon">
-              <img
-                src="@/assets/image/icon/drought-well.png"
-                alt="drought-well"
-              />
-            </div>
-            <span>抗旱水井</span>
-          </div>
-          <div
-            class="resources_region_item pointer"
-            :class="{ active: resourceType == 'farmwell' }"
-            @click="resourceType = 'farmwell'"
-          >
-            <div class="resources_region_icon">
-              <img
-                src="@/assets/image/icon/agricultural-well.png"
-                alt="agricultural-well"
-              />
-            </div>
-            <span>農業水井</span>
-          </div>
-          <div
-            class="resources_region_item pointer"
-            :class="{ active: resourceType == 'recycle' }"
-            @click="resourceType = 'recycle'"
-          >
-            <div class="resources_region_icon">
-              <img
-                src="@/assets/image/icon/water-recycling-center.png"
-                alt="water-recycling-center"
-              />
-            </div>
-            <span>水資源回收中心</span>
-          </div>
-          <div
-            class="resources_region_item pointer"
-            :class="{ active: resourceType == 'ro' }"
-            @click="resourceType = 'ro'"
-          >
-            <div class="resources_region_icon">
-              <img src="@/assets/image/icon/RO-icon.png" alt="RO-icon" />
-            </div>
-            <span>RO等級移動式淨水設備</span>
-          </div>
-          <div
-            class="resources_region_item pointer"
-            :class="{ active: resourceType == 'car' }"
-            @click="resourceType = 'car'"
-          >
-            <div class="resources_region_icon">
-              <img
-                src="@/assets/image/icon/water-wheel.png"
-                alt="water-wheel"
-              />
-            </div>
-            <span>民間水車</span>
-          </div>
-        </div>
-        
-        <div class="resources_region_content" v-if="resourceType == 'well'">
-          <div
-            class="resources_region_stand"
-            v-for="row in resource[resourceType]"
-          >
-            <div class="stand_info">
-              [{{ row["引水地點"] }}] {{ row["引點地點[地段地號]"] }}
-              <span class="open_time">00：00 - 24：00</span>
-            </div>
-            <button class="resources_address icon-disable">
-              <img src="@/assets/image/icon/map.png" alt="map icon" />
-            </button>
-            <button class="resources_telephone icon-disable">
-              <img src="@/assets/image/icon/phone.png" alt="" />
-            </button>
-          </div>
-        </div>
-        <div class="resources_region_content" v-if="resourceType == 'farmwell'">
-          <div
-            class="resources_region_stand"
-            v-for="row in resource[resourceType]"
-          >
-            <div class="stand_info">
-              [{{ row["站名[井號]"] }}] {{ row["地籍"] }}
-              <span class="open_time">00：00 - 24：00</span>
-            </div>
-            <button
-              class="resources_address"
-              @click="
-                direct(
-                  `http://maps.google.com/?q=${row.Latitude},${row.Longitude}`
-                )
-              "
-            >
-              <img src="@/assets/image/icon/map.png" alt="map icon" />
-            </button>
-            <button class="resources_telephone icon-disable">
-              <img src="@/assets/image/icon/phone.png" alt="" />
-            </button>
-          </div>
-        </div>
-        <div class="resources_region_content" v-if="resourceType == 'recycle'">
-          <div
-            class="resources_region_stand"
-            v-for="row in resource[resourceType]"
-          >
-            <div class="stand_info">
-              [{{ row["廠別"] }}] {{ row["位置資訊"] }}
-              <span class="open_time">00：00 - 24：00</span>
-            </div>
-            <button
-              class="resources_address"
-              @click="
-                direct(
-                  `http://maps.google.com/?q=${row.Latitude},${row.Longitude}`
-                )
-              "
-            >
-              <img src="@/assets/image/icon/map.png" alt="map icon" />
-            </button>
-            <button
-              class="resources_telephone"
-              @click="call(row.聯絡方式.split('\n')[0])"
-            >
-              <img src="@/assets/image/icon/phone.png" alt="" />
-            </button>
-          </div>
-        </div>
-        <div class="resources_region_content" v-if="resourceType == 'ro'">
-          <div
-            class="resources_region_stand"
-            v-for="row in resource[resourceType]"
-          >
-            <div class="stand_info">
-              [{{ row["名稱"] }}] {{ row["位址"] }}
-              <span class="open_time">{{ row["可取水時間"] }}</span>
-            </div>
-            <button
-              class="resources_address"
-              @click="
-                direct(
-                  `http://maps.google.com/?q=${row.Latitude},${row.Longitude}`
-                )
-              "
-            >
-              <img src="@/assets/image/icon/map.png" alt="map icon" />
-            </button>
-            <button class="resources_telephone icon-disable">
-              <img src="@/assets/image/icon/phone.png" alt="" />
-            </button>
-          </div>
-        </div>
-        <div class="resources_region_content" v-if="resourceType == 'car'">
-          <div
-            class="resources_region_stand"
-            v-for="row in resource[resourceType]"
-          >
-            <div class="stand_info">
-              [{{ row["單位名稱"] }}] {{ row["地址"] }}
-              <span class="open_time">08：00 - 17：00</span>
-            </div>
-            <button
-              class="resources_address"
-              @click="
-                direct(
-                  `http://maps.google.com/?q=${row.Latitude},${row.Longitude}`
-                )
-              "
-            >
-              <img src="@/assets/image/icon/map.png" alt="map icon" />
-            </button>
-            <button
-              class="resources_telephone"
-              @click="call(row.聯絡資訊.split('\n')[0])"
-            >
-              <img src="@/assets/image/icon/phone.png" alt="" />
-            </button>
-          </div>
-        </div>
-        <ResourcesMap :resource="resource" :resourceType="resourceType" ref="resourcesMap"/>
-      </div>
-    </section>
+    <Resources @changeResourceType="show" :display="display" :resource="resource" :parentResourceType="resourceType" ref="resourcesMap"/>
     <Economy></Economy>
   </div>
 </template>
@@ -403,7 +210,9 @@ import carData from "@/assets/open-data/car.json";
 
 import VueScrollTo from "vue-scrollto";
 import Economy from "@/components/Economy.vue";
-import ResourcesMap from "@/components/ResourcesMap.vue";
+// import ResourcesMap from "@/components/ResourcesMap.vue";
+import Resources from "@/components/Resources.vue";
+
 
 export default {
   name: "Home",
@@ -411,7 +220,8 @@ export default {
     laptopLogo,
     phoneLogo,
     Economy,
-    ResourcesMap
+    // ResourcesMap,
+    Resources
   },
   data() {
     return {
@@ -500,6 +310,7 @@ export default {
       );
     },
     showReservoir() {
+      console.log('showReservoir');
       this.display.reservoir = true;
       this.display.resource = false;
       this.$nextTick(() => {
@@ -511,7 +322,8 @@ export default {
       this.display.resource = true;
       this.resourceType = resourceType;
       this.$nextTick(() => {
-        VueScrollTo.scrollTo(this.$refs.resource, 500);
+        // 透過原生的 $el 直接選取 component DOM 元素
+        VueScrollTo.scrollTo(this.$refs.resourcesMap.$el, 500);
       });
     },
     getPercentage(reservoir) {
@@ -545,7 +357,6 @@ export default {
   watch: {
     resourceType() {
       this.$nextTick(() => {
-        console.log( "a", this.$refs.resourcesMap.$refs.features.mapObject.getBounds());
         this.$refs.resourcesMap.$refs.map.mapObject.invalidateSize();
         this.$refs.resourcesMap.$refs.map.fitBounds(this.$refs.resourcesMap.$refs.features.mapObject.getBounds());
       });
@@ -588,12 +399,6 @@ export default {
     border-color: #999;
     border-radius: 10px;
   }
-}
-.resources_map {
-  height: 100%;
-  margin-bottom: 30px;
-  flex: 1 0 0;
-  text-align: center;
 }
 .popover {
   top: calc(50% - 240px);

@@ -2,8 +2,19 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+
+// leaflet Map
 import { LMap, LTileLayer, LMarker, LPopup, LFeatureGroup } from "vue2-leaflet";
 import "leaflet/dist/leaflet.css";
+
+// bootstrap Vue
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+
 
 // scss style
 import "./assets/scss/style.scss"
