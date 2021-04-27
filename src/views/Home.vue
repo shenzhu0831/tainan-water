@@ -377,7 +377,7 @@
             </button>
           </div>
         </div>
-        <ResourcesMap ref="map"/>
+        <ResourcesMap :resource="resource" :resourceType="resourceType" ref="resourcesMap"/>
       </div>
     </section>
     <Economy></Economy>
@@ -545,8 +545,9 @@ export default {
   watch: {
     resourceType() {
       this.$nextTick(() => {
-        this.$refs.map.mapObject.invalidateSize();
-        this.$refs.map.fitBounds(this.$refs.features.mapObject.getBounds());
+        console.log( "a", this.$refs.resourcesMap.$refs.features.mapObject.getBounds());
+        this.$refs.resourcesMap.$refs.map.mapObject.invalidateSize();
+        this.$refs.resourcesMap.$refs.map.fitBounds(this.$refs.resourcesMap.$refs.features.mapObject.getBounds());
       });
     },
   },

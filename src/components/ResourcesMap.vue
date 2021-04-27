@@ -23,26 +23,14 @@
 
 <script>
 import _ from "lodash";
-import wellData from "@/assets/open-data/well.json";
-import farmwellData from "@/assets/open-data/farmwell.json";
-import recycleData from "@/assets/open-data/recycle.json";
-import roData from "@/assets/open-data/ro.json";
-import carData from "@/assets/open-data/car.json";
 
 export default {
   name: "ResourcesMap",
+  props: ['resourceType', 'resource'],
   data() {
     return {
       display: {
         resource: false,
-      },
-      resourceType: null,
-      resource: {
-        well: wellData,
-        farmwell: farmwellData,
-        recycle: recycleData,
-        ro: roData,
-        car: _.filter(carData, (row) => row["縣市"] == "臺南市"),
       },
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 12,
@@ -52,16 +40,11 @@ export default {
   methods: {
     abc(resource){
       console.log(resource);
-    }
-  },
-  watch: {
-    resourceType() {
-      this.$nextTick(() => {
-        this.$refs.map.mapObject.invalidateSize();
-        this.$refs.map.fitBounds(this.$refs.features.mapObject.getBounds());
-      });
     },
-  },
+    test(resource) {
+      console.log('test', resource);
+    }
+  }
 };
 </script>
 
