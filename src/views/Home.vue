@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="popover-container" v-if="display.popoverContainer">
-      <div class="popover">
+    <div class="popover-container" v-show="display.popoverContainer">
+      <div class="popover_area">
         <div class="popover_card">
           <div class="popover_header">
             <h3 class="popover_header_title">水情燈號意義</h3>
@@ -14,21 +14,27 @@
           </div>
           <div class="popover_body">
             <div class="light_sign">
-              <div class="light_sign_badge green"></div>
-              <span class="light_sign_name">水情提醒</span>
+              <div class="light_sign_info">
+                <div class="light_sign_badge green"></div>
+                <span class="light_sign_name">水情提醒</span>
+              </div>
               <p class="light_sign_content">加強水源調度及研擬措施。</p>
             </div>
             <div class="light_sign">
-              <div class="light_sign_badge yellow"></div>
-              <span class="light_sign_name">減壓供水</span>
+              <div class="light_sign_info">
+                <div class="light_sign_badge yellow"></div>
+                <span class="light_sign_name">減壓供水</span>
+              </div>
               <p class="light_sign_content">
                 減壓供水：離峰及特定時段降低管壓供水 <br />
                 停止供水：停供行政機關及國營事業轄管噴水池、澆灌、沖洗外牆、街道及水溝等非急需或非必要之用水。
               </p>
             </div>
             <div class="light_sign">
-              <div class="light_sign_badge orange_400"></div>
-              <span class="light_sign_name">水情提醒</span>
+              <div class="light_sign_info">
+                <div class="light_sign_badge orange_400"></div>
+                <span class="light_sign_name">水情提醒</span>
+              </div>
               <p class="light_sign_content">
                 停止供水：試放消防栓、露天屋頂放流及其他供水之用 <br />
                 減量供水：每月用水超過一千度大用水戶之非工業用水戶減供
@@ -38,8 +44,10 @@
               </p>
             </div>
             <div class="light_sign">
-              <div class="light_sign_badge orange_600"></div>
-              <span class="light_sign_name">水情提醒</span>
+              <div class="light_sign_info">
+                <div class="light_sign_badge orange_600"></div>
+                <span class="light_sign_name">水情提醒</span>
+              </div>
               <p class="light_sign_content">
                 停止供水：分區輪流或全區停止供水 <br />
                 定點供水：優先順序為 1.居民維生 2.醫療 3.國防事業 4.工商事業
@@ -365,6 +373,10 @@ export default {
 };
 </script>
 <style lang="scss">
+#app {
+  position: relative;
+}
+
 .hidden {
   display: none;
 }

@@ -2,20 +2,24 @@
 @use '../utility/typography';
 
 .popover {
-  width: 900px;
-  height: 480px;
-  margin: auto;
-  display: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  background-color: color.$white;
-  border-radius: 15px;
+  &_card {
+    height: 812px;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background-color: color.$white;
+    @media (min-width: 1024px) {
+      width: 900px;
+      height: 480px;
+      margin: auto;
+      border-radius: 15px;
+    }
+  }
   &_background {
-    display: none;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -47,21 +51,38 @@
 }
 
 .popover_body {
-  padding: 37px;
+  padding: 16px;
+  @media (min-width: 768px) {
+    padding: 37px;
+  }
+  
 }
 
 .light_sign {
   padding: 16px;
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
   align-items: center;
   border-bottom: solid 1px color.$gray-400;
   &:last-child {
     border: none;
   }
+  @media (min-width: 768px) {
+  }
+  &_info {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    flex: 0 0 100%;
+    @media (min-width: 768px) {
+      margin: 0;
+      flex: 1 0 0;
+    }
+  }
   &_badge {
     width: 26px;
     height: 26px;
+    margin-right: 16px;
     border-radius: 26px;
   }
   .green {
@@ -77,9 +98,11 @@
     background-color: color.$orange_600;
   }
   &_name {
-    flex: 1 0 0;
-    text-align: center;
     font-weight: typography.$font-weight-medium;
+    @media (min-width: 768px) {
+      flex: 1 0 0;
+      text-align: center;
+    }
   }
   &_content {
     flex: 2 0 0;
