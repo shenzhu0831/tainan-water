@@ -194,7 +194,13 @@
         </div>
       </div>
     </section>
-    <Resources @changeResourceType="show" :display="display" :resource="resource" :parentResourceType="resourceType" ref="resourcesMap"/>
+    <Resources
+      @changeResourceType="show"
+      :display="display"
+      :resource="resource"
+      :parentResourceType="resourceType"
+      ref="map"
+    />
     <!-- <Economy></Economy> -->
   </div>
 </template>
@@ -221,15 +227,14 @@ import Economy from "@/components/Economy.vue";
 // import ResourcesMap from "@/components/ResourcesMap.vue";
 import Resources from "@/components/Resources.vue";
 
-
 export default {
   name: "Home",
-  components: { 
+  components: {
     laptopLogo,
     phoneLogo,
     Economy,
     // ResourcesMap,
-    Resources
+    Resources,
   },
   data() {
     return {
@@ -318,7 +323,7 @@ export default {
       );
     },
     showReservoir() {
-      console.log('showReservoir');
+      console.log("showReservoir");
       this.display.reservoir = true;
       this.display.resource = false;
       this.$nextTick(() => {
@@ -331,7 +336,7 @@ export default {
       this.resourceType = resourceType;
       this.$nextTick(() => {
         // 透過原生的 $el 直接選取 component DOM 元素
-        VueScrollTo.scrollTo(this.$refs.resourcesMap.$el, 500);
+        VueScrollTo.scrollTo(this.$refs.map.$el, 500);
       });
     },
     getPercentage(reservoir) {
@@ -360,14 +365,6 @@ export default {
     },
     call(value) {
       window.open(`tel:${value}`);
-    },
-  },
-  watch: {
-    resourceType() {
-      this.$nextTick(() => {
-        this.$refs.resourcesMap.$refs.map.mapObject.invalidateSize();
-        this.$refs.resourcesMap.$refs.map.fitBounds(this.$refs.resourcesMap.$refs.features.mapObject.getBounds());
-      });
     },
   },
 };

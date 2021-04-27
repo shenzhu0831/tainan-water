@@ -262,9 +262,12 @@ export default {
   },
   methods: {},
   watch: {
-    parentResourceType(newValue) {
-      this.resourceType = newValue;
-      console.log(this.resourceType);
+    resourceType(newValue) {
+      this.$nextTick(() => {
+        this.$refs.map.mapObject.invalidateSize();
+        this.$refs.map.fitBounds(this.$refs.features.mapObject.getBounds());
+      });
+      // console.log(this.resourceType);
     },
   },
 };
