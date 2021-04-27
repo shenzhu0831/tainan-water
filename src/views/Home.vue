@@ -195,7 +195,7 @@
       </div>
     </section>
     <Resources @changeResourceType="show" :display="display" :resource="resource" :parentResourceType="resourceType" ref="resourcesMap"/>
-    <Economy></Economy>
+    <!-- <Economy></Economy> -->
   </div>
 </template>
 
