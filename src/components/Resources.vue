@@ -1,5 +1,5 @@
 <template>
-  <section  class="resources" v-if="display.resource">
+  <section class="resources" v-if="display.resource">
     <div class="resources_title">
       <h3>台南取水資源</h3>
       <!-- <button class="reserve_button">預約取水系統</button> -->
@@ -52,10 +52,7 @@
           @click="resourceType = 'car'"
         >
           <div class="resources_region_icon">
-            <img
-              src="@/assets/image/icon/water-wheel.png"
-              alt="water-wheel"
-            />
+            <img src="@/assets/image/icon/water-wheel.png" alt="water-wheel" />
           </div>
           <span>民間水車</span>
         </div>
@@ -79,13 +76,17 @@
             [{{ row["廠別"] }}] {{ row["位置資訊"] }}
             <span class="open_time">00：00 - 24：00</span>
           </div>
-          <a :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+          <a
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
             target="_blank"
             class="resources_address"
           >
             <img src="@/assets/image/icon/map.png" alt="map icon" />
           </a>
-          <a :href="`tel:${row.聯絡方式.split('\n')[0]}`" class="resources_telephone">
+          <a
+            :href="`tel:${row.聯絡方式.split('\n')[0]}`"
+            class="resources_telephone"
+          >
             <img src="@/assets/image/icon/phone.png" alt="" />
           </a>
         </div>
@@ -99,9 +100,11 @@
             [{{ row["引水地點"] }}] {{ row["引點地段地號"] }}
             <span class="open_time">00：00 - 24：00</span>
           </div>
-          <a :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+          <a
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
             target="_blank"
-            class="resources_address">
+            class="resources_address"
+          >
             <img src="@/assets/image/icon/map.png" alt="map icon" />
           </a>
           <a href="" class="resources_telephone icon-disable">
@@ -118,7 +121,8 @@
             [{{ row["站名[井號]"] }}] {{ row["地籍"] }}
             <span class="open_time">00：00 - 24：00</span>
           </div>
-          <a :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+          <a
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
             target="_blank"
             class="resources_address"
           >
@@ -138,7 +142,8 @@
             [{{ row["單位名稱"] }}] {{ row["地址"] }}
             <span class="open_time">{{ row["可取水時間"] }}</span>
           </div>
-          <a :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+          <a
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
             target="_blank"
             class="resources_address"
           >
@@ -158,7 +163,8 @@
             [{{ row["名稱"] }}] {{ row["位址"] }}
             <span class="open_time">{{ row["可取水時間"] }}</span>
           </div>
-          <a :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+          <a
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
             target="_blank"
             class="resources_address"
           >
@@ -170,16 +176,58 @@
         </div>
       </div>
       <div class="resources_map">
-        <b-form-select v-model="resourceType" :options="options"></b-form-select>
+        <b-form-select
+          v-model="resourceType"
+          :options="options"
+        ></b-form-select>
 
-        <l-map ref="map" style="height:100%; z-index:0;" :zoom="zoom" :center="center">
+        <l-map
+          ref="map"
+          style="height: 100%; z-index: 0"
+          :zoom="zoom"
+          :center="center"
+        >
           <l-tile-layer :url="url"></l-tile-layer>
           <l-feature-group ref="features">
             <template v-for="resource in resource[resourceType]">
               <l-marker
                 :lat-lng="[resource.Latitude, resource.Longitude]"
                 v-if="resource.Latitude && resource.Longitude"
+                @click="selectedResource = resource"
               >
+                <l-popup>
+                  <div v-for="(value, key) in resource">
+                    {{ key }}: {{ value }}
+                  </div>
+                  <div
+                    v-if="resource.Latitude && resource.Longitude"
+                    class="connect-icon"
+                  >
+                    <a
+                      :href="`https://www.google.com/maps/search/?api=1&query=${resource.Latitude},${resource.Longitude}`"
+                      target="_blank"
+                      class="resources_address"
+                    >
+                      <img
+                        class="map-icon"
+                        src="@/assets/image/icon/map.png"
+                        alt="map icon"
+                      />
+                    </a>
+                  </div>
+                  <div v-if="resource.聯絡方式" class="connect-icon">
+                    <a
+                      :href="`tel:${resource.聯絡方式.split('\n')[0]}`"
+                      class="resources_telephone"
+                    >
+                      <img
+                        class="phone-icon"
+                        src="@/assets/image/icon/phone.png"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </l-popup>
               </l-marker>
             </template>
           </l-feature-group>
@@ -194,35 +242,35 @@ import _ from "lodash";
 
 export default {
   name: "Resources",
-  props: ['parentResourceType', 'resource', 'display'],
+  props: ["parentResourceType", "resource", "display"],
   data() {
     return {
       resourceType: null,
+      selectedResource: null,
       options: [
-        {value: null, text: '請選擇'},
-        { value: 'well', text: '抗旱水井' },
-        { value: 'farmwell', text: '農業水井' },
-        { value: 'recycle', text: '水資源回收中心' },
-        { value: 'ro', text: 'RO等級移動式淨水設備' },
-        { value: 'car', text: '民間水車' }
+        { value: null, text: "請選擇" },
+        { value: "well", text: "抗旱水井" },
+        { value: "farmwell", text: "農業水井" },
+        { value: "recycle", text: "水資源回收中心" },
+        { value: "ro", text: "RO等級移動式淨水設備" },
+        { value: "car", text: "民間水車" },
       ],
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 12,
       center: [22.9920922, 120.1970246],
     };
   },
-  methods:{
-  },
+  methods: {},
   watch: {
-    parentResourceType(newValue){
-      this.resourceType = newValue
+    parentResourceType(newValue) {
+      this.resourceType = newValue;
       console.log(this.resourceType);
     },
-  }
-}
+  },
+};
 </script>
 
-<style lamg="scss" scoped>
+<style lang="scss" scoped>
 .custom-select::v-deep {
   width: 95%;
   margin: auto;
@@ -231,5 +279,15 @@ export default {
   left: 0;
   right: 0;
   z-index: 10;
+}
+.connect-icon {
+  margin-top: 10px;
+  display: inline-block;
+  img {
+    width: 32px;
+    &.phone-icon {
+      height: 30px;
+    }
+  }
 }
 </style>
