@@ -70,21 +70,43 @@
           <span>RO等級移動式淨水設備</span>
         </div>
       </div>
+      <div class="resources_region_content" v-if="resourceType == 'recycle'">
+        <div
+          class="resources_region_stand"
+          v-for="row in resource[resourceType]"
+        >
+          <div class="stand_info">
+            [{{ row["廠別"] }}] {{ row["位置資訊"] }}
+            <span class="open_time">00：00 - 24：00</span>
+          </div>
+          <a :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+            target="_blank"
+            class="resources_address"
+          >
+            <img src="@/assets/image/icon/map.png" alt="map icon" />
+          </a>
+          <a :href="`tel:${row.聯絡方式.split('\n')[0]}`" class="resources_telephone">
+            <img src="@/assets/image/icon/phone.png" alt="" />
+          </a>
+        </div>
+      </div>
       <div class="resources_region_content" v-if="resourceType == 'well'">
         <div
           class="resources_region_stand"
           v-for="row in resource[resourceType]"
         >
           <div class="stand_info">
-            [{{ row["引水地點"] }}] {{ row["引點地點[地段地號]"] }}
+            [{{ row["引水地點"] }}] {{ row["引點地段地號"] }}
             <span class="open_time">00：00 - 24：00</span>
           </div>
-          <button class="resources_address icon-disable">
+          <a :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+            target="_blank"
+            class="resources_address">
             <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </button>
-          <button class="resources_telephone icon-disable">
+          </a>
+          <a href="" class="resources_telephone icon-disable">
             <img src="@/assets/image/icon/phone.png" alt="" />
-          </button>
+          </a>
         </div>
       </div>
       <div class="resources_region_content" v-if="resourceType == 'farmwell'">
@@ -96,70 +118,15 @@
             [{{ row["站名[井號]"] }}] {{ row["地籍"] }}
             <span class="open_time">00：00 - 24：00</span>
           </div>
-          <button
+          <a :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+            target="_blank"
             class="resources_address"
-            @click="
-              direct(
-                `http://maps.google.com/?q=${row.Latitude},${row.Longitude}`
-              )
-            "
           >
             <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </button>
-          <button class="resources_telephone icon-disable">
+          </a>
+          <a href="" class="resources_telephone icon-disable">
             <img src="@/assets/image/icon/phone.png" alt="" />
-          </button>
-        </div>
-      </div>
-      <div class="resources_region_content" v-if="resourceType == 'recycle'">
-        <div
-          class="resources_region_stand"
-          v-for="row in resource[resourceType]"
-        >
-          <div class="stand_info">
-            [{{ row["廠別"] }}] {{ row["位置資訊"] }}
-            <span class="open_time">00：00 - 24：00</span>
-          </div>
-          <button
-            class="resources_address"
-            @click="
-              direct(
-                `http://maps.google.com/?q=${row.Latitude},${row.Longitude}`
-              )
-            "
-          >
-            <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </button>
-          <button
-            class="resources_telephone"
-            @click="call(row.聯絡方式.split('\n')[0])"
-          >
-            <img src="@/assets/image/icon/phone.png" alt="" />
-          </button>
-        </div>
-      </div>
-      <div class="resources_region_content" v-if="resourceType == 'ro'">
-        <div
-          class="resources_region_stand"
-          v-for="row in resource[resourceType]"
-        >
-          <div class="stand_info">
-            [{{ row["名稱"] }}] {{ row["位址"] }}
-            <span class="open_time">{{ row["可取水時間"] }}</span>
-          </div>
-          <button
-            class="resources_address"
-            @click="
-              direct(
-                `http://maps.google.com/?q=${row.Latitude},${row.Longitude}`
-              )
-            "
-          >
-            <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </button>
-          <button class="resources_telephone icon-disable">
-            <img src="@/assets/image/icon/phone.png" alt="" />
-          </button>
+          </a>
         </div>
       </div>
       <div class="resources_region_content" v-if="resourceType == 'car'">
@@ -171,22 +138,35 @@
             [{{ row["單位名稱"] }}] {{ row["地址"] }}
             <span class="open_time">{{ row["可取水時間"] }}</span>
           </div>
-          <button
+          <a :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+            target="_blank"
             class="resources_address"
-            @click="
-              direct(
-                `http://maps.google.com/?q=${row.Latitude},${row.Longitude}`
-              )
-            "
           >
             <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </button>
-          <button
-            class="resources_telephone"
-            @click="call(row.聯絡資訊.split('\n')[0])"
-          >
+          </a>
+          <a href="" class="resources_telephone icon-disable">
             <img src="@/assets/image/icon/phone.png" alt="" />
-          </button>
+          </a>
+        </div>
+      </div>
+      <div class="resources_region_content" v-if="resourceType == 'ro'">
+        <div
+          class="resources_region_stand"
+          v-for="row in resource[resourceType]"
+        >
+          <div class="stand_info">
+            [{{ row["名稱"] }}] {{ row["位址"] }}
+            <span class="open_time">{{ row["可取水時間"] }}</span>
+          </div>
+          <a :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+            target="_blank"
+            class="resources_address"
+          >
+            <img src="@/assets/image/icon/map.png" alt="map icon" />
+          </a>
+          <a href="" class="resources_telephone icon-disable">
+            <img src="@/assets/image/icon/phone.png" alt="" />
+          </a>
         </div>
       </div>
       <div class="resources_map">
