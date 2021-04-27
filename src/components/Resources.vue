@@ -196,7 +196,10 @@
                 @click="selectedResource = resource"
               >
                 <l-popup>
-                  <div v-for="(value, key) in resource">
+                  <div
+                    v-for="(value, key) in resource"
+                    v-if="!hideFields.includes(key)"
+                  >
                     {{ key }}: {{ value }}
                   </div>
                   <div
@@ -258,10 +261,14 @@ export default {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 12,
       center: [22.9920922, 120.1970246],
+      hideFields: ["Latitude", "Longitude", "經度", "緯度"],
     };
   },
   methods: {},
   watch: {
+    parentResourceType(newValue) {
+      this.resourceType = newValue;
+    },
     resourceType(newValue) {
       this.$nextTick(() => {
         this.$refs.map.mapObject.invalidateSize();
