@@ -107,7 +107,7 @@
           >
             <img src="@/assets/image/icon/map.png" alt="map icon" />
           </a>
-          <a href="" class="resources_telephone icon-disable">
+          <a href="javascript:void(0)" class="resources_telephone icon-disable">
             <img src="@/assets/image/icon/phone.png" alt="" />
           </a>
         </div>
@@ -128,7 +128,7 @@
           >
             <img src="@/assets/image/icon/map.png" alt="map icon" />
           </a>
-          <a href="" class="resources_telephone icon-disable">
+          <a href="javascript:void(0)" class="resources_telephone icon-disable">
             <img src="@/assets/image/icon/phone.png" alt="" />
           </a>
         </div>
@@ -149,7 +149,7 @@
           >
             <img src="@/assets/image/icon/map.png" alt="map icon" />
           </a>
-          <a href="" class="resources_telephone icon-disable">
+          <a href="javascript:void(0)" class="resources_telephone icon-disable">
             <img src="@/assets/image/icon/phone.png" alt="" />
           </a>
         </div>
@@ -170,7 +170,7 @@
           >
             <img src="@/assets/image/icon/map.png" alt="map icon" />
           </a>
-          <a href="" class="resources_telephone icon-disable">
+          <a href="javascript:void(0)" class="resources_telephone icon-disable">
             <img src="@/assets/image/icon/phone.png" alt="" />
           </a>
         </div>

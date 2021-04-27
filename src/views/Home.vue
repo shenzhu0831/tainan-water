@@ -33,7 +33,7 @@
             <div class="light_sign">
               <div class="light_sign_info">
                 <div class="light_sign_badge orange_400"></div>
-                <span class="light_sign_name">水情提醒</span>
+                <span class="light_sign_name">減量供水</span>
               </div>
               <p class="light_sign_content">
                 停止供水：試放消防栓、露天屋頂放流及其他供水之用 <br />
@@ -46,7 +46,7 @@
             <div class="light_sign">
               <div class="light_sign_info">
                 <div class="light_sign_badge orange_600"></div>
-                <span class="light_sign_name">水情提醒</span>
+                <span class="light_sign_name">分區供水或定點供水</span>
               </div>
               <p class="light_sign_content">
                 停止供水：分區輪流或全區停止供水 <br />
