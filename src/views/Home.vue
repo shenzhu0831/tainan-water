@@ -191,28 +191,9 @@
         <h3>台南取水資源</h3>
         <!-- <button class="reserv_button">預約取水系統</button> -->
       </div>
-      <div class="resources_map">
-        <l-map ref="map" style="height: 400px" :zoom="zoom" :center="center">
-          <l-tile-layer :url="url"></l-tile-layer>
-          <l-feature-group ref="features">
-            <template v-for="resource in resource[resourceType]">
-              <l-marker
-                :lat-lng="[resource.Latitude, resource.Longitude]"
-                v-if="resource.Latitude && resource.Longitude"
-              >
-                <l-popup>
-                  <div v-for="(value, key) in resource">
-                    {{ key }}: {{ value }}
-                  </div>
-                </l-popup>
-              </l-marker>
-            </template>
-          </l-feature-group>
-        </l-map>
-      </div>
       <div class="resources_region"></div>
       <div class="resources_region_list">
-        <div class="resources_region_sort">
+        <div class="resources_region_sort_laptop">
           <div
             class="resources_region_item pointer"
             :class="{ active: resourceType == 'well' }"
@@ -276,6 +257,7 @@
             <span>民間水車</span>
           </div>
         </div>
+        
         <div class="resources_region_content" v-if="resourceType == 'well'">
           <div
             class="resources_region_stand"
@@ -395,6 +377,7 @@
             </button>
           </div>
         </div>
+        <ResourcesMap ref="map"/>
       </div>
     </section>
     <Economy></Economy>
@@ -420,13 +403,15 @@ import carData from "@/assets/open-data/car.json";
 
 import VueScrollTo from "vue-scrollto";
 import Economy from "@/components/Economy.vue";
+import ResourcesMap from "@/components/ResourcesMap.vue";
 
 export default {
   name: "Home",
   components: { 
     laptopLogo,
     phoneLogo,
-    Economy
+    Economy,
+    ResourcesMap
   },
   data() {
     return {
@@ -604,11 +589,10 @@ export default {
   }
 }
 .resources_map {
+  height: 100%;
   margin-bottom: 30px;
+  flex: 1 0 0;
   text-align: center;
-  img {
-    width: 80%;
-  }
 }
 .popover {
   top: calc(50% - 240px);

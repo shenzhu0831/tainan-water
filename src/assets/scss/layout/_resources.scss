@@ -4,8 +4,11 @@
 
 
 .resources {
-  padding: 50px;
+  padding: 50px 16px;
   background-color: color.$gray-200;
+  @media (min-width: 576px) {
+    padding: 50px;
+  }
 }
 .resources_title {
   margin-bottom: 1.5rem;
