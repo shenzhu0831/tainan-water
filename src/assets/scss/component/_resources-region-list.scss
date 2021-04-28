@@ -69,12 +69,12 @@
 .resources_map {
   height: 400px;
   margin-bottom: 30px;
-  flex: 1 0 0;
   order: -1;
   position: relative;
   text-align: center;
   @media (min-width: 768px) {
     height: 600px;
+    flex: 1 0 0;
     order: 1;
   }
 }
