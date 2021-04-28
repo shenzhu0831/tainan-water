@@ -59,7 +59,7 @@
       </div>
       <div class="popover_background"></div>
     </div>
-    <p class="browser_warning">如要享有最佳網站體驗，請使用支援的最新版瀏覽器。例如 Chrome、Firefox、Safari 或 Microsoft Edge。</p>
+    <p v-if="checkBrowser()" class="browser_warning">如要享有最佳網站體驗，請使用支援的最新版瀏覽器。例如 Chrome、Firefox、Safari 或 Microsoft Edge。</p>
     <section class="home">
       <div class="navbar-container hidden">
         <nav class="navbar">
@@ -211,6 +211,7 @@
 import _ from "lodash";
 import dayjs from "dayjs";
 import axios from "axios";
+import Bowser from "bowser"
 
 import laptopLogo from "../assets/image/title/logo-laptop.svg";
 import phoneLogo from "../assets/image/title/logo-phone.svg";
@@ -316,6 +317,10 @@ export default {
     },
   },
   methods: {
+    checkBrowser(){
+      const browser = Bowser.getParser(window.navigator.userAgent);
+      return browser.getBrowserName().includes("Internet Explorer")
+    },
     getLastUpdate() {
       return this.reservoirInfo.曾文水庫.ObservationTime
         ? dayjs(this.reservoirInfo.曾文水庫.ObservationTime).format(

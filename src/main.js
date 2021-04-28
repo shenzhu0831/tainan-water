@@ -3,9 +3,6 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-// leaflet Map
-import { LMap, LTileLayer, LMarker, LPopup, LFeatureGroup } from "vue2-leaflet";
-import "leaflet/dist/leaflet.css";
 
 // bootstrap Vue
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -18,6 +15,11 @@ Vue.use(IconsPlugin)
 
 // scss style
 import "./assets/scss/style.scss"
+
+
+// leaflet Map
+import { LMap, LTileLayer, LMarker, LPopup, LFeatureGroup } from "vue2-leaflet";
+import "leaflet/dist/leaflet.css";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
