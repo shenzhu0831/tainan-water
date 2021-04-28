@@ -42,3 +42,11 @@
     display: none;
   }
 }
+
+.browser_warning {
+  padding: 15px 0;
+  font-size: 13px;
+  color: color.$white;
+  font-weight: typography.$font-weight-regular;
+  text-align: center;
+}
