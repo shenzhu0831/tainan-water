@@ -103,10 +103,12 @@
         <div class="reservoir_regime">
           <span class="reservoir_regime_name">台南水庫總蓄水率</span>
           <span
+            v-if="!errorText"
             class="reservoir_regime_value resources_stand_value"
             @click="showReservoir()"
             >{{ totalPercentage }}</span
           >
+          <span v-else>{{ errorText }}</span>
         </div>
       </div>
       <div class="resources_stand_info">
@@ -268,6 +270,7 @@ export default {
           tabs: ["台南", "高雄"],
         },
       },
+      errorText: "",
       resourceType: null,
       totalStorage: 0,
       resource: {
@@ -287,8 +290,13 @@ export default {
     // this.reservoirLiveData = reservoirLiveData.ReservoirConditionData_OPENDATA;
     axios.get("https://goodideas-studio.com/water/").then((res) => {
       this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
+      // 測試 api response 失敗
+      // this.reservoirLiveData = [];
       this.setLastEffectiveWaterStorageCapacity();
       this.setTotalStorage();
+    })
+    .catch(error => {
+        this.errorText = "資料接取異常，請重新整理網頁"
     });
   },
   computed: {
@@ -299,7 +307,7 @@ export default {
           return (sum += reservoir.EffectiveCapacity * 1);
         },
         0
-      );
+      );      
     },
     totalPercentage() {
       return ((this.totalStorage / this.totalCapacity) * 100).toFixed(2) + "%";
@@ -314,7 +322,7 @@ export default {
         : "-";
     },
     setTotalStorage() {
-      this.totalStorage = _.reduce(
+        this.totalStorage = _.reduce(
         this.reservoirInfo,
         (sum, reservoir) => {
           return (sum += reservoir.EffectiveWaterStorageCapacity);
@@ -323,7 +331,6 @@ export default {
       );
     },
     showReservoir() {
-      console.log("showReservoir");
       this.display.reservoir = true;
       this.display.resource = false;
       this.$nextTick(() => {
