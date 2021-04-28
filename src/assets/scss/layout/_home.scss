@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: space-evenly;
   @media (min-width: 768px) {
-    width: 759px;
+    width: fit-content;
     padding: 190px 0;
   }
   &_title {
