@@ -3,12 +3,10 @@
 
 .reservoir_info {
   margin: 0 16px;
-  display: flex;
-  flex-direction: column;
   @media (min-width: 768px) {
     margin: 0 70px;
     padding: 40px 0;
-    flex-direction: row;
+    display: flex;
     border-top: solid 1px color.$white;
     border-bottom: solid 1px color.$white;
   }
