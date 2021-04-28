@@ -73,7 +73,7 @@
         <h1 class="web_info_title">
           <laptopLogo></laptopLogo>
         </h1>
-        <h1 class="web_info_title sm-size">
+        <h1 class="web_info_title phone">
           <phoneLogo></phoneLogo>
         </h1>
         <span class="update_time">
