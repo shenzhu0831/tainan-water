@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-      <div class="popover_background"></div>
+      <div class="popover_background" @click="display.popoverContainer = false"></div>
     </div>
     <section class="home">
       <div class="navbar-container hidden">
