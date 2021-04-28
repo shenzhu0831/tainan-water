@@ -389,6 +389,7 @@ export default {
   width: fit-content;
   margin: 0 auto;
   padding: 10px 16px;
+  display: none;
   position: absolute;
   bottom: 10px;
   left: 0;
@@ -398,6 +399,9 @@ export default {
   font-size: 13px;
   font-weight: 400;
   text-align: center;
+  @media (min-width: 1024px) {
+    display: block;
+  }
 }
 
 .home {
