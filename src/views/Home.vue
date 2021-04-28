@@ -102,12 +102,12 @@
         </div>
         <div class="reservoir_regime">
           <span class="reservoir_regime_name">台南水庫總蓄水率</span>
+          <span v-if="!errorText">{{loadingText}}</span>
           <span
-            v-if="!errorText"
+            v-if="!loadingText && !errorText"
             class="reservoir_regime_value resources_stand_value"
             @click="showReservoir()"
-            >{{ totalPercentage }}</span
-          >
+          >{{ totalPercentage }}</span>
           <span v-else>{{ errorText }}</span>
         </div>
       </div>
@@ -149,6 +149,7 @@
           <span class="resources_stand_badge">企業取水</span>
         </div>
       </div>
+      <p class="browser_warning">如要享有最佳網站體驗，請使用支援的最新版瀏覽器。例如 Chrome、Firefox、Safari 或 Microsoft Edge。</p>
     </section>
     <section ref="reservoir" class="reservoir" v-if="display.reservoir">
       <div class="reservoir_title">
@@ -270,6 +271,7 @@ export default {
           tabs: ["台南", "高雄"],
         },
       },
+      loadingText: "",
       errorText: "",
       resourceType: null,
       totalStorage: 0,
@@ -287,6 +289,7 @@ export default {
   },
   mounted() {
     this.reservoirs = tainanReservoirData;
+    this.loadingText = "計算中請稍後..."
     // this.reservoirLiveData = reservoirLiveData.ReservoirConditionData_OPENDATA;
     axios.get("https://goodideas-studio.com/water/").then((res) => {
       this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
@@ -294,9 +297,10 @@ export default {
       // this.reservoirLiveData = [];
       this.setLastEffectiveWaterStorageCapacity();
       this.setTotalStorage();
+      this.loadingText = ""
     })
     .catch(error => {
-        this.errorText = "資料接取異常，請重新整理網頁"
+      this.errorText = "資料接取異常，請重新整理網頁"
     });
   },
   computed: {
@@ -322,13 +326,11 @@ export default {
         : "-";
     },
     setTotalStorage() {
-        this.totalStorage = _.reduce(
-        this.reservoirInfo,
-        (sum, reservoir) => {
-          return (sum += reservoir.EffectiveWaterStorageCapacity);
-        },
-        0
-      );
+      this.totalStorage = _.reduce(
+      this.reservoirInfo,
+      (sum, reservoir) => {
+        return (sum += reservoir.EffectiveWaterStorageCapacity);
+      },0);
     },
     showReservoir() {
       this.display.reservoir = true;
