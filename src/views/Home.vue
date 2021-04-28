@@ -59,10 +59,6 @@
       </div>
       <div class="popover_background"></div>
     </div>
-    <!-- <div v-if="checkBrowser()" class="browser_warning_container">
-      <p class="browser_warning">如要享有最佳網站體驗，請使用支援的最新版瀏覽器。<br> 例如：Chrome、Firefox、Safari 或 Microsoft Edge。</p>
-      <div class="browser_warning_background"></div>
-    </div> -->
     <section class="home">
       <div class="navbar-container hidden">
         <nav class="navbar">
