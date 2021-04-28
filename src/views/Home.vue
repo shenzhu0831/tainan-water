@@ -59,10 +59,10 @@
       </div>
       <div class="popover_background"></div>
     </div>
-    <div v-if="checkBrowser()" class="browser_warning_container">
+    <!-- <div v-if="checkBrowser()" class="browser_warning_container">
       <p class="browser_warning">如要享有最佳網站體驗，請使用支援的最新版瀏覽器。<br> 例如：Chrome、Firefox、Safari 或 Microsoft Edge。</p>
       <div class="browser_warning_background"></div>
-    </div>
+    </div> -->
     <section class="home">
       <div class="navbar-container hidden">
         <nav class="navbar">
@@ -289,6 +289,13 @@ export default {
       center: [22.9920922, 120.1970246],
     };
   },
+  created(){
+    const browser = Bowser.getParser(window.navigator.userAgent);
+    if(browser.getBrowserName().includes("Internet Explorer")) {
+      alert("如要享有最佳網站體驗，請使用支援的最新版瀏覽器\n例如：Chrome、Firefox、Safari 或 Microsoft Edge")
+    }
+    return false
+  },
   mounted() {
     this.reservoirs = tainanReservoirData;
     this.loadingText = "計算中請稍後..."
@@ -320,10 +327,6 @@ export default {
     },
   },
   methods: {
-    checkBrowser(){
-      const browser = Bowser.getParser(window.navigator.userAgent);
-      return browser.getBrowserName().includes("Internet Explorer")
-    },
     getLastUpdate() {
       return this.reservoirInfo.曾文水庫.ObservationTime
         ? dayjs(this.reservoirInfo.曾文水庫.ObservationTime).format(
