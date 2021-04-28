@@ -59,7 +59,7 @@
       </div>
       <div class="popover_background"></div>
     </div>
-
+    <p class="browser_warning">如要享有最佳網站體驗，請使用支援的最新版瀏覽器。例如 Chrome、Firefox、Safari 或 Microsoft Edge。</p>
     <section class="home">
       <div class="navbar-container hidden">
         <nav class="navbar">
@@ -68,7 +68,6 @@
           <a href="#">節約用水</a>
         </nav>
       </div>
-
       <div class="web_info">
         <h1 class="web_info_title">
           <laptopLogo></laptopLogo>
@@ -149,7 +148,6 @@
           <span class="resources_stand_badge">企業取水</span>
         </div>
       </div>
-      <p class="browser_warning">如要享有最佳網站體驗，請使用支援的最新版瀏覽器。例如 Chrome、Firefox、Safari 或 Microsoft Edge。</p>
     </section>
     <section ref="reservoir" class="reservoir" v-if="display.reservoir">
       <div class="reservoir_title">
@@ -386,6 +384,22 @@ export default {
 .hidden {
   display: none;
 }
+
+.browser_warning {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 10px 16px;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+}
+
 .home {
   background: url("~@/assets/image/pic/home-bg.png") center/cover no-repeat;
 }
