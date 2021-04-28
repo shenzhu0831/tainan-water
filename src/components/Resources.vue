@@ -303,7 +303,7 @@ export default {
   top: 16px;
   left: 0;
   right: 0;
-  z-index: 10;
+  z-index: 1;
 }
 .connect-icon {
   margin-top: 10px;
