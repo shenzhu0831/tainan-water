@@ -59,7 +59,10 @@
       </div>
       <div class="popover_background"></div>
     </div>
-    <p v-if="checkBrowser()" class="browser_warning">如要享有最佳網站體驗，請使用支援的最新版瀏覽器。例如 Chrome、Firefox、Safari 或 Microsoft Edge。</p>
+    <div v-if="checkBrowser()" class="browser_warning_container">
+      <p class="browser_warning">如要享有最佳網站體驗，請使用支援的最新版瀏覽器。<br> 例如：Chrome、Firefox、Safari 或 Microsoft Edge。</p>
+      <div class="browser_warning_background"></div>
+    </div>
     <section class="home">
       <div class="navbar-container hidden">
         <nav class="navbar">
@@ -391,21 +394,34 @@ export default {
 }
 
 .browser_warning {
-  width: fit-content;
-  margin: 0 auto;
-  padding: 10px 16px;
   display: none;
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  border-radius: 5px;
-  background-color: #fff;
-  font-size: 13px;
-  font-weight: 400;
-  text-align: center;
   @media (min-width: 1024px) {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    padding: 10px 16px;
     display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.5;
+    text-align: center;
+  }
+  &_background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba($color: #000000, $alpha: .5);
   }
 }
 
