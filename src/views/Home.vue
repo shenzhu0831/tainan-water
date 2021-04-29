@@ -57,7 +57,10 @@
           </div>
         </div>
       </div>
-      <div class="popover_background" @click="display.popoverContainer = false"></div>
+      <div
+        class="popover_background"
+        @click="display.popoverContainer = false"
+      ></div>
     </div>
     <section class="home">
       <div class="navbar-container hidden">
@@ -100,12 +103,13 @@
         </div>
         <div class="reservoir_regime">
           <span class="reservoir_regime_name">台南水庫總蓄水率</span>
-          <span v-if="!errorText">{{loadingText}}</span>
+          <span v-if="!errorText">{{ loadingText }}</span>
           <span
             v-if="!loadingText && !errorText"
             class="reservoir_regime_value resources_stand_value"
             @click="showReservoir()"
-          >{{ totalPercentage }}</span>
+            >{{ totalPercentage }}</span
+          >
           <span v-else>{{ errorText }}</span>
         </div>
       </div>
@@ -210,7 +214,7 @@
 import _ from "lodash";
 import dayjs from "dayjs";
 import axios from "axios";
-import Bowser from "bowser"
+import Bowser from "bowser";
 
 import laptopLogo from "../assets/image/title/logo-laptop.svg";
 import phoneLogo from "../assets/image/title/logo-phone.svg";
@@ -285,28 +289,33 @@ export default {
       center: [22.9920922, 120.1970246],
     };
   },
-  created(){
+  created() {
     const browser = Bowser.getParser(window.navigator.userAgent);
-    if(browser.getBrowserName().includes("Internet Explorer")) {
-      alert("如要享有最佳網站體驗，請使用支援的最新版瀏覽器\n例如：Chrome、Firefox、Safari 或 Microsoft Edge")
+    if (browser.getBrowserName().includes("Internet Explorer")) {
+      alert(
+        "如要享有最佳網站體驗，請使用支援的最新版瀏覽器\n例如：Chrome、Firefox、Safari 或 Microsoft Edge"
+      );
     }
-    return false
+    return false;
   },
   mounted() {
     this.reservoirs = tainanReservoirData;
-    this.loadingText = "計算中請稍後..."
+    this.loadingText = "計算中請稍後...";
     // this.reservoirLiveData = reservoirLiveData.ReservoirConditionData_OPENDATA;
-    axios.get("https://goodideas-studio.com/water/").then((res) => {
-      this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
-      // 測試 api response 失敗
-      // this.reservoirLiveData = [];
-      this.setLastEffectiveWaterStorageCapacity();
-      this.setTotalStorage();
-      this.loadingText = ""
-    })
-    .catch(error => {
-      this.errorText = "資料接取異常，請重新整理網頁"
-    });
+    axios
+      .get("https://goodideas-studio.com/water/")
+      .then((res) => {
+        this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
+        // 測試 api response 失敗
+        // this.reservoirLiveData = [];
+        this.setLastEffectiveWaterStorageCapacity();
+        this.setTotalStorage();
+        this.loadingText = "";
+      })
+      .catch((error) => {
+        console.log(error);
+        this.errorText = "資料接取異常，請重新整理網頁";
+      });
   },
   computed: {
     totalCapacity() {
@@ -316,7 +325,7 @@ export default {
           return (sum += reservoir.EffectiveCapacity * 1);
         },
         0
-      );      
+      );
     },
     totalPercentage() {
       return ((this.totalStorage / this.totalCapacity) * 100).toFixed(2) + "%";
@@ -332,10 +341,12 @@ export default {
     },
     setTotalStorage() {
       this.totalStorage = _.reduce(
-      this.reservoirInfo,
-      (sum, reservoir) => {
-        return (sum += reservoir.EffectiveWaterStorageCapacity);
-      },0);
+        this.reservoirInfo,
+        (sum, reservoir) => {
+          return (sum += reservoir.EffectiveWaterStorageCapacity);
+        },
+        0
+      );
     },
     showReservoir() {
       this.display.reservoir = true;
@@ -420,7 +431,7 @@ export default {
     left: 0;
     right: 0;
     z-index: 1;
-    background-color: rgba($color: #000000, $alpha: .5);
+    background-color: rgba($color: #000000, $alpha: 0.5);
   }
 }
 
