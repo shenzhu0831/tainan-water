@@ -346,7 +346,7 @@ export default {
           return (sum += reservoir.EffectiveWaterStorageCapacity);
         },
         0
-      );
+      ).toFixed(2);
     },
     showReservoir() {
       this.display.reservoir = true;
