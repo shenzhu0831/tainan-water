@@ -325,7 +325,7 @@ export default {
           return (sum += reservoir.EffectiveCapacity * 1);
         },
         0
-      );
+      ).toFixed(2);
     },
     totalPercentage() {
       return ((this.totalStorage / this.totalCapacity) * 100).toFixed(2) + "%";
