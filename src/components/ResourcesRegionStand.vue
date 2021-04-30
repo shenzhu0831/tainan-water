@@ -1,6 +1,6 @@
 <template>
   <div class="ResourcesRegisonStand">
-    <div class="stand_header">
+    <div @click="display.standDetil = true" class="stand_header">
       <div class="stand_name">
         [{{ row["廠別"] }}] {{ row["位置資訊"] }}
         <div class="resources_stand_tag">
@@ -23,8 +23,8 @@
         <img src="@/assets/image/icon/phone.png" alt="" />
       </a>
     </div>
-    <div class="stand_detail">
-      <div class="return_list">
+    <div v-if="display.standDetil" class="stand_detail">
+      <div @click="display.standDetil = false" class="return_list">
         <div class="back_arrow_icon">
           <backArrow />
         </div>
@@ -90,8 +90,18 @@ export default {
       required: true
     }
   },
-  methods(){
+  data(){
+    return {
+      display: {
+        standDetil: false
+      }
+    }
   }
+  // methods:{
+  //   showStandDetail(){
+  //     this.display = true;
+  //   }
+  // }
 }
 </script>
 
