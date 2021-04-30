@@ -220,13 +220,6 @@ import laptopLogo from "../assets/image/title/logo-laptop.svg";
 import phoneLogo from "../assets/image/title/logo-phone.svg";
 
 import tainanReservoirData from "@/assets/open-data/tainan-reservoir-data.json";
-import reservoirLiveData from "@/assets/open-data/reservoir-live-data.json";
-import wellData from "@/assets/open-data/well.json";
-import farmwellData from "@/assets/open-data/farmwell.json";
-import recycleData from "@/assets/open-data/recycle.json";
-import roData from "@/assets/open-data/ro.json";
-import carData from "@/assets/open-data/car.json";
-
 import VueScrollTo from "vue-scrollto";
 import Economy from "@/components/Economy.vue";
 // import ResourcesMap from "@/components/ResourcesMap.vue";
@@ -278,19 +271,28 @@ export default {
       resourceType: null,
       totalStorage: 0,
       resource: {
-        well: wellData,
-        farmwell: farmwellData,
-        recycle: recycleData,
-        ro: roData,
-        car: _.filter(carData, (row) => row["縣市"] == "臺南市"),
+        // well: wellData,
+        // farmwell: farmwellData,
+        // recycle: recycleData,
+        // ro: roData,
+        // car: _.filter(carData, (row) => row["縣市"] == "臺南市"),
+        well: [],
+        farmwell: [],
+        recycle: [],
+        ro: [],
+        car: [],
       },
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 12,
       center: [22.9920922, 120.1970246],
     };
   },
-  created() {
+  async created() {
     const browser = Bowser.getParser(window.navigator.userAgent);
+    this.resource = (
+      await axios.get("https://goodideas-studio.com/water/resources/?t=1")
+    ).data;
+
     if (browser.getBrowserName().includes("Internet Explorer")) {
       alert(
         "如要享有最佳網站體驗，請使用支援的最新版瀏覽器\n例如：Chrome、Firefox、Safari 或 Microsoft Edge"

@@ -6,13 +6,11 @@
         <template v-for="resource in resource[resourceType]">
           <l-marker
             @click="abc(resource)"
-            :lat-lng="[resource.Latitude, resource.Longitude]"
-            v-if="resource.Latitude && resource.Longitude"
+            :lat-lng="[resource.緯度, resource.經度]"
+            v-if="resource.緯度 && resource.經度"
           >
             <l-popup>
-              <div v-for="(value, key) in resource">
-                {{ key }}: {{ value }}
-              </div>
+              <div v-for="(value, key) in resource">{{ key }}: {{ value }}</div>
             </l-popup>
           </l-marker>
         </template>
@@ -26,7 +24,7 @@ import _ from "lodash";
 
 export default {
   name: "ResourcesMap",
-  props: ['resourceType', 'resource'],
+  props: ["resourceType", "resource"],
   data() {
     return {
       display: {
@@ -38,16 +36,15 @@ export default {
     };
   },
   methods: {
-    abc(resource){
+    abc(resource) {
       console.log(resource);
     },
     test(resource) {
-      console.log('test', resource);
-    }
-  }
+      console.log("test", resource);
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>

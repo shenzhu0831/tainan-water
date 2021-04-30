@@ -77,7 +77,7 @@
             <span class="open_time">00：00 - 24：00</span>
           </div>
           <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
             target="_blank"
             class="resources_address"
           >
@@ -101,7 +101,7 @@
             <span class="open_time">00：00 - 24：00</span>
           </div>
           <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
             target="_blank"
             class="resources_address"
           >
@@ -122,7 +122,7 @@
             <span class="open_time">00：00 - 24：00</span>
           </div>
           <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
             target="_blank"
             class="resources_address"
           >
@@ -143,7 +143,7 @@
             <span class="open_time">{{ row["可取水時間"] }}</span>
           </div>
           <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
             target="_blank"
             class="resources_address"
           >
@@ -167,7 +167,7 @@
             <span class="open_time">{{ row["可取水時間"] }}</span>
           </div>
           <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.Latitude},${row.Longitude}`"
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
             target="_blank"
             class="resources_address"
           >
@@ -194,8 +194,8 @@
           <l-feature-group ref="features">
             <template v-for="resource in resource[resourceType]">
               <l-marker
-                :lat-lng="[resource.Latitude, resource.Longitude]"
-                v-if="resource.Latitude && resource.Longitude"
+                :lat-lng="[resource.緯度, resource.經度]"
+                v-if="resource.緯度 && resource.經度"
                 @click="selectedResource = resource"
               >
                 <l-popup>
@@ -206,11 +206,11 @@
                     {{ key }}: {{ value }}
                   </div>
                   <div
-                    v-if="resource.Latitude && resource.Longitude"
+                    v-if="resource.緯度 && resource.經度"
                     class="connect-icon"
                   >
                     <a
-                      :href="`https://www.google.com/maps/search/?api=1&query=${resource.Latitude},${resource.Longitude}`"
+                      :href="`https://www.google.com/maps/search/?api=1&query=${resource.緯度},${resource.經度}`"
                       target="_blank"
                       class="resources_address"
                     >
@@ -276,7 +276,7 @@ export default {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 12,
       center: [22.9920922, 120.1970246],
-      hideFields: ["Latitude", "Longitude", "經度", "緯度"],
+      hideFields: ["緯度", "經度", "經度", "緯度"],
     };
   },
   methods: {},
