@@ -290,7 +290,7 @@ export default {
   async created() {
     const browser = Bowser.getParser(window.navigator.userAgent);
     this.resource = (
-      await axios.get("https://goodideas-studio.com/water/resources/?t=1")
+      await axios.get("https://goodideas-studio.com/water/resources/?t=2")
     ).data;
 
     if (browser.getBrowserName().includes("Internet Explorer")) {
