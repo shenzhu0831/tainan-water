@@ -372,17 +372,23 @@ export default {
       ).toFixed(2);
     },
     setLastEffectiveWaterStorageCapacity() {
-      _.each(this.reservoirInfo, (reservoir) => {
+      _.each(this.reservoirInfo, (reservoir, name) => {
         let last = _.findLast(this.reservoirLiveData, (row) => {
           return (
             String(row.ReservoirIdentifier) ==
             String(reservoir.ReservoirIdentifier)
           );
         });
-        reservoir.EffectiveWaterStorageCapacity = parseFloat(
-          last.EffectiveWaterStorageCapacity
-        );
-        reservoir.ObservationTime = last.ObservationTime;
+        if (last) {
+          reservoir.EffectiveWaterStorageCapacity = parseFloat(
+            last.EffectiveWaterStorageCapacity
+          );
+          reservoir.ObservationTime = last.ObservationTime;
+        } else {
+          reservoir.EffectiveWaterStorageCapacity = 0;
+          reservoir.ObservationTime = new Date();
+          this.errorText = `目前缺少${name}即時資料，無法計算總蓄水率`;
+        }
       });
     },
     direct(value) {
