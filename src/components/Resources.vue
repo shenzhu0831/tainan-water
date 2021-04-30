@@ -82,23 +82,7 @@
           class="resources_region_stand"
           v-for="row in resource[resourceType]"
         >
-          <div class="stand_info">
-            [{{ row["廠別"] }}] {{ row["位置資訊"] }}
-            <span class="open_time">00：00 - 24：00</span>
-          </div>
-          <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
-            target="_blank"
-            class="resources_address"
-          >
-            <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </a>
-          <a
-            :href="`tel:${row.聯絡方式.split('\n')[0]}`"
-            class="resources_telephone"
-          >
-            <img src="@/assets/image/icon/phone.png" alt="" />
-          </a>
+        <ResourcesRegionStand :row="row"/>
         </div>
       </div>
       <div class="resources_region_content" v-if="resourceType == 'well'">
@@ -121,6 +105,7 @@
             <img src="@/assets/image/icon/phone.png" alt="" />
           </a>
         </div>
+
       </div>
       <div class="resources_region_content" v-if="resourceType == 'farmwell'">
         <div
@@ -295,8 +280,13 @@
 <script>
 import _ from "lodash";
 
+import ResourcesRegionStand from "@/components/ResourcesRegionStand.vue"
+
 export default {
   name: "Resources",
+  components: {
+    ResourcesRegionStand
+  },
   props: ["parentResourceType", "resource", "display"],
   data() {
     return {
@@ -327,7 +317,6 @@ export default {
         this.$refs.map.mapObject.invalidateSize();
         this.$refs.map.fitBounds(this.$refs.features.mapObject.getBounds());
       });
-      // console.log(this.resourceType);
     },
   },
 };

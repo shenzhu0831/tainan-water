@@ -32,6 +32,7 @@
     padding: 16px;
     display: block;
     flex: 1 0 0;
+    position: relative;
     background-color: color.$gray-100;
     @media (min-width: 1024px) {
       height: 765px;
@@ -55,9 +56,6 @@
     }
   }
   &_stand {
-    padding: 1.2rem 0;
-    display: flex;
-    justify-content: space-between;
     border-bottom: solid 1px color.$gray-400;
   }
 }
@@ -74,21 +72,62 @@
   }
 }
 
-.stand_info {
+.return_list {
+  padding: 1.2rem 0;
   display: flex;
-  flex: 2 0 0;
-  flex-direction: column;
-  font-size: 17px;
+  align-items: center;
+  border-bottom: solid 1px color.$gray-400;
+}
 
+.back_arrow_icon {
+  width: 16px;
+  height: 16px;
+  svg {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.stand {
+  &_detail {
+    padding: 16px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: color.$white;
+  }
+  &_header {
+    padding: 1.2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px color.$gray-400;
+  }
+  &_name {
+    margin-right: 5px;
+    flex: 2 0 0;
+    flex-direction: column;
+    font-size: 17px;
+    .resources_stand_badge {
+      display: inline-block;
+      color: color.$white;
+    }
+  }
+  &_info {
+    padding: 1.2rem 0;
+    border-bottom: solid 1px color.$gray-400;
+  }
+}
+
+.gray_300 {
+  background-color: color.$gray_300;
 }
 
 .resources_address{
   margin-right: 25px;
-}
-
-.on-click {
-  border: solid 1px;
-  border-radius: 10px;
 }
 
 .custom-select {
