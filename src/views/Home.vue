@@ -143,14 +143,14 @@
           </div>
           <span class="resources_stand_badge">企業取水</span>
         </div>
-        <div class="resources_stand">
+        <div class="resources_stand" style="border-bottom: none">
           <div class="resources_stand_name">RO等級移動式淨水設備</div>
           <div class="resources_stand_value" @click="show('ro')">
             {{ resource.ro.length }}
           </div>
           <span class="resources_stand_badge">企業取水</span>
         </div>
-        <div class="resources_stand">
+        <div class="resources_stand" style="border-bottom: none">
           <div class="resources_stand_name">建築工地放流水</div>
           <div class="resources_stand_value" @click="show('bwater')">
             {{ resource.bwater.length }}
