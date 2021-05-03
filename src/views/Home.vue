@@ -150,6 +150,13 @@
           </div>
           <span class="resources_stand_badge">企業取水</span>
         </div>
+        <div class="resources_stand">
+          <div class="resources_stand_name">建築工地放流水</div>
+          <div class="resources_stand_value" @click="show('bwater')">
+            {{ resource.bwater.length }}
+          </div>
+          <span class="resources_stand_badge">企業取水</span>
+        </div>
       </div>
     </section>
     <section ref="reservoir" class="reservoir" v-if="display.reservoir">
@@ -281,6 +288,7 @@ export default {
         recycle: [],
         ro: [],
         car: [],
+        bwater: []
       },
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 12,
@@ -290,7 +298,7 @@ export default {
   async created() {
     const browser = Bowser.getParser(window.navigator.userAgent);
     this.resource = (
-      await axios.get("https://goodideas-studio.com/water/resources/?t=2")
+      await axios.get("https://goodideas-studio.com/water/resources/?t=3")
     ).data;
 
     if (browser.getBrowserName().includes("Internet Explorer")) {
@@ -473,6 +481,9 @@ export default {
   &:hover {
     border-color: #999;
     border-radius: 10px;
+  }
+  &:last-child {
+    margin: 0;
   }
 }
 .popover {
