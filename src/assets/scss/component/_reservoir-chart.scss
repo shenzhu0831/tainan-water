@@ -91,6 +91,7 @@
     font-size: 1rem;
   }
 }
+
 .reservoir_storage {
   flex: 0 0 10%;
   text-align: right;
@@ -99,4 +100,10 @@
     flex: 0 0 20%;
     font-size: 1rem;
   }
+}
+
+.reservoir_update {
+  margin-top: 6px;
+  font-size: 15px;
+  color: color.$gray-500;
 }

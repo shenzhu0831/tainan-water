@@ -79,9 +79,9 @@
         </h1>
         <span class="update_time">
           上次更新時間
-          <time :datetime="reservoirInfo.曾文水庫.ObservationTime">{{
-            getLastUpdate()
-          }}</time>
+          <time :datetime="reservoirInfo.曾文水庫.ObservationTime">
+            {{getLastUpdate()}}
+          </time>
         </span>
       </div>
       <div class="reservoir_info">
@@ -143,10 +143,17 @@
           </div>
           <span class="resources_stand_badge">企業取水</span>
         </div>
-        <div class="resources_stand">
+        <div class="resources_stand" style="border-bottom: none">
           <div class="resources_stand_name">RO等級移動式淨水設備</div>
           <div class="resources_stand_value" @click="show('ro')">
             {{ resource.ro.length }}
+          </div>
+          <span class="resources_stand_badge">企業取水</span>
+        </div>
+        <div class="resources_stand" style="border-bottom: none">
+          <div class="resources_stand_name">建築工地放流水</div>
+          <div class="resources_stand_value" @click="show('bwater')">
+            {{ resource.bwater.length }}
           </div>
           <span class="resources_stand_badge">企業取水</span>
         </div>
@@ -186,6 +193,7 @@
                     :style="{ width: getPercentage(reservoir) + '%' }"
                   ></div>
                 </div>
+                <p class="reservoir_update">最近更新時間：{{getTimeFormat(reservoir)}}</p>
               </div>
               <div class="reservoir_capacity">
                 {{ getPercentage(reservoir) }}%
@@ -281,6 +289,7 @@ export default {
         recycle: [],
         ro: [],
         car: [],
+        bwater: []
       },
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 12,
@@ -290,7 +299,7 @@ export default {
   async created() {
     const browser = Bowser.getParser(window.navigator.userAgent);
     this.resource = (
-      await axios.get("https://goodideas-studio.com/water/resources/?t=2")
+      await axios.get("https://goodideas-studio.com/water/resources/?t=3")
     ).data;
 
     if (browser.getBrowserName().includes("Internet Explorer")) {
@@ -334,6 +343,9 @@ export default {
     },
   },
   methods: {
+    getTimeFormat(reservoir){
+      return dayjs(reservoir.ObservationTime).format("YYYY.MM.DD HH:mm:ss")
+    },
     getLastUpdate() {
       return this.reservoirInfo.曾文水庫.ObservationTime
         ? dayjs(this.reservoirInfo.曾文水庫.ObservationTime).format(
@@ -473,6 +485,9 @@ export default {
   &:hover {
     border-color: #999;
     border-radius: 10px;
+  }
+  &:last-child {
+    margin: 0;
   }
 }
 .popover {

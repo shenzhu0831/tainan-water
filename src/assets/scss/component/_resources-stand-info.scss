@@ -6,8 +6,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     margin: 0 70px;
+  }
+  @media (min-width: 1024px) {
     padding: 40px 0 100px;
     flex-direction: row;
   }
@@ -18,8 +20,8 @@
     border-bottom: solid 1px color.$white;
     color: color.$white;
     text-align: center;
-    &:last-child {
-      border: none;
+    @media (min-width: 768px) {
+      font-size: 12px;
     }
     @media (min-width: 1024px) {
       padding: 0;

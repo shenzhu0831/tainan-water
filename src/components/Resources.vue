@@ -66,6 +66,16 @@
           </div>
           <span>RO等級移動式淨水設備</span>
         </div>
+        <div
+          class="resources_region_item pointer"
+          :class="{ active: resourceType == 'bwater' }"
+          @click="resourceType = 'bwater'"
+        >
+          <div class="resources_region_icon">
+            <img src="@/assets/image/icon/construction-icon.png" alt="construction-icon" />
+          </div>
+          <span>建築工地放流水</span>
+        </div>
       </div>
       <div class="resources_region_content" v-if="resourceType == 'recycle'">
         <div
@@ -178,6 +188,27 @@
           </a>
         </div>
       </div>
+      <div class="resources_region_content" v-if="resourceType == 'bwater'">
+        <div
+          class="resources_region_stand"
+          v-for="row in resource[resourceType]"
+        >
+          <div class="stand_info">
+            [{{ row["工地名稱"] }}] {{ row["地址"] }}
+            <span class="open_time">{{ row["可取水時間"] }}</span>
+          </div>
+          <a
+            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+            target="_blank"
+            class="resources_address"
+          >
+            <img src="@/assets/image/icon/map.png" alt="map icon" />
+          </a>
+          <a href="javascript:void(0)" class="resources_telephone icon-disable">
+            <img src="@/assets/image/icon/phone.png" alt="" />
+          </a>
+        </div>
+      </div>
       <div class="resources_map">
         <b-form-select
           v-model="resourceType"
@@ -272,6 +303,7 @@ export default {
         { value: "recycle", text: "水資源回收中心" },
         { value: "ro", text: "RO等級移動式淨水設備" },
         { value: "car", text: "民間水車" },
+        { value: "bwater", text: "建築工地放流水" }
       ],
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 12,
