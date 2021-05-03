@@ -197,7 +197,7 @@
           v-for="row in resource[resourceType]"
         >
           <div class="stand_info">
-            [{{ row["工地名稱"] }}] {{ row["地址"] }}
+            [{{row["行政區"]}}{{ row["工地名稱"] }}] {{ row["地址"] }}
             <span class="open_time">{{ row["可取水時間"] }}</span>
           </div>
           <a
@@ -207,7 +207,10 @@
           >
             <img src="@/assets/image/icon/map.png" alt="map icon" />
           </a>
-          <a href="javascript:void(0)" class="resources_telephone icon-disable">
+          <a 
+            :href="`tel:${row.聯絡電話.split('\n')[0]}`
+            "class="resources_telephone"
+          >
             <img src="@/assets/image/icon/phone.png" alt="" />
           </a>
         </div>
