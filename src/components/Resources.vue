@@ -183,7 +183,10 @@
           >
             <img src="@/assets/image/icon/map.png" alt="map icon" />
           </a>
-          <a href="javascript:void(0)" class="resources_telephone icon-disable">
+          <a
+            :href="`tel:${row.聯絡電話.split('\n')[0]}`"
+            class="resources_telephone"
+          >
             <img src="@/assets/image/icon/phone.png" alt="" />
           </a>
         </div>
