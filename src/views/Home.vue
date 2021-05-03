@@ -79,9 +79,9 @@
         </h1>
         <span class="update_time">
           上次更新時間
-          <time :datetime="reservoirInfo.曾文水庫.ObservationTime">{{
-            getLastUpdate()
-          }}</time>
+          <time :datetime="reservoirInfo.曾文水庫.ObservationTime">
+            {{getLastUpdate()}}
+          </time>
         </span>
       </div>
       <div class="reservoir_info">
@@ -193,6 +193,7 @@
                     :style="{ width: getPercentage(reservoir) + '%' }"
                   ></div>
                 </div>
+                <p class="reservoir_update">最近更新時間：{{getTimeFormat(reservoir)}}</p>
               </div>
               <div class="reservoir_capacity">
                 {{ getPercentage(reservoir) }}%
@@ -342,6 +343,9 @@ export default {
     },
   },
   methods: {
+    getTimeFormat(reservoir){
+      return dayjs(reservoir.ObservationTime).format("YYYY.MM.DD HH:mm:ss")
+    },
     getLastUpdate() {
       return this.reservoirInfo.曾文水庫.ObservationTime
         ? dayjs(this.reservoirInfo.曾文水庫.ObservationTime).format(
