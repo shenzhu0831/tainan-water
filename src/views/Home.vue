@@ -196,7 +196,7 @@
                 <p class="reservoir_update">最近更新時間：{{getTimeFormat(reservoir)}}</p>
               </div>
               <div class="reservoir_capacity">
-                {{ getPercentage(reservoir) }}%
+                {{ getPercentage(reservoir) === null ? "無" :  getPercentage(reservoir) + '%'}}
               </div>
               <div class="reservoir_storage">
                 {{ getEffectiveWaterStorageCapacity(reservoir) }}
@@ -336,7 +336,7 @@ export default {
     axios
       .get("https://goodideas-studio.com/water/")
       .then((res) => {
-        this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
+        // this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
         // 測試 api response 失敗
         // this.reservoirLiveData = [];
         this.setLastEffectiveWaterStorageCapacity();
@@ -389,10 +389,6 @@ export default {
       } else {
         return this.totalStorage = sumEffectiveWaterStorageCapacit.toFixed(2)
       }
-        else {
-          return this.totalStorage  = (sum += reservoir.EffectiveWaterStorageCapacity);
-        }
-      },0).toFixed(2);
     },
     showReservoir() {
       this.display.reservoir = true;
@@ -412,14 +408,11 @@ export default {
     },
     getPercentage(reservoir) {
       if(isNaN(reservoir.EffectiveWaterStorageCapacity)) {
-        return `無`
+        return null
       }
       else {
-        return (
-          (reservoir.EffectiveWaterStorageCapacity /
-            reservoir.EffectiveCapacity) *
-          100
-        ).toFixed(2);
+        console.log(reservoir.EffectiveWaterStorageCapacity);
+        return ((reservoir.EffectiveWaterStorageCapacity / reservoir.EffectiveCapacity) *100).toFixed(2);
       }
     },
     getEffectiveWaterStorageCapacity(reservoir) {
