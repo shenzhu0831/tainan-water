@@ -336,7 +336,7 @@ export default {
     axios
       .get("https://goodideas-studio.com/water/")
       .then((res) => {
-        // this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
+        this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
         // 測試 api response 失敗
         // this.reservoirLiveData = [];
         this.setLastEffectiveWaterStorageCapacity();
