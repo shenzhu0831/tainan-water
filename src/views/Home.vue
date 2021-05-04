@@ -379,10 +379,16 @@ export default {
         : "-";
     },
     setTotalStorage() {
-      _.reduce(this.reservoirInfo, (sum, reservoir) => {
-        if(isNaN(reservoir.EffectiveWaterStorageCapacity)){
-          return this.totalStorage  = "無"
-        }
+      let sumEffectiveWaterStorageCapacit = _.reduce(this.reservoirInfo, (sum, reservoir) => {
+
+        return this.totalStorage = (sum += reservoir.EffectiveWaterStorageCapacity);
+      },0);
+
+      if(isNaN(sumEffectiveWaterStorageCapacit)) {
+        return this.totalStorage = "無"
+      } else {
+        return this.totalStorage = sumEffectiveWaterStorageCapacit.toFixed(2)
+      }
         else {
           return this.totalStorage  = (sum += reservoir.EffectiveWaterStorageCapacity);
         }
