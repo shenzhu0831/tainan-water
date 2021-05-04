@@ -196,10 +196,9 @@
                 <p class="reservoir_update">最近更新時間：{{getTimeFormat(reservoir)}}</p>
               </div>
               <div class="reservoir_capacity">
-                {{ getPercentage(reservoir) }}
+                {{ getPercentage(reservoir) }}%
               </div>
               <div class="reservoir_storage">
-                <!-- {{ reservoir.EffectiveWaterStorageCapacity }} -->
                 {{ getEffectiveWaterStorageCapacity(reservoir) }}
               </div>
             </div>
@@ -337,7 +336,7 @@ export default {
     axios
       .get("https://goodideas-studio.com/water/")
       .then((res) => {
-        // this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
+        this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
         // 測試 api response 失敗
         // this.reservoirLiveData = [];
         this.setLastEffectiveWaterStorageCapacity();
@@ -380,15 +379,14 @@ export default {
         : "-";
     },
     setTotalStorage() {
-      _.reduce(this.reservoirInfo,(sum, reservoir) => {
-        if(reservoir.EffectiveWaterStorageCapacity){
-          return this.totalStorage = "無"
-
+      _.reduce(this.reservoirInfo, (sum, reservoir) => {
+        if(isNaN(reservoir.EffectiveWaterStorageCapacity)){
+          return this.totalStorage  = "無"
         }
         else {
-          return this.totalStorage = (sum += reservoir.EffectiveWaterStorageCapacity);
+          return this.totalStorage  = (sum += reservoir.EffectiveWaterStorageCapacity);
         }
-        },0).toFixed(2);
+      },0).toFixed(2);
     },
     showReservoir() {
       this.display.reservoir = true;
@@ -415,7 +413,7 @@ export default {
           (reservoir.EffectiveWaterStorageCapacity /
             reservoir.EffectiveCapacity) *
           100
-        ).toFixed(2) + "%";
+        ).toFixed(2);
       }
     },
     getEffectiveWaterStorageCapacity(reservoir) {
@@ -440,11 +438,6 @@ export default {
           );
           reservoir.ObservationTime = last.ObservationTime;
         } 
-        // else {
-        //   reservoir.EffectiveWaterStorageCapacity = 0;
-        //   reservoir.ObservationTime = new Date();
-        //   this.errorText = `目前缺少水庫即時資料，無法計算總蓄水率 `;
-        // }
       });
     },
     direct(value) {
