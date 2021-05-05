@@ -536,12 +536,14 @@ export default {
   text-decoration: underline;
 }
 .resources_region_item {
-  margin-bottom: 10px;
-  border: 1px solid transparent;
-  &.active,
-  &:hover {
-    border-color: #999;
-    border-radius: 10px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  &.active {
+    background-color: #333;
+    color: #fff;
+    path {
+      fill: #fff;
+    }
   }
   &:last-child {
     margin: 0;
