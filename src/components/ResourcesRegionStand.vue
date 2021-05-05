@@ -1,8 +1,8 @@
 <template>
   <div class="ResourcesRegisonStand">
-    <div @click="display.standDetil = true" class="stand_header">
+    <div @click="toggleDetailDisplay" class="stand_header">
       <div class="stand_name">
-        [{{ row["廠別"] }}] {{ row["位置資訊"] }}
+        [{{ row["名稱"] }}] {{ row["地址"] }}
         <div class="resources_stand_tag">
           <div class="resources_stand_badge gray_300">企業取水</div>
           <div class="resources_stand_badge gray_300">民眾取水</div>
@@ -22,8 +22,8 @@
         <img src="@/assets/image/icon/phone.png" alt="" />
       </a>
     </div>
-    <div v-if="display.standDetil" class="stand_detail">
-      <div @click="display.standDetil = false" class="return_list">
+    <div v-if="detailDisplay" class="stand_detail">
+      <div @click="toggleDetailDisplay" class="return_list">
         <div class="back_arrow_icon">
           <backArrow />
         </div>
@@ -31,7 +31,7 @@
       </div>
       <div class="stand_header">
       <div class="stand_name">
-        {{ row["廠別"] }}
+        {{ row["名稱"] }}
         <div class="resources_stand_tag">
           <div class="resources_stand_badge gray_300">企業取水</div>
           <div class="resources_stand_badge gray_300">民眾取水</div>
@@ -46,6 +46,7 @@
         <img src="@/assets/image/icon/map.png" alt="map icon" />
       </a>
       <a
+        :href="`tel:${row.電話}`"
         class="resources_telephone"
       >
         <img src="@/assets/image/icon/phone.png" alt="" />
@@ -53,19 +54,13 @@
       </div>
       <div class="stand_body">
         <div class="stand_info">
-          地址：{{ row["位置資訊"] }}
-        </div>
-        <div class="stand_info">
-          電話：{{ row["聯絡方式"] }}
+          地址：{{ row["地址"] }}
         </div>
         <div class="stand_info">
           取水時間：00：00 - 24：00
         </div>
         <div class="stand_info">
-          出水量 : {{row["供水量CMD"]}}
-        </div>
-        <div class="stand_info">
-          出水量 : {{row["供水量CMD"]}}
+          出水量 : {{row["出水量"]}}
         </div>
         <div class="stand_info">
           是否符合飲用水標準 : {{row["水質"]}}
@@ -90,16 +85,16 @@ export default {
   },
   data(){
     return {
-      display: {
-        standDetil: false
-      }
+      detailDisplay: false
+    }
+  },
+  methods:{
+    toggleDetailDisplay(){
+      // console.log(this.detailDisplay);
+      this.detailDisplay = !this.detailDisplay
+      this.$emit("detailOnClick", this.detailDisplay)
     }
   }
-  // methods:{
-  //   showStandDetail(){
-  //     this.display = true;
-  //   }
-  // }
 }
 </script>
 

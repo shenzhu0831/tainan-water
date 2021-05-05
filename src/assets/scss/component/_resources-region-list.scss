@@ -29,9 +29,9 @@
     }
   }
   &_content {
+    height: 600px;
     padding: 16px;
     display: block;
-    flex: 1 0 0;
     position: relative;
     background-color: color.$gray-100;
     @media (min-width: 1024px) {
