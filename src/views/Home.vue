@@ -113,49 +113,61 @@
           <span v-else class="error_message" @click="showReservoir()">{{ errorText }}</span>
         </div>
       </div>
-      <div class="resources_stand_info">
-        <div class="resources_stand">
-          <div class="resources_stand_name">水資源回收中心</div>
-          <div class="resources_stand_value" @click="show('recycle')">
+      <div class="resources_stand_content">
+        <div class="resources_stand" @click="show('recycle')">
+          <div class="resources_stand_info">
+            <div class="resources_stand_name">水資源回收中心</div>
+            <span class="resources_stand_badge">企業取水</span>
+            <span class="resources_stand_badge">民眾取水</span>
+          </div>
+          <div class="resources_stand_value">
             {{ resource.recycle.length }}
           </div>
-          <span class="resources_stand_badge">企業取水</span>
-          <span class="resources_stand_badge">民眾取水</span>
         </div>
-        <div class="resources_stand">
-          <div class="resources_stand_name">抗旱水井</div>
-          <div class="resources_stand_value" @click="show('well')">
+        <div class="resources_stand" @click="show('well')">
+          <div class="resources_stand_info">
+            <div class="resources_stand_name">抗旱水井</div>
+            <span class="resources_stand_badge">企業取水</span>
+          </div>
+          <div class="resources_stand_value">
             {{ resource.well.length }}
           </div>
-          <span class="resources_stand_badge">企業取水</span>
         </div>
-        <div class="resources_stand">
-          <div class="resources_stand_name">農業水井</div>
-          <div class="resources_stand_value" @click="show('farmwell')">
+        <div class="resources_stand" @click="show('farmwell')">
+          <div class="resources_stand_info">
+            <div class="resources_stand_name">農業水井</div>
+            <span class="resources_stand_badge">企業取水</span>
+          </div>
+          <div class="resources_stand_value">
             {{ resource.farmwell.length }}
           </div>
-          <span class="resources_stand_badge">企業取水</span>
         </div>
-        <div class="resources_stand">
-          <div class="resources_stand_name">民間水車</div>
-          <div class="resources_stand_value" @click="show('car')">
+        <div class="resources_stand" @click="show('car')">
+          <div class="resources_stand_info">
+            <div class="resources_stand_name">民間水車</div>
+            <span class="resources_stand_badge">企業取水</span>
+          </div>
+          <div class="resources_stand_value">
             {{ resource.car.length }}
           </div>
-          <span class="resources_stand_badge">企業取水</span>
         </div>
-        <div class="resources_stand" style="border-bottom: none">
-          <div class="resources_stand_name">RO等級移動式淨水設備</div>
-          <div class="resources_stand_value" @click="show('ro')">
+        <div class="resources_stand" @click="show('car')">
+          <div class="resources_stand_info">
+            <div class="resources_stand_name">RO等級移動式淨水設備</div>
+            <span class="resources_stand_badge">企業取水</span>
+          </div>
+          <div class="resources_stand_value">
             {{ resource.ro.length }}
           </div>
-          <span class="resources_stand_badge">企業取水</span>
         </div>
-        <div class="resources_stand" style="border-bottom: none">
-          <div class="resources_stand_name">建築工地放流水</div>
-          <div class="resources_stand_value" @click="show('bwater')">
+        <div class="resources_stand" @click="show('bwater')">
+          <div class="resources_stand_info">
+            <div class="resources_stand_name">建築工地放流水</div>
+            <span class="resources_stand_badge">企業取水</span>
+          </div>
+          <div class="resources_stand_value">
             {{ resource.bwater.length }}
           </div>
-          <span class="resources_stand_badge">企業取水</span>
         </div>
       </div>
     </section>
@@ -209,7 +221,7 @@
     <Resources
       @changeResourceType="show"
       :display="display"
-      :resource="resource"
+      :resources="resource"
       :parentResourceType="resourceType"
       ref="map"
     />
@@ -318,9 +330,20 @@ export default {
   },
   async created() {
     const browser = Bowser.getParser(window.navigator.userAgent);
-    this.resource = (
-      await axios.get("https://goodideas-studio.com/water/resources/?t=3")
-    ).data;
+    const { data: resource } = await axios.get("https://goodideas-studio.com/water/resources/?t=3");
+
+    this.resource = _.each(resource, (eachResource => {
+      eachResource.forEach(stand => {
+        stand["名稱"] = stand["單位名稱"] ?? stand["引水地點"] ?? stand["引水地點"] ?? stand["廠別"] ?? stand["站名[井號]"] ?? stand["名稱"] ?? stand["工地名稱"]
+        stand["地址"] = stand["地址"] ?? stand["位址"] ?? stand["引點地段地號"] ?? stand["位置資訊"] ?? stand["地籍"] ?? stand["地址"]
+        stand["出水量"] = stand["出水量[CMD]"] ?? stand["供水量CMD"] ?? stand["出水量"] ?? stand["位置資訊"] ?? stand["地籍"] ?? stand["地址"]
+        stand["水質"] = stand["是否符合飲用水標準"] ?? stand["水質"] ?? stand["使用狀況"]
+        stand["電話"] = stand["聯絡資訊"] ?? stand["聯絡電話"] ?? stand["聯絡方式"]
+        let {名稱,地址,出水量,電話, ...rest} = stand
+        console.log();
+        return { 名稱,地址,出水量,電話 }
+      })
+    }))
 
     if (browser.getBrowserName().includes("Internet Explorer")) {
       alert(

@@ -77,42 +77,50 @@
           <span>建築工地放流水</span>
         </div>
       </div>
-      <div class="resources_region_content" v-if="resourceType == 'recycle'">
+      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'recycle'">
         <div
           class="resources_region_stand"
-          v-for="row in resource[resourceType]"
+          v-for="row in resources[resourceType]"
         >
-          <ResourcesRegionStand :row="row"/>
+          <ResourcesRegionStand :row="row" @detailOnClick="detailDisplay = $event" />
         </div>
       </div>
-      <div class="resources_region_content" v-if="resourceType == 'well'">
+      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'well'">
         <div
           class="resources_region_stand"
-          v-for="row in resource[resourceType]"
+          v-for="row in resources[resourceType]"
         >
-          <ResourcesRegionStand :row="row"/>
+          <ResourcesRegionStand :row="row" @detailOnClick="detailDisplay = $event" />
         </div>
       </div>
-      <div class="resources_region_content" v-if="resourceType == 'farmwell'">
+      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'farmwell'">
         <div
           class="resources_region_stand"
-          v-for="row in resource[resourceType]"
+          v-for="row in resources[resourceType]"
         >
-          <ResourcesRegionStand :row="row"/>
+          <ResourcesRegionStand :row="row" @detailOnClick="detailDisplay = $event" />
         </div>
       </div>
-      <div class="resources_region_content" v-if="resourceType == 'car'">
+      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'car'">
         <div
           class="resources_region_stand"
-          v-for="row in resource[resourceType]"
+          v-for="row in resources[resourceType]"
         >
-          <ResourcesRegionStand :row="row"/>
+          <ResourcesRegionStand :row="row" @detailOnClick="detailDisplay = $event" />
         </div>
       </div>
-      <div class="resources_region_content" v-if="resourceType == 'ro'">
+      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'ro'">
         <div
           class="resources_region_stand"
-          v-for="row in resource[resourceType]"
+          v-for="row in resources[resourceType]"
+        >
+          <ResourcesRegionStand :row="row" @detailOnClick="detailDisplay = $event"/>
+        </div>
+      </div>
+      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'bwater'">
+        <div
+          class="resources_region_stand"
+          v-for="row in resources[resourceType]"
         >
           <ResourcesRegionStand :row="row"/>
         </div>
@@ -131,7 +139,7 @@
         >
           <l-tile-layer :url="url"></l-tile-layer>
           <l-feature-group ref="features">
-            <template v-for="resource in resource[resourceType]">
+            <template v-for="resource in resources[resourceType]">
               <l-marker
                 :lat-lng="[resource.緯度, resource.經度]"
                 v-if="resource.緯度 && resource.經度"
@@ -149,7 +157,7 @@
                     class="connect-icon"
                   >
                     <a
-                      :href="`https://www.google.com/maps/search/?api=1&query=${resource.緯度},${resource.經度}`"
+                      :href="`https://www.google.com/maps/search/?api=1&query=${resources.緯度},${resources.經度}`"
                       target="_blank"
                       class="resources_address"
                     >
@@ -204,9 +212,10 @@ export default {
   components: {
     ResourcesRegionStand
   },
-  props: ["parentResourceType", "resource", "display"],
+  props: ["parentResourceType", "resources", "display"],
   data() {
     return {
+      detailDisplay: false,
       resourceType: null,
       selectedResource: null,
       options: [
