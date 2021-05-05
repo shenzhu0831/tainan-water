@@ -34,9 +34,10 @@
     display: block;
     position: relative;
     background-color: color.$gray-100;
+    overflow: scroll;
     @media (min-width: 1024px) {
       height: 765px;
-      overflow: scroll;
+      flex: 1 0 0;
     }
     a {
       width: 26px;
