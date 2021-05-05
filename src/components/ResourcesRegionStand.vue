@@ -17,7 +17,6 @@
         <img src="@/assets/image/icon/map.png" alt="map icon" />
       </a>
       <a
-        :href="`tel:${row.聯絡方式.split('\n')[0]}`"
         class="resources_telephone"
       >
         <img src="@/assets/image/icon/phone.png" alt="" />
@@ -47,7 +46,6 @@
         <img src="@/assets/image/icon/map.png" alt="map icon" />
       </a>
       <a
-        :href="`tel:${row.聯絡方式.split('\n')[0]}`"
         class="resources_telephone"
       >
         <img src="@/assets/image/icon/phone.png" alt="" />
