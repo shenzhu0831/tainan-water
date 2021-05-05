@@ -5,78 +5,69 @@
       <!-- <button class="reserve_button">預約取水系統</button> -->
     </div>
     <div class="resources_region"></div>
-    <div class="resources_region_list">
-      <div class="resources_region_sort_laptop">
-        <div
-          class="resources_region_item pointer"
-          :class="{ active: resourceType == 'recycle' }"
-          @click="resourceType = 'recycle'"
-        >
-          <div class="resources_region_icon">
-            <img
-              src="@/assets/image/icon/water-recycling-center.png"
-              alt="water-recycling-center"
-            />
-          </div>
-          <span>水資源回收中心</span>
+    <div class="resources_region_sort_laptop">
+      <div
+        class="resources_region_item"
+        :class="{ active: resourceType == 'recycle' }"
+        @click="resourceType = 'recycle'"
+      >
+        <div class="resources_region_icon">
+          <recycleIcon />
         </div>
-        <div
-          class="resources_region_item pointer"
-          :class="{ active: resourceType == 'well' }"
-          @click="resourceType = 'well'"
-        >
-          <div class="resources_region_icon">
-            <img
-              src="@/assets/image/icon/drought-well.png"
-              alt="drought-well"
-            />
-          </div>
-          <span>抗旱水井</span>
-        </div>
-        <div
-          class="resources_region_item pointer"
-          :class="{ active: resourceType == 'farmwell' }"
-          @click="resourceType = 'farmwell'"
-        >
-          <div class="resources_region_icon">
-            <img
-              src="@/assets/image/icon/agricultural-well.png"
-              alt="agricultural-well"
-            />
-          </div>
-          <span>農業水井</span>
-        </div>
-        <div
-          class="resources_region_item pointer"
-          :class="{ active: resourceType == 'car' }"
-          @click="resourceType = 'car'"
-        >
-          <div class="resources_region_icon">
-            <img src="@/assets/image/icon/water-wheel.png" alt="water-wheel" />
-          </div>
-          <span>民間水車</span>
-        </div>
-        <div
-          class="resources_region_item pointer"
-          :class="{ active: resourceType == 'ro' }"
-          @click="resourceType = 'ro'"
-        >
-          <div class="resources_region_icon">
-            <img src="@/assets/image/icon/RO-icon.png" alt="RO-icon" />
-          </div>
-          <span>RO等級移動式淨水設備</span>
-        </div>
-        <div
-          class="resources_region_item pointer"
-          :class="{ active: resourceType == 'bwater' }"
-          @click="resourceType = 'bwater'"
-        >
-          <div class="resources_region_icon">
-            <img src="@/assets/image/icon/construction-icon.png" alt="construction-icon" />
-          </div>
-          <span>建築工地放流水</span>
-        </div>
+        <span class="resources_region_text">水資源回收中心</span>
       </div>
+      <div
+        class="resources_region_item"
+        :class="{ active: resourceType == 'well' }"
+        @click="resourceType = 'well'"
+      >
+        <div class="resources_region_icon">
+          <wellIcon />
+        </div>
+        <span class="resources_region_text">抗旱水井</span>
+      </div>
+      <div
+        class="resources_region_item"
+        :class="{ active: resourceType == 'farmwell' }"
+        @click="resourceType = 'farmwell'"
+      >
+        <div class="resources_region_icon">
+          <farmWellIcon />
+        </div>
+        <span class="resources_region_text">農業水井</span>
+      </div>
+      <div
+        class="resources_region_item"
+        :class="{ active: resourceType == 'car' }"
+        @click="resourceType = 'car'"
+      >
+        <div class="resources_region_icon" style="margin: 0 5px;">
+          <carIcon />
+        </div>
+        <span class="resources_region_text">民間水車</span>
+      </div>
+      <div
+        class="resources_region_item"
+        :class="{ active: resourceType == 'ro' }"
+        @click="resourceType = 'ro'"
+      >
+        <div class="resources_region_icon">
+          <roIcon />
+        </div>
+        <span class="resources_region_text">RO等級移動式淨水設備</span>
+      </div>
+      <div
+        class="resources_region_item"
+        :class="{ active: resourceType == 'bwater' }"
+        @click="resourceType = 'bwater'"
+      >
+        <div class="resources_region_icon">
+          <constructionIcon />
+        </div>
+        <span class="resources_region_text">建築工地放流水</span>
+      </div>
+    </div>
+    <div class="resources_region_list">
       <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'recycle'">
         <div
           class="resources_region_stand"
@@ -207,10 +198,23 @@ import _ from "lodash";
 
 import ResourcesRegionStand from "@/components/ResourcesRegionStand.vue"
 
+import wellIcon from "@/assets/image/icon/well.svg"
+import farmWellIcon from "@/assets/image/icon/farm.svg"
+import carIcon from "@/assets/image/icon/car.svg"
+import recycleIcon from "@/assets/image/icon/recycle.svg"
+import roIcon from "@/assets/image/icon/RO.svg"
+import constructionIcon from "@/assets/image/icon/onstruction.svg"
+
 export default {
   name: "Resources",
   components: {
-    ResourcesRegionStand
+    ResourcesRegionStand,
+    wellIcon,
+    farmWellIcon,
+    carIcon,
+    recycleIcon,
+    roIcon,
+    constructionIcon
   },
   props: ["parentResourceType", "resources", "display"],
   data() {
