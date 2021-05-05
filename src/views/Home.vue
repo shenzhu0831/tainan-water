@@ -340,7 +340,6 @@ export default {
         stand["水質"] = stand["是否符合飲用水標準"] ?? stand["水質"] ?? stand["使用狀況"]
         stand["電話"] = stand["聯絡資訊"] ?? stand["聯絡電話"] ?? stand["聯絡方式"]
         let {名稱,地址,出水量,電話, ...rest} = stand
-        console.log();
         return { 名稱,地址,出水量,電話 }
       })
     }))
@@ -434,7 +433,6 @@ export default {
         return null
       }
       else {
-        console.log(reservoir.EffectiveWaterStorageCapacity);
         return ((reservoir.EffectiveWaterStorageCapacity / reservoir.EffectiveCapacity) *100).toFixed(2);
       }
     },
