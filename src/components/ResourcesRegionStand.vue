@@ -4,8 +4,9 @@
       <div class="stand_name">
         [{{ row["名稱"] }}] {{ row["地址"] }}
         <div class="resources_stand_tag">
-          <div class="resources_stand_badge gray_300">企業取水</div>
-          <div class="resources_stand_badge gray_300">民眾取水</div>
+          <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
+          <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
+          <div v-else class="resources_stand_badge gray_300">民眾取水</div>
         </div>
         <time class="open_time">00：00 - 24：00</time>
       </div>
@@ -33,8 +34,9 @@
       <div class="stand_name">
         {{ row["名稱"] }}
         <div class="resources_stand_tag">
-          <div class="resources_stand_badge gray_300">企業取水</div>
-          <div class="resources_stand_badge gray_300">民眾取水</div>
+          <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
+          <div v-else-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
+          <div v-else class="resources_stand_badge gray_300">民眾取水</div>
         </div>
         <time class="open_time">00：00 - 24：00</time>
       </div>
@@ -81,11 +83,16 @@ export default {
     row: {
       type: Object,
       required: true
+    },
+    resourceType: {
+      type: String,
+      required: true
     }
   },
   data(){
     return {
-      detailDisplay: false
+      detailDisplay: false,
+      badgeDisplay: false
     }
   },
   methods:{
@@ -93,6 +100,13 @@ export default {
       // console.log(this.detailDisplay);
       this.detailDisplay = !this.detailDisplay
       this.$emit("detailOnClick", this.detailDisplay)
+    },
+    getBadgeDisplay(){
+      if(this.resourceType === "recycle") {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }

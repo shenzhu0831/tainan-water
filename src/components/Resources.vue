@@ -73,7 +73,7 @@
           class="resources_region_stand"
           v-for="row in resources[resourceType]"
         >
-          <ResourcesRegionStand :row="row" @detailOnClick="detailDisplay = $event" />
+          <ResourcesRegionStand :row="row" :resourceType="resourceType" @detailOnClick="detailDisplay = $event" />
         </div>
       </div>
       <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'well'">
@@ -81,7 +81,7 @@
           class="resources_region_stand"
           v-for="row in resources[resourceType]"
         >
-          <ResourcesRegionStand :row="row" @detailOnClick="detailDisplay = $event" />
+          <ResourcesRegionStand :row="row" :resourceType="resourceType" @detailOnClick="detailDisplay = $event" />
         </div>
       </div>
       <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'farmwell'">
@@ -89,7 +89,7 @@
           class="resources_region_stand"
           v-for="row in resources[resourceType]"
         >
-          <ResourcesRegionStand :row="row" @detailOnClick="detailDisplay = $event" />
+          <ResourcesRegionStand :row="row" :resourceType="resourceType" @detailOnClick="detailDisplay = $event" />
         </div>
       </div>
       <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'car'">
@@ -97,7 +97,7 @@
           class="resources_region_stand"
           v-for="row in resources[resourceType]"
         >
-          <ResourcesRegionStand :row="row" @detailOnClick="detailDisplay = $event" />
+          <ResourcesRegionStand :row="row" :resourceType="resourceType" @detailOnClick="detailDisplay = $event" />
         </div>
       </div>
       <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'ro'">
@@ -105,7 +105,7 @@
           class="resources_region_stand"
           v-for="row in resources[resourceType]"
         >
-          <ResourcesRegionStand :row="row" @detailOnClick="detailDisplay = $event"/>
+          <ResourcesRegionStand :row="row" :resourceType="resourceType" @detailOnClick="detailDisplay = $event"/>
         </div>
       </div>
       <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'bwater'">
@@ -113,7 +113,7 @@
           class="resources_region_stand"
           v-for="row in resources[resourceType]"
         >
-          <ResourcesRegionStand :row="row"/>
+          <ResourcesRegionStand :row="row":resourceType="resourceType" @detailOnClick="detailDisplay = $event"/>
         </div>
       </div>
       <div class="resources_map">
