@@ -3,12 +3,12 @@
 
 .reservoir_info {
   margin: 0 16px;
+  border-radius: 10px;
+  background-color: color.$white-10;
   @media (min-width: 768px) {
     margin: 0 70px;
     padding: 40px 0;
     display: flex;
-    border-top: solid 1px color.$white;
-    border-bottom: solid 1px color.$white;
   }
 }
 
@@ -18,11 +18,9 @@
   flex-direction: column;
   align-items: center;
   flex: 1 0 0;
-  border-bottom: solid 1px color.$white;
   color: color.$white;
   @media (min-width: 768px) {
     padding: 0;
-    border: none;
   }
   &_name {
     margin-bottom: 6px;
@@ -61,19 +59,9 @@
   align-items: center;
   flex: 1 0 0;
   position: relative;
-  border-bottom: solid 1px color.$white;
   color: color.$white;
   @media (min-width: 768px) {
     padding: 0;
-    border: none;
-    &::before {
-      content: "";
-      width: 1px;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      background-color: color.$white;
-    }
   }
   &_name {
     margin-bottom: 6px;
