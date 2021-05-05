@@ -14,7 +14,7 @@
         <div class="resources_region_icon">
           <recycleIcon />
         </div>
-        <span>水資源回收中心</span>
+        <span class="resources_region_text">水資源回收中心</span>
       </div>
       <div
         class="resources_region_item"
@@ -24,7 +24,7 @@
         <div class="resources_region_icon">
           <wellIcon />
         </div>
-        <span>抗旱水井</span>
+        <span class="resources_region_text">抗旱水井</span>
       </div>
       <div
         class="resources_region_item"
@@ -34,17 +34,17 @@
         <div class="resources_region_icon">
           <farmWellIcon />
         </div>
-        <span>農業水井</span>
+        <span class="resources_region_text">農業水井</span>
       </div>
       <div
         class="resources_region_item"
         :class="{ active: resourceType == 'car' }"
         @click="resourceType = 'car'"
       >
-        <div class="resources_region_icon">
+        <div class="resources_region_icon" style="margin: 0 5px;">
           <carIcon />
         </div>
-        <span>民間水車</span>
+        <span class="resources_region_text">民間水車</span>
       </div>
       <div
         class="resources_region_item"
@@ -54,7 +54,7 @@
         <div class="resources_region_icon">
           <roIcon />
         </div>
-        <span>RO等級移動式淨水設備</span>
+        <span class="resources_region_text">RO等級移動式淨水設備</span>
       </div>
       <div
         class="resources_region_item"
@@ -64,7 +64,7 @@
         <div class="resources_region_icon">
           <constructionIcon />
         </div>
-        <span>建築工地放流水</span>
+        <span class="resources_region_text">建築工地放流水</span>
       </div>
     </div>
     <div class="resources_region_list">
