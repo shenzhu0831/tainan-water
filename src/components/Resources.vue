@@ -82,23 +82,7 @@
           class="resources_region_stand"
           v-for="row in resource[resourceType]"
         >
-          <div class="stand_info">
-            [{{ row["廠別"] }}] {{ row["位置資訊"] }}
-            <span class="open_time">00：00 - 24：00</span>
-          </div>
-          <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
-            target="_blank"
-            class="resources_address"
-          >
-            <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </a>
-          <a
-            :href="`tel:${row.聯絡方式.split('\n')[0]}`"
-            class="resources_telephone"
-          >
-            <img src="@/assets/image/icon/phone.png" alt="" />
-          </a>
+          <ResourcesRegionStand :row="row"/>
         </div>
       </div>
       <div class="resources_region_content" v-if="resourceType == 'well'">
@@ -106,20 +90,7 @@
           class="resources_region_stand"
           v-for="row in resource[resourceType]"
         >
-          <div class="stand_info">
-            [{{ row["引水地點"] }}] {{ row["引點地段地號"] }}
-            <span class="open_time">00：00 - 24：00</span>
-          </div>
-          <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
-            target="_blank"
-            class="resources_address"
-          >
-            <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </a>
-          <a href="javascript:void(0)" class="resources_telephone icon-disable">
-            <img src="@/assets/image/icon/phone.png" alt="" />
-          </a>
+          <ResourcesRegionStand :row="row"/>
         </div>
       </div>
       <div class="resources_region_content" v-if="resourceType == 'farmwell'">
@@ -127,20 +98,7 @@
           class="resources_region_stand"
           v-for="row in resource[resourceType]"
         >
-          <div class="stand_info">
-            [{{ row["站名[井號]"] }}] {{ row["地籍"] }}
-            <span class="open_time">00：00 - 24：00</span>
-          </div>
-          <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
-            target="_blank"
-            class="resources_address"
-          >
-            <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </a>
-          <a href="javascript:void(0)" class="resources_telephone icon-disable">
-            <img src="@/assets/image/icon/phone.png" alt="" />
-          </a>
+          <ResourcesRegionStand :row="row"/>
         </div>
       </div>
       <div class="resources_region_content" v-if="resourceType == 'car'">
@@ -148,23 +106,7 @@
           class="resources_region_stand"
           v-for="row in resource[resourceType]"
         >
-          <div class="stand_info">
-            [{{ row["單位名稱"] }}] {{ row["地址"] }}
-            <span class="open_time">{{ row["可取水時間"] }}</span>
-          </div>
-          <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
-            target="_blank"
-            class="resources_address"
-          >
-            <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </a>
-          <a
-            :href="`tel:${row.聯絡資訊.split('\n')[0]}`"
-            class="resources_telephone"
-          >
-            <img src="@/assets/image/icon/phone.png" alt="" />
-          </a>
+          <ResourcesRegionStand :row="row"/>
         </div>
       </div>
       <div class="resources_region_content" v-if="resourceType == 'ro'">
@@ -172,47 +114,7 @@
           class="resources_region_stand"
           v-for="row in resource[resourceType]"
         >
-          <div class="stand_info">
-            [{{ row["名稱"] }}] {{ row["位址"] }}
-            <span class="open_time">{{ row["可取水時間"] }}</span>
-          </div>
-          <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
-            target="_blank"
-            class="resources_address"
-          >
-            <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </a>
-          <a
-            :href="`tel:${row.聯絡電話.split('\n')[0]}`"
-            class="resources_telephone"
-          >
-            <img src="@/assets/image/icon/phone.png" alt="" />
-          </a>
-        </div>
-      </div>
-      <div class="resources_region_content" v-if="resourceType == 'bwater'">
-        <div
-          class="resources_region_stand"
-          v-for="row in resource[resourceType]"
-        >
-          <div class="stand_info">
-            [{{row["行政區"]}}{{ row["工地名稱"] }}] {{ row["地址"] }}
-            <span class="open_time">{{ row["可取水時間"] }}</span>
-          </div>
-          <a
-            :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
-            target="_blank"
-            class="resources_address"
-          >
-            <img src="@/assets/image/icon/map.png" alt="map icon" />
-          </a>
-          <a 
-            :href="`tel:${row.聯絡電話.split('\n')[0]}`
-            "class="resources_telephone"
-          >
-            <img src="@/assets/image/icon/phone.png" alt="" />
-          </a>
+          <ResourcesRegionStand :row="row"/>
         </div>
       </div>
       <div class="resources_map">
@@ -295,8 +197,13 @@
 <script>
 import _ from "lodash";
 
+import ResourcesRegionStand from "@/components/ResourcesRegionStand.vue"
+
 export default {
   name: "Resources",
+  components: {
+    ResourcesRegionStand
+  },
   props: ["parentResourceType", "resource", "display"],
   data() {
     return {
@@ -327,7 +234,6 @@ export default {
         this.$refs.map.mapObject.invalidateSize();
         this.$refs.map.fitBounds(this.$refs.features.mapObject.getBounds());
       });
-      // console.log(this.resourceType);
     },
   },
 };
