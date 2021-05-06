@@ -1,6 +1,6 @@
 <template>
   <div class="ResourcesRegisonStand">
-    <div @click="toggleDetailDisplay" class="stand_header">
+    <div class="stand_header">
       <div class="stand_name">
         [{{ row["名稱"] }}] {{ row["地址"] }}
         <div class="resources_stand_tag">
