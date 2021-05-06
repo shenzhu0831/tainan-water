@@ -151,7 +151,7 @@
             {{ resource.car.length }}
           </div>
         </div>
-        <div class="resources_stand" @click="show('car')">
+        <div class="resources_stand" @click="show('ro')">
           <div class="resources_stand_info">
             <div class="resources_stand_name">RO等級移動式淨水設備</div>
             <span class="resources_stand_badge">企業取水</span>
