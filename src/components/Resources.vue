@@ -2,7 +2,6 @@
   <section class="resources" v-if="display.resource">
     <div class="resources_title">
       <h3>台南取水資源</h3>
-      <!-- <button class="reserve_button">預約取水系統</button> -->
     </div>
     <div class="resources_region"></div>
     <div class="resources_region_sort_laptop">

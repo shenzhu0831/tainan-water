@@ -97,7 +97,6 @@ export default {
   },
   methods:{
     toggleDetailDisplay(){
-      // console.log(this.detailDisplay);
       this.detailDisplay = !this.detailDisplay
       this.$emit("detailOnClick", this.detailDisplay)
     },

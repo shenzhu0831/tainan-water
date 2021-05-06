@@ -242,7 +242,6 @@ import phoneLogo from "../assets/image/title/logo-phone.svg";
 import tainanReservoirData from "@/assets/open-data/tainan-reservoir-data.json";
 import VueScrollTo from "vue-scrollto";
 import Economy from "@/components/Economy.vue";
-// import ResourcesMap from "@/components/ResourcesMap.vue";
 import Resources from "@/components/Resources.vue";
 
 export default {
@@ -251,7 +250,6 @@ export default {
     laptopLogo,
     phoneLogo,
     Economy,
-    // ResourcesMap,
     Resources,
   },
   data() {
