@@ -699,7 +699,7 @@ export default {
       else if(this.resourceType == "ro"){
         return this.resources[this.resourceType].map(stand => {
           
-          let {_id, 位置資訊, 聯絡電話, ...rest} = {電話: stand.聯絡方式, 地址: stand.位置資訊, ...stand }
+          let {_id, 位置資訊, 聯絡電話, ...rest} = {電話: stand.聯絡電話, 地址: stand.名稱, ...stand }
           return {...rest}
         })
       }
