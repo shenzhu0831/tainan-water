@@ -541,7 +541,7 @@
         >
           <l-tile-layer :url="url"></l-tile-layer>
           <l-feature-group ref="features">
-            <template v-for="resource in transformResourceDate">
+            <template v-for="resource in formatResourceDate">
               <l-marker
                 :lat-lng="[resource.緯度, resource.經度]"
                 v-if="resource.緯度 && resource.經度"
@@ -663,7 +663,7 @@ export default {
     },
   },
   computed : {
-    transformResourceDate(){
+    formatResourceDate(){
       if(this.resourceType == "recycle"){
         return this.resources[this.resourceType].map(stand => {
           
