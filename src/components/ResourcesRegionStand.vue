@@ -6,7 +6,7 @@
         <div class="resources_stand_tag">
           <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
           <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
-          <div v-else class="resources_stand_badge gray_300">民眾取水</div>
+          <div v-else class="resources_stand_badge gray_300">企業取水</div>
         </div>
         <time class="open_time">00：00 - 24：00</time>
       </div>
@@ -35,8 +35,8 @@
         {{ row["名稱"] }}
         <div class="resources_stand_tag">
           <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
-          <div v-else-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
-          <div v-else class="resources_stand_badge gray_300">民眾取水</div>
+          <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
+          <div v-else class="resources_stand_badge gray_300">企業取水</div>
         </div>
         <time class="open_time">00：00 - 24：00</time>
       </div>
