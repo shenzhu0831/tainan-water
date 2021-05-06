@@ -242,7 +242,6 @@ import phoneLogo from "../assets/image/title/logo-phone.svg";
 import tainanReservoirData from "@/assets/open-data/tainan-reservoir-data.json";
 import VueScrollTo from "vue-scrollto";
 import Economy from "@/components/Economy.vue";
-// import ResourcesMap from "@/components/ResourcesMap.vue";
 import Resources from "@/components/Resources.vue";
 
 export default {
@@ -251,7 +250,6 @@ export default {
     laptopLogo,
     phoneLogo,
     Economy,
-    // ResourcesMap,
     Resources,
   },
   data() {
@@ -330,19 +328,9 @@ export default {
   },
   async created() {
     const browser = Bowser.getParser(window.navigator.userAgent);
-    const { data: resource } = await axios.get("https://goodideas-studio.com/water/resources/?t=3");
-
-    this.resource = _.each(resource, (eachResource => {
-      eachResource.forEach(stand => {
-        stand["名稱"] = stand["單位名稱"] ?? stand["引水地點"] ?? stand["引水地點"] ?? stand["廠別"] ?? stand["站名[井號]"] ?? stand["名稱"] ?? stand["工地名稱"]
-        stand["地址"] = stand["地址"] ?? stand["位址"] ?? stand["引點地段地號"] ?? stand["位置資訊"] ?? stand["地籍"] ?? stand["地址"]
-        stand["出水量"] = stand["出水量[CMD]"] ?? stand["供水量CMD"] ?? stand["出水量"] ?? stand["位置資訊"] ?? stand["地籍"] ?? stand["地址"]
-        stand["水質"] = stand["是否符合飲用水標準"] ?? stand["水質"] ?? stand["使用狀況"]
-        stand["電話"] = stand["聯絡資訊"] ?? stand["聯絡電話"] ?? stand["聯絡方式"]
-        let {名稱,地址,出水量,電話, ...rest} = stand
-        return { 名稱,地址,出水量,電話 }
-      })
-    }))
+    this.resource = (
+      await axios.get("https://goodideas-studio.com/water/resources/?t=3")
+    ).data;
 
     if (browser.getBrowserName().includes("Internet Explorer")) {
       alert(
