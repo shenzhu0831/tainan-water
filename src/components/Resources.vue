@@ -655,15 +655,17 @@ export default {
       if(this.resourceType == "recycle"){
         return this.resources[this.resourceType].map(stand => {
           
-          let {_id, 位置資訊, 聯絡電話, ...rest} = {電話: stand.聯絡方式, 地址: stand.位置資訊, ...stand }
+          let {_id, 位置資訊, 聯絡方式, ...rest} = {電話: stand.聯絡方式, 地址: stand.位置資訊, ...stand }
           return {...rest}
         })
       }
       else if(this.resourceType == "well"){
         return this.resources[this.resourceType].map(stand => {
           
-          let {_id, 水井座標X_TWD67, 水井座標Y_TWD67, ...rest} = stand
-          return {...rest}
+          delete stand["_id"]
+          delete stand["水井座標X_TWD67"]
+          delete stand["水井座標Y_TWD67"]
+          return stand
         })
       }
       else if(this.resourceType == "farmwell"){
