@@ -83,7 +83,7 @@
         <time class="open_time">00：00 - 24：00</time>
       </div>
       <a
-        :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+        :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
         target="_blank"
         class="resources_address"
       >
@@ -114,7 +114,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -160,7 +160,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -190,7 +190,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -236,7 +236,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -266,7 +266,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -312,7 +312,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -343,7 +343,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -389,7 +389,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -420,7 +420,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -466,7 +466,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -497,7 +497,7 @@
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`https://www.google.com/maps/search/?api=1&query=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
               target="_blank"
               class="resources_address"
             >
@@ -559,7 +559,7 @@
                     class="connect-icon"
                   >
                     <a
-                      :href="`https://www.google.com/maps/search/?api=1&query=${resources.緯度},${resources.經度}`"
+                      :href="`http://maps.google.com/?q=${resource.緯度},${resource.經度}`"
                       target="_blank"
                       class="resources_address"
                     >
