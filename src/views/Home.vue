@@ -119,12 +119,12 @@
           <div class="tainan_reservoir_chart baihe_reservoir" >
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="60%" stop-color="#C0ECF2"/>
-                  <stop offset="100%" stop-color="#22BCD1"/>
+                  <stop offset="0%" stop-color="#C0ECF2"/>
+                  <stop :offset="getPercentage(reservoirInfo.白河水庫) + '%'" stop-color="#22BCD1"/>
               </linearGradient>
               <defs>
                 <clipPath id="cut-off">
-                  <rect x="0" y="55" width="90" height="90" />
+                  <rect x="0" y="55" width="90" :height="getPercentage(reservoirInfo.白河水庫) + '%'" />
                 </clipPath>
               </defs>
 		          <circle cx="45" cy="45" r="40" clip-path="url(#cut-off)" fill="url(#wushantou-gradient)"/>
@@ -142,11 +142,11 @@
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <linearGradient id="zengwen-gradient" x1="0" x2="0" y1="0" y2="1">
                   <stop offset="0%" stop-color="#22BCD1"/>
-                  <stop offset="15%" stop-color="#C0ECF2"/>
+                  <stop :offset="getPercentage(reservoirInfo.曾文水庫) + '%'" stop-color="#C0ECF2"/>
               </linearGradient>
               <defs>
                 <clipPath id="zengwen-cut-off">
-                  <rect x="0" y="0" width="100%" height="20%" />
+                  <rect x="0" y="0" width="100%" :height="getPercentage(reservoirInfo.曾文水庫) + '%'" />
                 </clipPath>
               </defs>
 		          <circle cx="50%" cy="50%" r="45%" clip-path="url(#zengwen-cut-off)" fill="url(#zengwen-gradient)"/>
@@ -164,11 +164,11 @@
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <linearGradient id="wushantou-gradient" x1="0" x2="0" y1="0" y2="1">
                   <stop offset="0%" stop-color="#22BCD1"/>
-                  <stop offset="40%" stop-color="#C0ECF2"/>
+                  <stop :offset="getPercentage(reservoirInfo.烏山頭水庫) + '%'" stop-color="#C0ECF2"/>
               </linearGradient>
               <defs>
                 <clipPath id="wushantou-cut-off">
-                  <rect x="0" y="0" width="100%" height="44%" />
+                  <rect x="0" y="0" width="100%" :height="getPercentage(reservoirInfo.烏山頭水庫) + '%'" />
                 </clipPath>
               </defs>
 		          <circle cx="50%" cy="50%" r="45%" clip-path="url(#wushantou-cut-off)" fill="url(#wushantou-gradient)"/>
@@ -186,11 +186,11 @@
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <linearGradient id="nanhua-gradient" x1="0" x2="0" y1="0" y2="1">
                   <stop offset="0%" stop-color="#22BCD1"/>
-                  <stop offset="30%" stop-color="#C0ECF2"/>
+                  <stop :offset="getPercentage(reservoirInfo.南化水庫) + '%'" stop-color="#C0ECF2"/>
               </linearGradient>
               <defs>
                 <clipPath id="nanhua-cut-off">
-                  <rect x="0" y="0" width="100%" height="30%"/>
+                  <rect x="0" y="0" width="100%" :height="getPercentage(reservoirInfo.南化水庫) + '%'"/>
                 </clipPath>
               </defs>
 		          <circle cx="50%" cy="50%" r="45%" clip-path="url(#nanhua-cut-off)" fill="url(#nanhua-gradient)"/>
@@ -261,7 +261,7 @@
         </div>
       </div>
     </section>
-    <section ref="reservoir" class="reservoir" v-if="display.reservoir">
+    <!-- <section ref="reservoir" class="reservoir" v-if="display.reservoir">
       <div class="reservoir_title">
         <h3>台灣水庫蓄水情況</h3>
       </div>
@@ -307,7 +307,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <Resources
       @changeResourceType="show"
       :display="display"
@@ -508,7 +508,7 @@ export default {
     },
     getPercentage(reservoir) {
       if(isNaN(reservoir.EffectiveWaterStorageCapacity)) {
-        return null
+        return 0
       }
       else {
         return ((reservoir.EffectiveWaterStorageCapacity / reservoir.EffectiveCapacity) *100).toFixed(2);
