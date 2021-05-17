@@ -6,9 +6,11 @@
   border-radius: 10px;
   background-color: color.$white-10;
   @media (min-width: 768px) {
-    margin: 0 45px;
-    padding: 40px 0;
     display: flex;
+    padding: 40px 0;
+  }
+  @media (min-width: 1024px) {
+    margin: 0 45px;
   }
 }
 

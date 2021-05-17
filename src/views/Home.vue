@@ -131,7 +131,10 @@
 	          </svg>
           </div>
           <div class="tainan_reservoir_value" @click="showReservoir()">0.00%</div>
-          <div class="tainan_reservoir_storage">有效蓄水量 0 萬立方公尺</div>
+          <div class="tainan_reservoir_storage">
+            <span> 有效蓄水量 </span> 
+            <span> 0 萬立方公尺 </span>
+          </div>
         </div>
         <div class="tainan_reservoir_detail">
           <div class="tainan_reservoir_name">曾文水庫</div>
@@ -150,7 +153,10 @@
 	          </svg>
           </div>
           <div class="tainan_reservoir_value" @click="showReservoir()">5.98%</div>
-          <div class="tainan_reservoir_storage">有效蓄水量 3045 萬立方公尺</div>
+          <div class="tainan_reservoir_storage">
+            <span> 有效蓄水量 </span> 
+            <span> 3045 萬立方公尺 </span>
+          </div>
         </div>
         <div class="tainan_reservoir_detail">
           <div class="tainan_reservoir_name">烏山頭水庫</div>
@@ -169,7 +175,10 @@
 	          </svg>
           </div>
           <div class="tainan_reservoir_value" @click="showReservoir()">44.18%</div>
-          <div class="tainan_reservoir_storage">有效蓄水量 3480 萬立方公尺</div>
+          <div class="tainan_reservoir_storage">
+            <span> 有效蓄水量 </span> 
+            <span> 3480 萬立方公尺 </span>
+          </div>
         </div>
         <div class="tainan_reservoir_detail">
           <div class="tainan_reservoir_name">南化水庫</div>
@@ -188,7 +197,10 @@
 	          </svg>
           </div>
           <div class="tainan_reservoir_value" @click="showReservoir()">12.20%</div>
-          <div class="tainan_reservoir_storage">有效蓄水量 1110.27 萬立方公尺</div>
+          <div class="tainan_reservoir_storage">
+            <span> 有效蓄水量 </span> 
+            <span> 1110.27 萬立方公尺 </span>
+          </div>
         </div>
       </div>
       <div class="resources_stand_content">
