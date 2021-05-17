@@ -4,6 +4,7 @@
 @use '../component/navbar';
 @use '../component/reservoir-info';
 @use '../component/resources-stand-content';
+@use '../component/_reservoir_storage.scss';
 
 .home {
   height: auto;

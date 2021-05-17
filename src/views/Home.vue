@@ -113,6 +113,84 @@
           <span v-else class="error_message" @click="showReservoir()">{{ errorText }}</span>
         </div>
       </div>
+      <div class="tainan_reservoir">
+        <div class="tainan_reservoir_detail">
+          <div class="tainan_reservoir_name">白河水庫</div>
+          <div class="tainan_reservoir_chart baihe_reservoir" >
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="60%" stop-color="#C0ECF2"/>
+                  <stop offset="100%" stop-color="#22BCD1"/>
+              </linearGradient>
+              <defs>
+                <clipPath id="cut-off">
+                  <rect x="0" y="55" width="90" height="90" />
+                </clipPath>
+              </defs>
+		          <circle cx="45" cy="45" r="40" clip-path="url(#cut-off)" fill="url(#wushantou-gradient)"/>
+	          </svg>
+          </div>
+          <div class="tainan_reservoir_value" @click="showReservoir()">0.00%</div>
+          <div class="tainan_reservoir_storage">有效蓄水量 0 萬立方公尺</div>
+        </div>
+        <div class="tainan_reservoir_detail">
+          <div class="tainan_reservoir_name">曾文水庫</div>
+          <div class="tainan_reservoir_chart zengwen_reservoir" >
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <linearGradient id="zengwen-gradient" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#22BCD1"/>
+                  <stop offset="15%" stop-color="#C0ECF2"/>
+              </linearGradient>
+              <defs>
+                <clipPath id="zengwen-cut-off">
+                  <rect x="0" y="0" width="100%" height="20%" />
+                </clipPath>
+              </defs>
+		          <circle cx="50%" cy="50%" r="45%" clip-path="url(#zengwen-cut-off)" fill="url(#zengwen-gradient)"/>
+	          </svg>
+          </div>
+          <div class="tainan_reservoir_value" @click="showReservoir()">5.98%</div>
+          <div class="tainan_reservoir_storage">有效蓄水量 3045 萬立方公尺</div>
+        </div>
+        <div class="tainan_reservoir_detail">
+          <div class="tainan_reservoir_name">烏山頭水庫</div>
+          <div class="tainan_reservoir_chart wushantou_reservoir" >
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <linearGradient id="wushantou-gradient" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#22BCD1"/>
+                  <stop offset="40%" stop-color="#C0ECF2"/>
+              </linearGradient>
+              <defs>
+                <clipPath id="wushantou-cut-off">
+                  <rect x="0" y="0" width="100%" height="44%" />
+                </clipPath>
+              </defs>
+		          <circle cx="50%" cy="50%" r="45%" clip-path="url(#wushantou-cut-off)" fill="url(#wushantou-gradient)"/>
+	          </svg>
+          </div>
+          <div class="tainan_reservoir_value" @click="showReservoir()">44.18%</div>
+          <div class="tainan_reservoir_storage">有效蓄水量 3480 萬立方公尺</div>
+        </div>
+        <div class="tainan_reservoir_detail">
+          <div class="tainan_reservoir_name">南化水庫</div>
+          <div class="tainan_reservoir_chart nanhua_reservoir" >
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <linearGradient id="nanhua-gradient" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#22BCD1"/>
+                  <stop offset="30%" stop-color="#C0ECF2"/>
+              </linearGradient>
+              <defs>
+                <clipPath id="nanhua-cut-off">
+                  <rect x="0" y="0" width="100%" height="30%"/>
+                </clipPath>
+              </defs>
+		          <circle cx="50%" cy="50%" r="45%" clip-path="url(#nanhua-cut-off)" fill="url(#nanhua-gradient)"/>
+	          </svg>
+          </div>
+          <div class="tainan_reservoir_value" @click="showReservoir()">12.20%</div>
+          <div class="tainan_reservoir_storage">有效蓄水量 1110.27 萬立方公尺</div>
+        </div>
+      </div>
       <div class="resources_stand_content">
         <div class="resources_stand" @click="show('recycle')">
           <div class="resources_stand_info">

@@ -1,0 +1,102 @@
+@use '../utility/color';
+@use '../utility/typography';
+
+.tainan_reservoir {
+  margin: 16px;
+  padding: 20px 25px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  background-color: color.$white-10;
+  @media (min-width: 768px) {
+    margin: 15px 45px;
+    padding: 26px 90px;
+  }
+  &_detail {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    @media (min-width: 768px) {
+      flex: 1 0 0;
+    }
+  }
+  &_name {
+    margin-bottom: auto;
+    color: color.$white;
+  }
+  &_chart {
+    transform: rotate(180deg);
+  }
+  &_value {
+    margin-top: auto;
+    font-size: 30px;
+    font-weight: 800;
+    text-decoration: underline;
+    color: color.$white;
+    cursor: pointer;
+  }
+  &_storage {
+    margin-top: 12px;
+    font-size: 15px;
+    color: color.$white;
+  }
+}
+
+.zengwen_reservoir {
+  width: 60px;
+  height: 60px;
+  margin: 12px auto;
+  border-radius: 100%;
+  background-color: color.$white;
+  @media (min-width: 768px) {
+    width: 110px;
+    height: 110px;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+.wushantou_reservoir {
+  width: 90px;
+  height: 90px;
+  margin: 12px auto;
+  border-radius: 100%;
+  background-color: color.$white;
+  @media (min-width: 768px) {
+    width: 150px;
+    height: 150px;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+.nanhua_reservoir {
+  width: 50px;
+  height: 50px;
+  margin: 12px auto;
+  border-radius: 100%;
+  background-color: color.$white;
+  @media (min-width: 768px) {
+    width: 90px;
+    height: 90px;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+.baihe_reservoir {
+  width: 20px;
+  height: 20px;
+  margin: 12px auto;
+  border-radius: 100%;
+  background-color: color.$white;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
