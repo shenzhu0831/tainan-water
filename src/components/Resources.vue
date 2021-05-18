@@ -67,45 +67,51 @@
       </div>
     </div>
     <div class="resources_region_list">
-      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'recycle'">
+      <div class="resources_region_content" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'recycle'">
+        <div v-if="detailDisplay" class="stand_detail">
+          <div @click="toggleDetailDisplay" class="return_list">
+            <div class="back_arrow_icon">
+              <backArrow />
+            </div>
+            <span>返回列表</span>
+          </div>
+          <div class="stand_header">
+          <div class="stand_name">
+            {{ resourcesDetailItem["廠別"] }}
+            <div class="resources_stand_tag">
+              <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
+              <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
+              <div v-else class="resources_stand_badge gray_300">企業取水</div>
+            </div>
+            <time class="open_time">00：00 - 24：00</time>
+          </div>
+          <a
+            :href="`http://maps.google.com/?q=${resourcesDetailItem.緯度},${resourcesDetailItem.經度}`"
+            target="_blank"
+            class="resources_address"
+          >
+            <img src="@/assets/image/icon/map.png" alt="map icon" />
+          </a>
+          <a
+            :href="`tel:${resourcesDetailItem.電話}`"
+            class="resources_telephone"
+          >
+            <img src="@/assets/image/icon/phone.png" alt="" />
+          </a>
+          </div>
+          <div class="stand_body">
+            <div class="stand_info" v-for="(value, key) in resourcesDetailItem">
+              {{key}} : {{value}}
+            </div>
+          </div>
+        </div>
         <div
           class="resources_region_stand"
-          v-for="row in resources[resourceType]"
+          v-for="row in formatResourceDate"
         >
-          <div class="stand_header">
-      <div class="stand_name">
-        [{{ row["廠別"] }}] {{ row["位置資訊"] }}
-        <div class="resources_stand_tag">
-          <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
-          <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
-          <div v-else class="resources_stand_badge gray_300">企業取水</div>
-        </div>
-        <time class="open_time">00：00 - 24：00</time>
-      </div>
-      <a
-        :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
-        target="_blank"
-        class="resources_address"
-      >
-        <img src="@/assets/image/icon/map.png" alt="map icon" />
-      </a>
-      <a
-        :href="`tel:${row.聯絡方式.split('\n')[0]}`"
-        class="resources_telephone"
-      >
-        <img src="@/assets/image/icon/phone.png" alt="" />
-      </a>
-          </div>
-          <div v-if="detailDisplay" class="stand_detail">
-            <div @click="toggleDetailDisplay" class="return_list">
-              <div class="back_arrow_icon">
-                <backArrow />
-              </div>
-              <span>返回列表</span>
-            </div>
-            <div class="stand_header">
+          <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
-              {{ row["廠別"] }}
+              [{{ row["廠別"] }}] {{ row["位置資訊"] }}
               <div class="resources_stand_tag">
                 <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
                 <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
@@ -121,35 +127,57 @@
               <img src="@/assets/image/icon/map.png" alt="map icon" />
             </a>
             <a
-              :href="`tel:${row.聯絡方式.split('\n')[0]}`"
+              :href="`tel:${row.電話}`"
+              class="resources_telephone"
+            >
+              <img src="@/assets/image/icon/phone.png" alt="" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="resources_region_content" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'well'">
+        <div v-if="detailDisplay" class="stand_detail">
+            <div @click="toggleDetailDisplay" class="return_list">
+              <div class="back_arrow_icon">
+                <backArrow />
+              </div>
+              <span>返回列表</span>
+            </div>
+            <div class="stand_header">
+            <div class="stand_name">
+              [{{ resourcesDetailItem["引水地點"] }}] {{ resourcesDetailItem["引點地段地號"] }}
+              <div class="resources_stand_tag">
+                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
+                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
+                <div v-else class="resources_stand_badge gray_300">企業取水</div>
+              </div>
+              <time class="open_time">00：00 - 24：00</time>
+            </div>
+            <a
+              :href="`http://maps.google.com/?q=${resourcesDetailItem.緯度},${resourcesDetailItem.經度}`"
+              target="_blank"
+              class="resources_address"
+            >
+              <img src="@/assets/image/icon/map.png" alt="map icon" />
+            </a>
+            <a
+              :href="`tel:${resourcesDetailItem.聯絡方式}`"
               class="resources_telephone"
             >
               <img src="@/assets/image/icon/phone.png" alt="" />
             </a>
             </div>
             <div class="stand_body">
-              <div class="stand_info">
-                位置資訊：{{ row["地址"] }}
-              </div>
-              <div class="stand_info">
-                取水時間：00：00 - 24：00
-              </div>
-              <div class="stand_info">
-                出水量 : {{row["供水量CMD"]}}
-              </div>
-              <div class="stand_info">
-                是否符合飲用水標準 : {{row["水質"]}}
+              <div class="stand_info" v-for="(value, key) in resourcesDetailItem">
+                {{key}} : {{value}}
               </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'well'">
         <div
           class="resources_region_stand"
-          v-for="row in resources[resourceType]"
+          v-for="row in formatResourceDate"
         >
-          <div class="stand_header">
+          <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
               [{{ row["引水地點"] }}] {{ row["引點地段地號"] }}
               <div class="resources_stand_tag">
@@ -172,60 +200,50 @@
               <img src="@/assets/image/icon/phone.png" alt="" />
             </a>
           </div>
-          <div v-if="detailDisplay" class="stand_detail">
-            <div @click="toggleDetailDisplay" class="return_list">
-              <div class="back_arrow_icon">
-                <backArrow />
-              </div>
-              <span>返回列表</span>
+        </div>
+      </div>
+      <div class="resources_region_content" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'farmwell'">
+        <div v-if="detailDisplay" class="stand_detail">
+          <div @click="toggleDetailDisplay" class="return_list">
+            <div class="back_arrow_icon">
+              <backArrow />
             </div>
-            <div class="stand_header">
-            <div class="stand_name">
-              {{ row["廠別"] }}
-              <div class="resources_stand_tag">
-                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
-                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
-                <div v-else class="resources_stand_badge gray_300">企業取水</div>
-              </div>
-              <time class="open_time">00：00 - 24：00</time>
+            <span>返回列表</span>
+          </div>
+          <div class="stand_header">
+          <div class="stand_name">
+            [{{ resourcesDetailItem["站名[井號]"] }}] {{ resourcesDetailItem["地籍"] }}
+            <div class="resources_stand_tag">
+              <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
+              <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
+              <div v-else class="resources_stand_badge gray_300">企業取水</div>
             </div>
-            <a
-              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
-              target="_blank"
-              class="resources_address"
-            >
-              <img src="@/assets/image/icon/map.png" alt="map icon" />
-            </a>
-            <a
-              :href="`tel:${row.聯絡方式.split('\n')[0]}`"
-              class="resources_telephone"
-            >
-              <img src="@/assets/image/icon/phone.png" alt="" />
-            </a>
-            </div>
-            <div class="stand_body">
-              <div class="stand_info">
-                位置資訊：{{ row["地址"] }}
-              </div>
-              <div class="stand_info">
-                取水時間：00：00 - 24：00
-              </div>
-              <div class="stand_info">
-                出水量 : {{row["供水量CMD"]}}
-              </div>
-              <div class="stand_info">
-                是否符合飲用水標準 : {{row["水質"]}}
-              </div>
+            <time class="open_time">00：00 - 24：00</time>
+          </div>
+          <a
+            :href="`http://maps.google.com/?q=${resourcesDetailItem.緯度},${resourcesDetailItem.經度}`"
+            target="_blank"
+            class="resources_address"
+          >
+            <img src="@/assets/image/icon/map.png" alt="map icon" />
+          </a>
+          <a
+            class="resources_telephone"
+          >
+            <img src="@/assets/image/icon/phone.png" alt="" />
+          </a>
+          </div>
+          <div class="stand_body">
+            <div class="stand_info" v-for="(value, key) in resourcesDetailItem">
+              {{key}} : {{value}}
             </div>
           </div>
         </div>
-      </div>
-      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'farmwell'">
         <div
           class="resources_region_stand"
-          v-for="row in resources[resourceType]"
+          v-for="row in formatResourceDate"
         >
-          <div class="stand_header">
+          <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
               [{{ row["站名[井號]"] }}] {{ row["地籍"] }}
               <div class="resources_stand_tag">
@@ -248,60 +266,48 @@
               <img src="@/assets/image/icon/phone.png" alt="" />
             </a>
           </div>
-          <div v-if="detailDisplay" class="stand_detail">
-            <div @click="toggleDetailDisplay" class="return_list">
-              <div class="back_arrow_icon">
-                <backArrow />
-              </div>
-              <span>返回列表</span>
+        </div>
+      </div>
+      <div class="resources_region_content" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'car'">
+        <div v-if="detailDisplay" class="stand_detail">
+          <div @click="toggleDetailDisplay()" class="return_list">
+            <div class="back_arrow_icon">
+              <backArrow />
             </div>
-            <div class="stand_header">
-            <div class="stand_name">
-              {{ row["廠別"] }}
-              <div class="resources_stand_tag">
-                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
-                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
-                <div v-else class="resources_stand_badge gray_300">企業取水</div>
-              </div>
-              <time class="open_time">00：00 - 24：00</time>
+            <span>返回列表</span>
+          </div>
+          <div class="stand_header">
+          <div class="stand_name">
+            {{ resourcesDetailItem["單位名稱"] }}
+            <div class="resources_stand_tag">
+              <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
+              <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
+              <div v-else class="resources_stand_badge gray_300">企業取水</div>
             </div>
-            <a
-              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
-              target="_blank"
-              class="resources_address"
-            >
-              <img src="@/assets/image/icon/map.png" alt="map icon" />
-            </a>
-            <a
-              :href="`tel:${row.聯絡方式.split('\n')[0]}`"
-              class="resources_telephone"
-            >
-              <img src="@/assets/image/icon/phone.png" alt="" />
-            </a>
-            </div>
-            <div class="stand_body">
-              <div class="stand_info">
-                位置資訊：{{ row["地址"] }}
-              </div>
-              <div class="stand_info">
-                取水時間：00：00 - 24：00
-              </div>
-              <div class="stand_info">
-                出水量 : {{row["供水量CMD"]}}
-              </div>
-              <div class="stand_info">
-                是否符合飲用水標準 : {{row["水質"]}}
-              </div>
+            <time class="open_time">00：00 - 24：00</time>
+          </div>
+          <a
+            :href="`http://maps.google.com/?q=${resourcesDetailItem.緯度},${resourcesDetailItem.經度}`"
+            target="_blank"
+            class="resources_address"
+          >
+            <img src="@/assets/image/icon/map.png" alt="map icon" />
+          </a>
+          <a
+            :href="`tel:${resourcesDetailItem.電話.split('\n')[0]}`"
+            class="resources_telephone"
+          >
+            <img src="@/assets/image/icon/phone.png" alt="" />
+          </a>
+          </div>
+          <div class="stand_body">
+            <div class="stand_info" v-for="(value, key) in resourcesDetailItem">
+              {{key}} : {{value}}
             </div>
           </div>
         </div>
-      </div>
-      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'car'">
-        <div
-          class="resources_region_stand"
-          v-for="row in resources[resourceType]"
-        >
-          <div class="stand_header">
+        <div class="resources_region_stand" v-for="row in formatResourceDate">
+          <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
               [{{ row["單位名稱"] }}] {{ row["地址"] }}
               <div class="resources_stand_tag">
@@ -319,13 +325,16 @@
               <img src="@/assets/image/icon/map.png" alt="map icon" />
             </a>
             <a
-              :href="`tel:${row.聯絡資訊.split('\n')[0]}`"
+              :href="`tel:${row.聯絡資訊}`"
               class="resources_telephone"
             >
               <img src="@/assets/image/icon/phone.png" alt="" />
             </a>
           </div>
-          <div v-if="detailDisplay" class="stand_detail">
+        </div>
+      </div>
+      <div class="resources_region_content" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'ro'">
+        <div v-if="detailDisplay" class="stand_detail">
             <div @click="toggleDetailDisplay" class="return_list">
               <div class="back_arrow_icon">
                 <backArrow />
@@ -334,51 +343,39 @@
             </div>
             <div class="stand_header">
             <div class="stand_name">
-              {{ row["單位名稱"] }}
+              [{{ resourcesDetailItem["名稱"] }}] {{ resourcesDetailItem["位址"] }}
               <div class="resources_stand_tag">
                 <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
-                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
+                <div v-else-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
                 <div v-else class="resources_stand_badge gray_300">企業取水</div>
               </div>
               <time class="open_time">00：00 - 24：00</time>
             </div>
             <a
-              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
+              :href="`http://maps.google.com/?q=${resourcesDetailItem.緯度},${resourcesDetailItem.經度}`"
               target="_blank"
               class="resources_address"
             >
               <img src="@/assets/image/icon/map.png" alt="map icon" />
             </a>
             <a
-              :href="`tel:${row.聯絡方式.split('\n')[0]}`"
+              :href="`tel:${resourcesDetailItem.聯絡方式}`"
               class="resources_telephone"
             >
               <img src="@/assets/image/icon/phone.png" alt="" />
             </a>
             </div>
             <div class="stand_body">
-              <div class="stand_info">
-                位置資訊：{{ row["地址"] }}
-              </div>
-              <div class="stand_info">
-                取水時間：00：00 - 24：00
-              </div>
-              <div class="stand_info">
-                出水量 : {{row["供水量CMD"]}}
-              </div>
-              <div class="stand_info">
-                是否符合飲用水標準 : {{row["水質"]}}
+              <div class="stand_info" v-for="(value, key) in resourcesDetailItem">
+                {{key}} : {{value}}
               </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'ro'">
         <div
           class="resources_region_stand"
-          v-for="row in resources[resourceType]"
+          v-for="row in formatResourceDate"
         >
-          <div class="stand_header">
+          <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
               [{{ row["名稱"] }}] {{ row["位址"] }}
               <div class="resources_stand_tag">
@@ -396,66 +393,57 @@
               <img src="@/assets/image/icon/map.png" alt="map icon" />
             </a>
             <a
-              :href="`tel:${row.聯絡電話.split('\n')[0]}`"
+              :href="`tel:${row.聯絡電話}`"
               class="resources_telephone"
             >
               <img src="@/assets/image/icon/phone.png" alt="" />
             </a>
-          </div>
-          <div v-if="detailDisplay" class="stand_detail">
-            <div @click="toggleDetailDisplay" class="return_list">
-              <div class="back_arrow_icon">
-                <backArrow />
-              </div>
-              <span>返回列表</span>
-            </div>
-            <div class="stand_header">
-            <div class="stand_name">
-              {{ row["單位名稱"] }}
-              <div class="resources_stand_tag">
-                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
-                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
-                <div v-else class="resources_stand_badge gray_300">企業取水</div>
-              </div>
-              <time class="open_time">00：00 - 24：00</time>
-            </div>
-            <a
-              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
-              target="_blank"
-              class="resources_address"
-            >
-              <img src="@/assets/image/icon/map.png" alt="map icon" />
-            </a>
-            <a
-              :href="`tel:${row.聯絡方式.split('\n')[0]}`"
-              class="resources_telephone"
-            >
-              <img src="@/assets/image/icon/phone.png" alt="" />
-            </a>
-            </div>
-            <div class="stand_body">
-              <div class="stand_info">
-                位置資訊：{{ row["地址"] }}
-              </div>
-              <div class="stand_info">
-                取水時間：00：00 - 24：00
-              </div>
-              <div class="stand_info">
-                出水量 : {{row["供水量CMD"]}}
-              </div>
-              <div class="stand_info">
-                是否符合飲用水標準 : {{row["水質"]}}
-              </div>
-            </div>
           </div>
         </div>
       </div>
-      <div class="resources_region_content" :class="{'overflow-hidden': detailDisplay}" v-if="resourceType == 'bwater'">
+      <div class="resources_region_content"  :class="{'detail_open': detailDisplay}" v-if="resourceType == 'bwater'">
+        <div v-if="detailDisplay" class="stand_detail">
+          <div @click="toggleDetailDisplay" class="return_list">
+            <div class="back_arrow_icon">
+              <backArrow />
+            </div>
+            <span>返回列表</span>
+          </div>
+          <div class="stand_header" @click="toggleDetailDisplay(row)"r>
+          <div class="stand_name">
+            [{{resourcesDetailItem["行政區"]}}{{ resourcesDetailItem["工地名稱"] }}] {{ resourcesDetailItem["地址"] }}
+            <div class="resources_stand_tag">
+              <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
+              <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
+              <div v-else class="resources_stand_badge gray_300">企業取水</div>
+            </div>
+            <time class="open_time">00：00 - 24：00</time>
+          </div>
+          <a
+            :href="`http://maps.google.com/?q=${resourcesDetailItem.緯度},${resourcesDetailItem.經度}`"
+            target="_blank"
+            class="resources_address"
+          >
+            <img src="@/assets/image/icon/map.png" alt="map icon" />
+          </a>
+          <a
+            :href="`tel:${resourcesDetailItem.聯絡方式}`"
+            class="resources_telephone"
+          >
+            <img src="@/assets/image/icon/phone.png" alt="" />
+          </a>
+          </div>
+          <div class="stand_body">
+            <div class="stand_info" v-for="(value, key) in resourcesDetailItem">
+              {{key}} : {{value}}
+            </div>
+          </div>
+        </div>
         <div
           class="resources_region_stand"
-          v-for="row in resources[resourceType]"
+          v-for="row in formatResourceDate"
         >
-          <div class="stand_header">
+          <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
               [{{row["行政區"]}}{{ row["工地名稱"] }}] {{ row["地址"] }}
               <div class="resources_stand_tag">
@@ -473,57 +461,11 @@
               <img src="@/assets/image/icon/map.png" alt="map icon" />
             </a>
             <a
-              :href="`tel:${row.聯絡電話.split('\n')[0]}`"
+              :href="`tel:${row.聯絡電話}`"
               class="resources_telephone"
             >
               <img src="@/assets/image/icon/phone.png" alt="" />
             </a>
-          </div>
-          <div v-if="detailDisplay" class="stand_detail">
-            <div @click="toggleDetailDisplay" class="return_list">
-              <div class="back_arrow_icon">
-                <backArrow />
-              </div>
-              <span>返回列表</span>
-            </div>
-            <div class="stand_header">
-            <div class="stand_name">
-              {{ row["單位名稱"] }}
-              <div class="resources_stand_tag">
-                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">企業取水</div>
-                <div v-if="getBadgeDisplay()" class="resources_stand_badge gray_300">民眾取水</div>
-                <div v-else class="resources_stand_badge gray_300">企業取水</div>
-              </div>
-              <time class="open_time">00：00 - 24：00</time>
-            </div>
-            <a
-              :href="`http://maps.google.com/?q=${row.緯度},${row.經度}`"
-              target="_blank"
-              class="resources_address"
-            >
-              <img src="@/assets/image/icon/map.png" alt="map icon" />
-            </a>
-            <a
-              :href="`tel:${row.聯絡方式.split('\n')[0]}`"
-              class="resources_telephone"
-            >
-              <img src="@/assets/image/icon/phone.png" alt="" />
-            </a>
-            </div>
-            <div class="stand_body">
-              <div class="stand_info">
-                位置資訊：{{ row["地址"] }}
-              </div>
-              <div class="stand_info">
-                取水時間：00：00 - 24：00
-              </div>
-              <div class="stand_info">
-                出水量 : {{row["供水量CMD"]}}
-              </div>
-              <div class="stand_info">
-                是否符合飲用水標準 : {{row["水質"]}}
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -603,6 +545,7 @@ import carIcon from "@/assets/image/icon/car.svg"
 import recycleIcon from "@/assets/image/icon/recycle.svg"
 import roIcon from "@/assets/image/icon/RO.svg"
 import constructionIcon from "@/assets/image/icon/onstruction.svg"
+import backArrow from "@/assets/image/icon/back-arrow.svg";
 
 export default {
   name: "Resources",
@@ -613,12 +556,14 @@ export default {
     carIcon,
     recycleIcon,
     roIcon,
-    constructionIcon
+    constructionIcon,
+    backArrow
   },
   props: ["parentResourceType", "resources", "display"],
   data() {
     return {
       detailDisplay: false,
+      resourcesDetailItem: null,
       badgeDisplay: false,
       // newResources: null,
       resourceType: null,
@@ -639,8 +584,9 @@ export default {
     };
   },
   methods: {
-    toggleDetailDisplay(){
+    toggleDetailDisplay(row){
       this.detailDisplay = !this.detailDisplay
+      this.resourcesDetailItem = row
     },
     getBadgeDisplay(){
       if(this.resourceType === "recycle") {
@@ -688,8 +634,9 @@ export default {
       }
       else if(this.resourceType == "ro"){
         return this.resources[this.resourceType].map(stand => {
-          
-          let {_id, 位置資訊, 聯絡電話, ...rest} = {電話: stand.聯絡電話, 地址: stand.名稱, ...stand }
+          delete stand["_id"]
+
+          let {位置資訊, 聯絡電話, ...rest} = {電話: stand.聯絡電話, 地址: stand.名稱, ...stand }
           return {...rest}
         })
       }
