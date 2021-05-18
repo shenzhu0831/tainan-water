@@ -489,7 +489,7 @@
                 v-if="resource.緯度 && resource.經度"
                 @click="selectedResource = resource"
               >
-                <l-popup>
+                <!-- <l-popup>
                   <div
                     v-for="(value, key) in resource"
                     v-if="!hideFields.includes(key)"
@@ -524,7 +524,7 @@
                       />
                     </a>
                   </div>
-                </l-popup>
+                </l-popup> -->
               </l-marker>
             </template>
           </l-feature-group>
