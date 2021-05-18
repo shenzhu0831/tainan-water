@@ -40,40 +40,29 @@
     margin-top: auto;
     font-size: 30px;
     font-weight: 800;
-    text-decoration: underline;
     color: color.$white;
-    cursor: pointer;
   }
   &_storage {
     margin-top: 12px;
-    font-size: 12px;
+    font-size: 15px;
     color: color.$white;
     span {
       display: block;
+      font-size: 12px;
       @media(min-width: 1024px) {
         display: inline;
         font-size: 15px;
       }
     }
   }
+  &_error {
+    margin-top: auto;
+    font-size: 15px;
+    color: color.$white;
+  }
 }
 
 .zengwen_reservoir {
-  width: 60px;
-  height: 60px;
-  margin: 12px auto;
-  border-radius: 100%;
-  background-color: color.$white;
-  @media (min-width: 768px) {
-    width: 110px;
-    height: 110px;
-  }
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-}
-.wushantou_reservoir {
   width: 90px;
   height: 90px;
   margin: 12px auto;
@@ -89,6 +78,21 @@
   }
 }
 .nanhua_reservoir {
+  width: 60px;
+  height: 60px;
+  margin: 12px auto;
+  border-radius: 100%;
+  background-color: color.$white;
+  @media (min-width: 768px) {
+    width: 110px;
+    height: 110px;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+.wushantou_reservoir{
   width: 50px;
   height: 50px;
   margin: 12px auto;
