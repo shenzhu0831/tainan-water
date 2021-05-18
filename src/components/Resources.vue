@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="resources_region_list">
-      <div class="resources_region_content" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'recycle'">
+      <div class="resources_region_content" v-click-outside="hide" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'recycle'">
         <div v-if="detailDisplay" class="stand_detail">
           <div @click="toggleDetailDisplay" class="return_list">
             <div class="back_arrow_icon">
@@ -135,7 +135,7 @@
           </div>
         </div>
       </div>
-      <div class="resources_region_content" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'well'">
+      <div class="resources_region_content" v-click-outside="hide" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'well'">
         <div v-if="detailDisplay" class="stand_detail">
             <div @click="toggleDetailDisplay" class="return_list">
               <div class="back_arrow_icon">
@@ -202,7 +202,7 @@
           </div>
         </div>
       </div>
-      <div class="resources_region_content" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'farmwell'">
+      <div class="resources_region_content" v-click-outside="hide" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'farmwell'">
         <div v-if="detailDisplay" class="stand_detail">
           <div @click="toggleDetailDisplay" class="return_list">
             <div class="back_arrow_icon">
@@ -268,7 +268,7 @@
           </div>
         </div>
       </div>
-      <div class="resources_region_content" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'car'">
+      <div class="resources_region_content" v-click-outside="hide" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'car'">
         <div v-if="detailDisplay" class="stand_detail">
           <div @click="toggleDetailDisplay()" class="return_list">
             <div class="back_arrow_icon">
@@ -333,7 +333,7 @@
           </div>
         </div>
       </div>
-      <div class="resources_region_content" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'ro'">
+      <div class="resources_region_content" v-click-outside="hide" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'ro'">
         <div v-if="detailDisplay" class="stand_detail">
             <div @click="toggleDetailDisplay" class="return_list">
               <div class="back_arrow_icon">
@@ -401,7 +401,7 @@
           </div>
         </div>
       </div>
-      <div class="resources_region_content"  :class="{'detail_open': detailDisplay}" v-if="resourceType == 'bwater'">
+      <div class="resources_region_content"  v-click-outside="hide" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'bwater'">
         <div v-if="detailDisplay" class="stand_detail">
           <div @click="toggleDetailDisplay" class="return_list">
             <div class="back_arrow_icon">
@@ -535,7 +535,8 @@
 </template>
 
 <script>
-import _ from "lodash";
+import _ from "lodash"
+import ClickOutside from 'vue-click-outside'
 
 import ResourcesRegionStand from "@/components/ResourcesRegionStand.vue"
 
@@ -583,10 +584,16 @@ export default {
       hideFields: ["緯度", "經度", "經度", "緯度"],
     };
   },
+  mounted(){
+    this.popupItem = this.$el
+  },
   methods: {
     toggleDetailDisplay(row){
       this.detailDisplay = !this.detailDisplay
       this.resourcesDetailItem = row
+    },
+    hide () {
+      this.detailDisplay = false
     },
     getBadgeDisplay(){
       if(this.resourceType === "recycle") {
@@ -664,6 +671,9 @@ export default {
       });
     },
   },
+  directives: {
+    ClickOutside
+  }
 };
 </script>
 
