@@ -94,10 +94,11 @@
 
 .stand {
   &_detail {
-    height: 600px;
+    // height: 600px;
     padding: 16px;
     position: sticky;
     top: 0;
+    bottom: 0;
     background-color: color.$white;
     @media (min-width: 1024px) {
       height: 765px;
