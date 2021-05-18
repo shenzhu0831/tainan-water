@@ -108,6 +108,7 @@
         <div
           class="resources_region_stand"
           v-for="row in formatResourceDate"
+          v-else
         >
           <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
@@ -176,6 +177,7 @@
         <div
           class="resources_region_stand"
           v-for="row in formatResourceDate"
+          v-else
         >
           <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
@@ -242,6 +244,7 @@
         <div
           class="resources_region_stand"
           v-for="row in formatResourceDate"
+          v-else
         >
           <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
@@ -306,7 +309,11 @@
             </div>
           </div>
         </div>
-        <div class="resources_region_stand" v-for="row in formatResourceDate">
+        <div
+          class="resources_region_stand"
+          v-for="row in formatResourceDate"
+          v-else
+        >
           <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
               [{{ row["單位名稱"] }}] {{ row["地址"] }}
@@ -374,6 +381,7 @@
         <div
           class="resources_region_stand"
           v-for="row in formatResourceDate"
+          v-else
         >
           <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
@@ -401,7 +409,12 @@
           </div>
         </div>
       </div>
-      <div class="resources_region_content"  v-click-outside="hide" :class="{'detail_open': detailDisplay}" v-if="resourceType == 'bwater'">
+      <div
+        class="resources_region_content"
+        v-click-outside="hide"
+        :class="{'detail_open': detailDisplay}"
+        v-if="resourceType == 'bwater'"
+      >
         <div v-if="detailDisplay" class="stand_detail">
           <div @click="toggleDetailDisplay" class="return_list">
             <div class="back_arrow_icon">
@@ -442,6 +455,7 @@
         <div
           class="resources_region_stand"
           v-for="row in formatResourceDate"
+          v-else
         >
           <div class="stand_header" @click="toggleDetailDisplay(row)">
             <div class="stand_name">
