@@ -113,124 +113,28 @@
         </div>
       </div>
       <div class="tainan_reservoir">
-        <div class="tainan_reservoir_detail">
-          <div class="tainan_reservoir_name">曾文水庫</div>
-          <div class="tainan_reservoir_chart zengwen_reservoir" >
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <linearGradient id="zengwen-gradient" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#22BCD1"/>
-                  <stop :offset="getPercentage(reservoirInfo.曾文水庫) + '%'" stop-color="#C0ECF2"/>
-              </linearGradient>
-              <defs>
-                <clipPath id="zengwen-cut-off">
-                  <rect x="0" y="0" width="100%" :height="getPercentage(reservoirInfo.曾文水庫) + '%'" />
-                </clipPath>
-              </defs>
-		          <circle cx="50%" cy="50%" r="45%" clip-path="url(#zengwen-cut-off)" fill="url(#zengwen-gradient)"/>
-	          </svg>
-          </div>
-          <span v-if="getPercentage(reservoirInfo.曾文水庫) === 0" class="tainan_reservoir_error">
-            計算中請稍候...
-          </span>
-          <div v-else class="tainan_reservoir_value">
-            {{getPercentage(reservoirInfo.曾文水庫)}}%
-          </div>
-          <span v-if="getEffectiveWaterStorageCapacity(reservoirInfo.曾文水庫) === null" class="tainan_reservoir_storage">
-            計算中請稍候...
-          </span>
-          <div v-else class="tainan_reservoir_storage">
-            <span> 有效蓄水量 </span> 
-            <span> {{ getEffectiveWaterStorageCapacity(reservoirInfo.曾文水庫) }} 萬立方公尺 </span>
-          </div>
-        </div>
-        <div class="tainan_reservoir_detail">
-          <div class="tainan_reservoir_name">南化水庫</div>
-          <div class="tainan_reservoir_chart nanhua_reservoir" >
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <linearGradient id="nanhua-gradient" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#22BCD1"/>
-                  <stop :offset="getPercentage(reservoirInfo.南化水庫) + '%'" stop-color="#C0ECF2"/>
-              </linearGradient>
-              <defs>
-                <clipPath id="nanhua-cut-off">
-                  <rect x="0" y="0" width="100%" :height="getPercentage(reservoirInfo.南化水庫) + '%'"/>
-                </clipPath>
-              </defs>
-		          <circle cx="50%" cy="50%" r="45%" clip-path="url(#nanhua-cut-off)" fill="url(#nanhua-gradient)"/>
-	          </svg>
-          </div>
-          <span v-if="getPercentage(reservoirInfo.南化水庫) === 0" class="tainan_reservoir_error">
-            計算中請稍候...
-          </span>
-          <div v-else class="tainan_reservoir_value">
-            {{getPercentage(reservoirInfo.南化水庫)}}%
-          </div>
-          <span v-if="getEffectiveWaterStorageCapacity(reservoirInfo.南化水庫) === null" class="tainan_reservoir_storage">
-            計算中請稍候...
-          </span>
-          <div v-else class="tainan_reservoir_storage">
-            <span> 有效蓄水量 </span> 
-            <span> {{ getEffectiveWaterStorageCapacity(reservoirInfo.南化水庫) }} 萬立方公尺 </span>
-          </div>
-        </div>
-        <div class="tainan_reservoir_detail">
-          <div class="tainan_reservoir_name">烏山頭水庫</div>
-          <div class="tainan_reservoir_chart wushantou_reservoir" >
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <linearGradient id="wushantou-gradient" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#22BCD1"/>
-                  <stop :offset="getPercentage(reservoirInfo.烏山頭水庫) + '%'" stop-color="#C0ECF2"/>
-              </linearGradient>
-              <defs>
-                <clipPath id="wushantou-cut-off">
-                  <rect x="0" y="0" width="100%" :height="getPercentage(reservoirInfo.烏山頭水庫) + '%'" />
-                </clipPath>
-              </defs>
-		          <circle cx="50%" cy="50%" r="45%" clip-path="url(#wushantou-cut-off)" fill="url(#wushantou-gradient)"/>
-	          </svg>
-          </div>
-          <span v-if="getPercentage(reservoirInfo.烏山頭水庫) === 0" class="tainan_reservoir_error">
-            計算中請稍候...
-          </span>
-          <div v-else class="tainan_reservoir_value">
-            {{getPercentage(reservoirInfo.烏山頭水庫)}}%
-          </div>
-          <span v-if="getEffectiveWaterStorageCapacity(reservoirInfo.烏山頭水庫) === null" class="tainan_reservoir_storage">
-            計算中請稍候...
-          </span>
-          <div v-else class="tainan_reservoir_storage">
-            <span> 有效蓄水量 </span> 
-            <span> {{ getEffectiveWaterStorageCapacity(reservoirInfo.烏山頭水庫) }} 萬立方公尺 </span>
-          </div>
-        </div>
-        <div class="tainan_reservoir_detail">
-          <div class="tainan_reservoir_name">白河水庫</div>
-          <div class="tainan_reservoir_chart baihe_reservoir" >
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#C0ECF2"/>
-                  <stop :offset="getPercentage(reservoirInfo.白河水庫) + '%'" stop-color="#22BCD1"/>
-              </linearGradient>
-              <defs>
-                <clipPath id="cut-off">
-                  <rect x="0" y="55" width="90" :height="getPercentage(reservoirInfo.白河水庫) + '%'" />
-                </clipPath>
-              </defs>
-		          <circle cx="45" cy="45" r="40" clip-path="url(#cut-off)" fill="url(#wushantou-gradient)"/>
-	          </svg>
-          </div>
-          <span v-if="getPercentage(reservoirInfo.白河水庫) === 0" class="tainan_reservoir_error">
-            計算中請稍候...
-          </span>
-          <div v-else class="tainan_reservoir_value">
-            {{getPercentage(reservoirInfo.白河水庫)}}%
-          </div>
-          <span v-if="getEffectiveWaterStorageCapacity(reservoirInfo.白河水庫) === null" class="tainan_reservoir_storage">
-            計算中請稍候...
-          </span>
-          <div v-else class="tainan_reservoir_storage">
-            <span> 有效蓄水量 </span> 
-            <span> {{ getEffectiveWaterStorageCapacity(reservoirInfo.白河水庫) }} 萬立方公尺 </span>
+        <div class="reservoir_chart_body">
+          <div
+            class="reservoir_chart_item"
+            v-for="(reservoir, ReservoirName) in reservoirInfo"
+          >
+            <div class="reservoir_name">
+              <div>{{ ReservoirName }}</div>
+            </div>
+            <div class="reservoir_chart_content">
+              <div class="reservoir_chart_bar">
+                <div class="reservoir_chart_capacity">
+                  <div
+                    class="reservoir_chart_value"
+                    :style="{ width: getPercentage(reservoir) + '%' }"
+                  ></div>
+                </div>
+                <p class="reservoir_storage"> 有效蓄水量 {{ getEffectiveWaterStorageCapacity(reservoir) }} 萬立方公尺</p>
+              </div>
+            </div>
+            <div class="reservoir_capacity">
+              {{ getPercentage(reservoir) === null ? "無" :  getPercentage(reservoir) + '%'}}
+            </div>
           </div>
         </div>
       </div>
@@ -354,25 +258,25 @@ export default {
         }
       ],
       reservoirInfo: {
-        白河水庫: {
-          ReservoirIdentifier: 30401,
-          EffectiveCapacity: 1173.45,
-          tabs: ["台南"],
-        },
         曾文水庫: {
           ReservoirIdentifier: 30502,
           EffectiveCapacity: 50956,
           tabs: ["嘉義", "台南"],
+        },
+        南化水庫: {
+          ReservoirIdentifier: 30503,
+          EffectiveCapacity: 9097.9,
+          tabs: ["台南", "高雄"],
         },
         烏山頭水庫: {
           ReservoirIdentifier: 30501,
           EffectiveCapacity: 7876.5,
           tabs: ["台南"],
         },
-        南化水庫: {
-          ReservoirIdentifier: 30503,
-          EffectiveCapacity: 9097.9,
-          tabs: ["台南", "高雄"],
+        白河水庫: {
+          ReservoirIdentifier: 30401,
+          EffectiveCapacity: 1173.45,
+          tabs: ["台南"],
         },
       },
       loadingText: "",
