@@ -1,15 +1,50 @@
 @use '../utility/color';
 @use '../utility/typography';
 
-.tainan_reservoir {
-  margin: 16px;
-  padding: 30px 16px;
-  border-radius: 10px;
-  background-color: color.$white-10;
+.reservoir_chart_header {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  @media (min-width: 768px) {
+    color: color.$gray-500;
+  }
   @media (min-width: 1024px) {
-    margin: 15px 45px;
+    font-size: 1rem;
   }
 }
+
+.reservoir_storage_info {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0 0 60%;
+  order: 2;
+  @media (min-width: 768px) {
+    order: 3;
+    flex: 0 0 30%;
+  }
+}
+
+.reservoir_capacity {
+  flex: 0 0 40%;
+  order: 3;
+  text-align: right;
+  color: color.$white;
+  @media (min-width: 768px) {
+    margin-right: 0;
+  }
+}
+
+.reservoir_storage {
+  flex: 0 0 50%;
+  order: 2;
+  text-align: right;
+  color: color.$white;
+  @media (min-width: 768px) {
+  }
+}
+
 .reservoir_chart_item {
   margin-bottom: 20px;
   display: flex;
@@ -18,7 +53,7 @@
     margin: 0;
   }
   &:nth-child(2) .reservoir_chart_capacity {
-    width: 20%;
+    width: 50%;
   }
   &:nth-child(3) .reservoir_chart_capacity {
     width: 17%;
@@ -33,11 +68,9 @@
 }
 
 .reservoir_name {
-  margin-bottom: 12px;
-  flex: 0 0 50%;
+  margin-bottom: 8px;
+  flex: 0 0 40%;
   order: 1;
-  font-size: 20px;
-  font-weight: typography.$font-weight-medium;
   color: color.$white;
   @media (min-width: 768px) {
     margin: 0;
@@ -47,65 +80,56 @@
     flex: 0 0 12%;
   }
   div {
-    padding-bottom: 6px;
     font-size: 20px;
+    color: color.$white;
     @media (min-width: 768px) {
-      padding: 0;
+      padding-bottom: 6px;
     }
   }
-
 }
 
 .reservoir_chart_content {
-  flex: 1 0 0;
+  display: flex;
+  flex: 2 0 0;
+  justify-content: space-between;
   order: 3;
   @media (min-width: 768px) {
     order: 2;
-    order: 2;
-    flex: 2 0 0;
+  }
+}
+
+.reservoir_counties {
+  margin-right: 4px;
+  padding: 2px 6px;
+  background-color: color.$gray-500;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: color.$white;
+  &:last-child {
+    margin: 0;
   }
 }
 
 .reservoir_chart {
   &_bar {
-    flex: 0 0 70%;
+    margin-right: 10px;
+    flex: 1 0 0;
     @media (min-width: 768px) {
-      margin-right: 10px;
-      flex: 0 0 60%;
+      margin: 0;
     }
   }
   &_capacity {
-    width: 100%;
     height: 20px;
     position: relative;
     border-radius: 0 3px 3px 0;
-    background-color: color.$gray-200;
+    background-color: #eee;
   }
   &_value {
     height: 20px;
     position: absolute;
     left: 0;
     border-radius: 0 3px 3px 0;
-    background:linear-gradient(90deg, color.$blue-400 0%, color.$blue-200 100%);
-  }
-}
-
-.reservoir_capacity {
-  margin-bottom: 12px;
-  flex: 0 0 50%;
-  order: 2;
-  text-align: right;
-  font-size: 24px;
-  font-weight: typography.$font-weight-bold;
-  color: color.$white;
-  @media (min-width: 768px) {
-    margin: 0;
-    flex: 0 0 20%;
-    order: 3;
-    font-size: 30px;
-  }
-  @media (min-width: 768px) {
-    flex: 0 0 10%;
+    background: linear-gradient(-90deg, #C0ECF2, #22BCD1)
   }
 }
 

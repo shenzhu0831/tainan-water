@@ -63,13 +63,6 @@
       ></div>
     </div>
     <section class="home">
-      <div class="navbar-container hidden">
-        <nav class="navbar">
-          <a href="#">水庫狀況</a>
-          <a href="#">取水資源</a>
-          <a href="#">節約用水</a>
-        </nav>
-      </div>
       <div class="web_info">
         <h1 class="web_info_title">
           <laptopLogo></laptopLogo>
@@ -80,7 +73,7 @@
         <span class="update_time">
           上次更新時間
           <time :datetime="reservoirInfo.曾文水庫.ObservationTime">
-            {{getLastUpdate()}}
+            {{ getLastUpdate() }}
           </time>
         </span>
       </div>
@@ -108,32 +101,55 @@
             v-if="!loadingText && !errorText"
             class="reservoir_regime_value"
             >{{ totalPercentage }}
-            </span>
-          <span v-else class="error_message">{{ errorText }}</span>
+          </span>
+          <span v-else class="error_message" @click="showReservoir()">{{
+            errorText
+          }}</span>
         </div>
       </div>
-      <div class="tainan_reservoir">
-        <div class="reservoir_chart_body">
-          <div
-            class="reservoir_chart_item"
-            v-for="(reservoir, ReservoirName) in reservoirInfo"
-          >
-            <div class="reservoir_name">
-              <div>{{ ReservoirName }}</div>
+      <div class="reservoir">
+        <div class="reservoir_chart">
+          <div class="reservoir_chart_header">
+            <span class="reservoir_name">水庫名稱/地區</span>
+            <div class="reservoir_storage_info">
+              <span class="reservoir_storage">有效容量 <br />(萬立方公尺)</span>
+              <span class="reservoir_capacity">有效容量比</span>
             </div>
-            <div class="reservoir_chart_content">
-              <div class="reservoir_chart_bar">
-                <div class="reservoir_chart_capacity">
-                  <div
-                    class="reservoir_chart_value"
-                    :style="{ width: getPercentage(reservoir) + '%' }"
-                  ></div>
-                </div>
-                <p class="reservoir_storage"> 有效蓄水量 {{ getEffectiveWaterStorageCapacity(reservoir) }} 萬立方公尺</p>
+          </div>
+          <div class="reservoir_chart_body">
+            <div
+              class="reservoir_chart_item"
+              v-for="(reservoir, ReservoirName) in reservoirInfo"
+            >
+              <div class="reservoir_name">
+                <div>{{ ReservoirName }}</div>
               </div>
-            </div>
-            <div class="reservoir_capacity">
-              {{ getPercentage(reservoir) === null ? "無" :  getPercentage(reservoir) + '%'}}
+              <div class="reservoir_chart_content">
+                <div class="reservoir_chart_bar">
+                  <div class="reservoir_chart_capacity">
+                    <div
+                      class="reservoir_chart_value"
+                      :style="{ width: getPercentage(reservoir) + '%' }"
+                    ></div>
+                  </div>
+                  <p class="reservoir_update">
+                    有效蓄水量
+                    {{ getEffectiveWaterStorageCapacity(reservoir) }} 萬立方公尺
+                  </p>
+                </div>
+              </div>
+              <div class="reservoir_storage_info">
+                <div class="reservoir_storage">
+                  {{ reservoir.EffectiveCapacity }}
+                </div>
+                <div class="reservoir_capacity">
+                  {{
+                    getPercentage(reservoir) === null
+                      ? "無"
+                      : getPercentage(reservoir) + "%"
+                  }}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -239,23 +255,23 @@ export default {
         {
           ReservoirIdentifier: "30401",
           EffectiveWaterStorageCapacity: String(Math.random() * 1000),
-          ObservationTime: "2021-04-22T16:00:00"
+          ObservationTime: "2021-04-22T16:00:00",
         },
         {
           ReservoirIdentifier: "30502",
           EffectiveWaterStorageCapacity: "",
-          ObservationTime: "2021-04-23T16:00:00"
+          ObservationTime: "2021-04-23T16:00:00",
         },
         {
           ReservoirIdentifier: "30501",
           EffectiveWaterStorageCapacity: String(Math.random() * 1000),
-          ObservationTime: "2021-04-23T07:00:00"
+          ObservationTime: "2021-04-23T07:00:00",
         },
         {
           ReservoirIdentifier: "30503",
           EffectiveWaterStorageCapacity: String(Math.random() * 1000),
-          ObservationTime: "2021-04-23T07:00:00"
-        }
+          ObservationTime: "2021-04-23T07:00:00",
+        },
       ],
       reservoirInfo: {
         曾文水庫: {
@@ -294,7 +310,7 @@ export default {
         recycle: [],
         ro: [],
         car: [],
-        bwater: []
+        bwater: [],
       },
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 12,
@@ -344,17 +360,18 @@ export default {
       ).toFixed(2);
     },
     totalPercentage() {
-      if(isNaN(this.totalStorage)) {
-        return this.errorText = `目前缺少水庫即時資料，無法計算總蓄水率`
-      }
-      else {
-        return ((this.totalStorage / this.totalCapacity) * 100).toFixed(2) + "%";
+      if (isNaN(this.totalStorage)) {
+        return (this.errorText = `目前缺少水庫即時資料，無法計算總蓄水率`);
+      } else {
+        return (
+          ((this.totalStorage / this.totalCapacity) * 100).toFixed(2) + "%"
+        );
       }
     },
   },
   methods: {
-    getTimeFormat(reservoir){
-      return dayjs(reservoir.ObservationTime).format("YYYY.MM.DD HH:mm:ss")
+    getTimeFormat(reservoir) {
+      return dayjs(reservoir.ObservationTime).format("YYYY.MM.DD HH:mm:ss");
     },
     getLastUpdate() {
       return this.reservoirInfo.曾文水庫.ObservationTime
@@ -364,15 +381,19 @@ export default {
         : "-";
     },
     setTotalStorage() {
-      let sumEffectiveWaterStorageCapacit = _.reduce(this.reservoirInfo, (sum, reservoir) => {
+      let sumEffectiveWaterStorageCapacit = _.reduce(
+        this.reservoirInfo,
+        (sum, reservoir) => {
+          return (this.totalStorage = sum +=
+            reservoir.EffectiveWaterStorageCapacity);
+        },
+        0
+      );
 
-        return this.totalStorage = (sum += reservoir.EffectiveWaterStorageCapacity);
-      },0);
-
-      if(isNaN(sumEffectiveWaterStorageCapacit)) {
-        return this.totalStorage = "無"
+      if (isNaN(sumEffectiveWaterStorageCapacit)) {
+        return (this.totalStorage = "無");
       } else {
-        return this.totalStorage = sumEffectiveWaterStorageCapacit.toFixed(2)
+        return (this.totalStorage = sumEffectiveWaterStorageCapacit.toFixed(2));
       }
     },
     showReservoir() {
@@ -392,19 +413,21 @@ export default {
       });
     },
     getPercentage(reservoir) {
-      if(isNaN(reservoir.EffectiveWaterStorageCapacity)) {
-        return 0
-      }
-      else {
-        return ((reservoir.EffectiveWaterStorageCapacity / reservoir.EffectiveCapacity) *100).toFixed(2);
+      if (isNaN(reservoir.EffectiveWaterStorageCapacity)) {
+        return null;
+      } else {
+        return (
+          (reservoir.EffectiveWaterStorageCapacity /
+            reservoir.EffectiveCapacity) *
+          100
+        ).toFixed(2);
       }
     },
     getEffectiveWaterStorageCapacity(reservoir) {
-      if(isNaN(reservoir.EffectiveWaterStorageCapacity)) {
-        return null
-      }
-      else {
-        return reservoir.EffectiveWaterStorageCapacity
+      if (isNaN(reservoir.EffectiveWaterStorageCapacity)) {
+        return `無`;
+      } else {
+        return reservoir.EffectiveWaterStorageCapacity;
       }
     },
     setLastEffectiveWaterStorageCapacity() {
@@ -420,7 +443,7 @@ export default {
             last.EffectiveWaterStorageCapacity
           );
           reservoir.ObservationTime = last.ObservationTime;
-        } 
+        }
       });
     },
     direct(value) {
