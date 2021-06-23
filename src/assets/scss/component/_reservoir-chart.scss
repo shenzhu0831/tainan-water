@@ -52,15 +52,6 @@
   &:last-child {
     margin: 0;
   }
-  &:nth-child(2) .reservoir_chart_capacity {
-    width: 50%;
-  }
-  &:nth-child(3) .reservoir_chart_capacity {
-    width: 17%;
-  }
-  &:nth-child(4) .reservoir_chart_capacity {
-    width: 2%;
-  }
   @media (min-width: 768px) {
     margin-bottom: 30px;
     align-items: center;

@@ -117,7 +117,6 @@
             </div>
           </div>
           <div class="reservoir_chart_body">
-            <!-- {{sortReservoir}} -->
             <div
               class="reservoir_chart_item"
               v-for="(reservoir, index) in sortReservoir"
@@ -136,7 +135,7 @@
                     <div
                       class="reservoir_chart_value"
                       v-else
-                      :style="{ width: getPercentage(reservoir) + '%' }"
+                      :style="{ width: getReservoirChartValue(reservoir) }"
                     ></div>
                   </div>
                   <p class="reservoir_update">
@@ -150,11 +149,7 @@
                   {{ reservoir.EffectiveCapacity }}
                 </div>
                 <div class="reservoir_capacity">
-                  {{
-                    getPercentage(reservoir) === null
-                      ? "無"
-                      : getPercentage(reservoir) + "%"
-                  }}
+                  {{getPercentage(reservoir) === null ? "無" : getPercentage(reservoir) + "%"}}
                 </div>
               </div>
             </div>
@@ -396,7 +391,8 @@ export default {
     getPercentage(reservoir) {
       if (isNaN(reservoir.EffectiveWaterStorageCapacity)) {
         return null;
-      } else {
+      }
+      else {
         return (
           (reservoir.EffectiveWaterStorageCapacity /
             reservoir.EffectiveCapacity) *
@@ -410,6 +406,10 @@ export default {
       } else {
         return reservoir.EffectiveWaterStorageCapacity;
       }
+    },
+    getReservoirChartValue(reservoir){
+      const reservoirMaxValue = this.sortReservoir.map(value => value.EffectiveCapacity);
+      return `${((reservoir.EffectiveCapacity / reservoirMaxValue[0]) * 100).toFixed(2)}%`
     },
     setLastEffectiveWaterStorageCapacity() {
       _.each(this.reservoirInfo, (reservoir, name) => {
