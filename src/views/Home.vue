@@ -88,7 +88,7 @@
         <div class="water_regime">
           <span class="water_regime_name">目前水情</span>
           <div class="water_regime_content">
-            <div class="water_regime_badge"></div>
+            <div class="water_regime_badge green"></div>
             <span class="water_regime_value">減量供水</span>
             <div
               class="water_regime_info pointer"
@@ -520,4 +520,17 @@ export default {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.green {
+    background-color: #27ae60;
+  }
+  .yellow {
+    background-color: #f2c94c;
+  }
+  .orange_400 {
+    background-color: #f88824;
+  }
+  .orange_600 {
+    background-color: #eb5757;
+  }
 </style>

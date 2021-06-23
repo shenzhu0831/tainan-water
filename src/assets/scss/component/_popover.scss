@@ -85,18 +85,6 @@
     margin-right: 16px;
     border-radius: 26px;
   }
-  .green {
-    background-color: color.$green;
-  }
-  .yellow {
-    background-color: color.$yellow;
-  }
-  .orange_400 {
-    background-color: color.$orange_400;
-  }
-  .orange_600 {
-    background-color: color.$orange_600;
-  }
   &_name {
     font-weight: typography.$font-weight-medium;
     @media (min-width: 768px) {
