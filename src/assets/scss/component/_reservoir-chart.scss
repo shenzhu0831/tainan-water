@@ -13,6 +13,9 @@
   @media (min-width: 1024px) {
     font-size: 1rem;
   }
+  .head_name {
+    font-weight: normal;
+  }
 }
 
 .reservoir_storage_info {
@@ -62,6 +65,7 @@
   margin-bottom: 8px;
   flex: 0 0 40%;
   order: 1;
+  font-weight: 600;
   color: color.$white;
   @media (min-width: 768px) {
     margin: 0;

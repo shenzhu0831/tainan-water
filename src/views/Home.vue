@@ -111,7 +111,7 @@
       <div class="reservoir">
         <div class="reservoir_chart">
           <div class="reservoir_chart_header">
-            <span class="reservoir_name">水庫名稱/地區</span>
+            <span class="reservoir_name head_name">水庫名稱/地區</span>
             <div class="reservoir_storage_info">
               <span class="reservoir_storage">有效容量 <br />(萬立方公尺)</span>
               <span class="reservoir_capacity">有效容量比</span>
