@@ -63,13 +63,6 @@
       ></div>
     </div>
     <section class="home">
-      <div class="navbar-container hidden">
-        <nav class="navbar">
-          <a href="#">水庫狀況</a>
-          <a href="#">取水資源</a>
-          <a href="#">節約用水</a>
-        </nav>
-      </div>
       <div class="web_info">
         <h1 class="web_info_title">
           <laptopLogo></laptopLogo>
@@ -79,8 +72,8 @@
         </h1>
         <span class="update_time">
           上次更新時間
-          <time :datetime="reservoirInfo.曾文水庫.ObservationTime">
-            {{getLastUpdate()}}
+          <time :datetime="getLastUpdate">
+            {{formatUpdateTime}}
           </time>
         </span>
       </div>
@@ -107,33 +100,59 @@
           <span
             v-if="!loadingText && !errorText"
             class="reservoir_regime_value"
-            >{{ totalPercentage }}
-            </span>
-          <span v-else class="error_message">{{ errorText }}</span>
+            >
+            {{ totalPercentage }}
+          </span>
+          <span v-else class="error_message" @click="showReservoir()">{{
+            errorText
+          }}</span>
         </div>
       </div>
-      <div class="tainan_reservoir">
-        <div class="reservoir_chart_body">
-          <div
-            class="reservoir_chart_item"
-            v-for="(reservoir, ReservoirName) in reservoirInfo"
-          >
-            <div class="reservoir_name">
-              <div>{{ ReservoirName }}</div>
+      <div class="reservoir">
+        <div class="reservoir_chart">
+          <div class="reservoir_chart_header">
+            <span class="reservoir_name head_name">水庫名稱/地區</span>
+            <div class="reservoir_storage_info">
+              <span class="reservoir_storage">有效容量 <br />(萬立方公尺)</span>
+              <span class="reservoir_capacity">有效容量比</span>
             </div>
-            <div class="reservoir_chart_content">
-              <div class="reservoir_chart_bar">
-                <div class="reservoir_chart_capacity">
-                  <div
-                    class="reservoir_chart_value"
-                    :style="{ width: getPercentage(reservoir) + '%' }"
-                  ></div>
-                </div>
-                <p class="reservoir_storage"> 有效蓄水量 {{ getEffectiveWaterStorageCapacity(reservoir) }} 萬立方公尺</p>
+          </div>
+          <div class="reservoir_chart_body">
+            <div
+              class="reservoir_chart_item"
+              v-for="(reservoir, index) in sortReservoir"
+            >
+              <div class="reservoir_name">
+                <div>{{ reservoir.ReservoirName }}</div>
               </div>
-            </div>
-            <div class="reservoir_capacity">
-              {{ getPercentage(reservoir) === null ? "無" :  getPercentage(reservoir) + '%'}}
+              <div class="reservoir_chart_content">
+                <div class="reservoir_chart_bar">
+                  <div class="reservoir_chart_capacity">
+                    <div
+                      v-if="index == 0"
+                      class="reservoir_chart_value"
+                      style="width: 100%"
+                    ></div>
+                    <div
+                      class="reservoir_chart_value"
+                      v-else
+                      :style="{ width: getReservoirChartValue(reservoir) }"
+                    ></div>
+                  </div>
+                  <p class="reservoir_value">
+                    有效蓄水量
+                    {{ getEffectiveWaterStorageCapacity(reservoir) }} 萬立方公尺
+                  </p>
+                </div>
+              </div>
+              <div class="reservoir_storage_info">
+                <div class="reservoir_storage">
+                  {{ reservoir.EffectiveCapacity }}
+                </div>
+                <div class="reservoir_capacity">
+                  {{getPercentage(reservoir) === null ? "無" : getPercentage(reservoir) + "%"}}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -216,7 +235,6 @@ import Bowser from "bowser";
 import laptopLogo from "../assets/image/title/logo-laptop.svg";
 import phoneLogo from "../assets/image/title/logo-phone.svg";
 
-import tainanReservoirData from "@/assets/open-data/tainan-reservoir-data.json";
 import VueScrollTo from "vue-scrollto";
 import Resources from "@/components/Resources.vue";
 
@@ -235,66 +253,40 @@ export default {
         resource: false,
       },
       reservoirs: [],
-      reservoirLiveData: [
+      reservoirInfo: [
         {
-          ReservoirIdentifier: "30401",
-          EffectiveWaterStorageCapacity: String(Math.random() * 1000),
-          ObservationTime: "2021-04-22T16:00:00"
-        },
-        {
-          ReservoirIdentifier: "30502",
+          ReservoirName: "曾文水庫",
+          ReservoirIdentifier: "",
+          EffectiveCapacity: "",
           EffectiveWaterStorageCapacity: "",
-          ObservationTime: "2021-04-23T16:00:00"
+          ObservationTime: "",
         },
         {
-          ReservoirIdentifier: "30501",
-          EffectiveWaterStorageCapacity: String(Math.random() * 1000),
-          ObservationTime: "2021-04-23T07:00:00"
+          ReservoirName: "南化",
+          ReservoirIdentifier: "",
+          EffectiveCapacity: "",
+          EffectiveWaterStorageCapacity: "",
+          ObservationTime: "",
         },
         {
-          ReservoirIdentifier: "30503",
-          EffectiveWaterStorageCapacity: String(Math.random() * 1000),
-          ObservationTime: "2021-04-23T07:00:00"
+          ReservoirName: "烏山頭",
+          ReservoirIdentifier: "",
+          EffectiveCapacity: "",
+          EffectiveWaterStorageCapacity: "",
+          ObservationTime: "",
         }
       ],
-      reservoirInfo: {
-        曾文水庫: {
-          ReservoirIdentifier: 30502,
-          EffectiveCapacity: 50956,
-          tabs: ["嘉義", "台南"],
-        },
-        南化水庫: {
-          ReservoirIdentifier: 30503,
-          EffectiveCapacity: 9097.9,
-          tabs: ["台南", "高雄"],
-        },
-        烏山頭水庫: {
-          ReservoirIdentifier: 30501,
-          EffectiveCapacity: 7876.5,
-          tabs: ["台南"],
-        },
-        白河水庫: {
-          ReservoirIdentifier: 30401,
-          EffectiveCapacity: 1173.45,
-          tabs: ["台南"],
-        },
-      },
       loadingText: "",
       errorText: "",
       resourceType: null,
       totalStorage: 0,
       resource: {
-        // well: wellData,
-        // farmwell: farmwellData,
-        // recycle: recycleData,
-        // ro: roData,
-        // car: _.filter(carData, (row) => row["縣市"] == "臺南市"),
         well: [],
         farmwell: [],
         recycle: [],
         ro: [],
         car: [],
-        bwater: []
+        bwater: [],
       },
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       zoom: 12,
@@ -307,31 +299,15 @@ export default {
       await axios.get("https://goodideas-studio.com/water/resources/?t=3")
     ).data;
 
+    this.loadingText = "計算中請稍後...";
+    this.fetchApi()
+
     if (browser.getBrowserName().includes("Internet Explorer")) {
       alert(
         "如要享有最佳網站體驗，請使用支援的最新版瀏覽器\n例如：Chrome、Firefox、Safari 或 Microsoft Edge"
       );
     }
     return false;
-  },
-  mounted() {
-    this.reservoirs = tainanReservoirData;
-    this.loadingText = "計算中請稍後...";
-    // this.reservoirLiveData = reservoirLiveData.ReservoirConditionData_OPENDATA;
-    axios
-      .get("https://goodideas-studio.com/water/")
-      .then((res) => {
-        this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
-        // 測試 api response 失敗
-        // this.reservoirLiveData = [];
-        this.setLastEffectiveWaterStorageCapacity();
-        this.setTotalStorage();
-        this.loadingText = "";
-      })
-      .catch((error) => {
-        console.log(error);
-        this.errorText = "資料接取異常，請重新整理網頁";
-      });
   },
   computed: {
     totalCapacity() {
@@ -344,35 +320,57 @@ export default {
       ).toFixed(2);
     },
     totalPercentage() {
-      if(isNaN(this.totalStorage)) {
-        return this.errorText = `目前缺少水庫即時資料，無法計算總蓄水率`
+      if (isNaN(this.totalStorage)) {
+        return (this.errorText = `目前缺少水庫即時資料，無法計算總蓄水率`);
+      } else {
+        return (
+          ((this.totalStorage / this.totalCapacity) * 100).toFixed(2) + "%"
+        );
       }
-      else {
-        return ((this.totalStorage / this.totalCapacity) * 100).toFixed(2) + "%";
-      }
-    },
-  },
-  methods: {
-    getTimeFormat(reservoir){
-      return dayjs(reservoir.ObservationTime).format("YYYY.MM.DD HH:mm:ss")
     },
     getLastUpdate() {
-      return this.reservoirInfo.曾文水庫.ObservationTime
-        ? dayjs(this.reservoirInfo.曾文水庫.ObservationTime).format(
-            "YYYY.MM.DD HH:mm:ss"
-          )
-        : "-";
+      const  zengwenReservoir = _.filter(this.reservoirInfo, {"ReservoirName": "曾文水庫"})
+      return zengwenReservoir[0].ObservationTime
+    },
+    formatUpdateTime(){
+      const time = this.getLastUpdate ? dayjs(this.getLastUpdate).format("YYYY.MM.DD HH:mm:ss"): "-"
+      return time
+    },
+    sortReservoir(){
+      return _.orderBy(this.reservoirInfo, ["EffectiveWaterStorageCapacity"], ["desc"])
+    }
+  },
+  methods: {
+    fetchApi() {
+      axios
+      .get("https://dashboard.tainan.gov.tw/api/ReservoirApi?api_key=f3133ba5-186d-4a3a-145c-9c54d9ef87b0/")
+      .then((res) => {
+        this.reservoirInfo = res.data;
+        // 測試 api response 失敗
+        // this.reservoirInfo = [];
+        this.setLastEffectiveWaterStorageCapacity();
+        this.setTotalStorage();
+        this.loadingText = "";
+      })
+      .catch((error) => {
+        console.log(error);
+        this.errorText = "資料接取異常，請重新整理網頁";
+      });
     },
     setTotalStorage() {
-      let sumEffectiveWaterStorageCapacit = _.reduce(this.reservoirInfo, (sum, reservoir) => {
+      let sumEffectiveWaterStorageCapacit = _.reduce(
+        this.reservoirInfo,
+        (sum, reservoir) => {
+          return (this.totalStorage = sum +=
+            reservoir.EffectiveWaterStorageCapacity);
+        },
+        0
+      );
 
-        return this.totalStorage = (sum += reservoir.EffectiveWaterStorageCapacity);
-      },0);
-
-      if(isNaN(sumEffectiveWaterStorageCapacit)) {
-        return this.totalStorage = "無"
+      if (isNaN(sumEffectiveWaterStorageCapacit)) {
+        return (this.totalStorage = "無");
       } else {
-        return this.totalStorage = sumEffectiveWaterStorageCapacit.toFixed(2)
+        return (this.totalStorage = sumEffectiveWaterStorageCapacit.toFixed(2));
       }
     },
     showReservoir() {
@@ -392,20 +390,25 @@ export default {
       });
     },
     getPercentage(reservoir) {
-      if(isNaN(reservoir.EffectiveWaterStorageCapacity)) {
-        return 0
+      const percentage = (reservoir.EffectiveWaterStorageCapacity /reservoir.EffectiveCapacity) * 100
+      if (isNaN(reservoir.EffectiveWaterStorageCapacity)) {
+        return null;
       }
-      else {
-        return ((reservoir.EffectiveWaterStorageCapacity / reservoir.EffectiveCapacity) *100).toFixed(2);
+      if(percentage >= 100) {
+        return 100
       }
+      return percentage.toFixed(2);
     },
     getEffectiveWaterStorageCapacity(reservoir) {
-      if(isNaN(reservoir.EffectiveWaterStorageCapacity)) {
-        return null
+      if (isNaN(reservoir.EffectiveWaterStorageCapacity)) {
+        return `無`;
+      } else {
+        return reservoir.EffectiveWaterStorageCapacity;
       }
-      else {
-        return reservoir.EffectiveWaterStorageCapacity
-      }
+    },
+    getReservoirChartValue(reservoir){
+      const reservoirMaxValue = this.sortReservoir.map(value => value.EffectiveCapacity);
+      return `${((reservoir.EffectiveCapacity / reservoirMaxValue[0]) * 100).toFixed(2)}%`
     },
     setLastEffectiveWaterStorageCapacity() {
       _.each(this.reservoirInfo, (reservoir, name) => {
@@ -419,8 +422,8 @@ export default {
           reservoir.EffectiveWaterStorageCapacity = parseFloat(
             last.EffectiveWaterStorageCapacity
           );
-          reservoir.ObservationTime = last.ObservationTime;
-        } 
+          // reservoir.ObservationTime = last.ObservationTime;
+        }
       });
     },
     direct(value) {
@@ -522,15 +525,15 @@ export default {
 }
 
 .green {
-    background-color: #27ae60;
-  }
-  .yellow {
-    background-color: #f2c94c;
-  }
-  .orange_400 {
-    background-color: #f88824;
-  }
-  .orange_600 {
-    background-color: #eb5757;
-  }
+  background-color: #27ae60;
+}
+.yellow {
+  background-color: #f2c94c;
+}
+.orange_400 {
+  background-color: #f88824;
+}
+.orange_600 {
+  background-color: #eb5757;
+}
 </style>

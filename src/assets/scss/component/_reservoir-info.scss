@@ -2,15 +2,17 @@
 @use '../utility/typography';
 
 .reservoir_info {
-  margin: 0 16px;
+  margin: 0 16px 16px;
   border-radius: 10px;
   background-color: color.$white-10;
   @media (min-width: 768px) {
+    margin: 0 45px 16px;
+    padding: 40px 0;
     display: flex;
     padding: 40px 0;
   }
   @media (min-width: 1024px) {
-    margin: 0 45px;
+    margin: 0 45px 16px;
   }
 }
 
