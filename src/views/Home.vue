@@ -389,16 +389,14 @@ export default {
       });
     },
     getPercentage(reservoir) {
+      const percentage = (reservoir.EffectiveWaterStorageCapacity /reservoir.EffectiveCapacity) * 100
       if (isNaN(reservoir.EffectiveWaterStorageCapacity)) {
         return null;
       }
-      else {
-        return (
-          (reservoir.EffectiveWaterStorageCapacity /
-            reservoir.EffectiveCapacity) *
-          100
-        ).toFixed(2);
+      if(percentage >= 100) {
+        return 100
       }
+      return percentage.toFixed(2);
     },
     getEffectiveWaterStorageCapacity(reservoir) {
       if (isNaN(reservoir.EffectiveWaterStorageCapacity)) {
