@@ -72,8 +72,8 @@
         </h1>
         <span class="update_time">
           上次更新時間
-          <time :datetime="reservoirInfo.曾文水庫.ObservationTime">
-            {{ getLastUpdate() }}
+          <time :datetime="getLastUpdate">
+            {{formatUpdateTime}}
           </time>
         </span>
       </div>
@@ -117,18 +117,25 @@
             </div>
           </div>
           <div class="reservoir_chart_body">
+            <!-- {{sortReservoir}} -->
             <div
               class="reservoir_chart_item"
-              v-for="(reservoir, ReservoirName) in reservoirInfo"
+              v-for="(reservoir, index) in sortReservoir"
             >
               <div class="reservoir_name">
-                <div>{{ ReservoirName }}</div>
+                <div>{{ reservoir.ReservoirName }}</div>
               </div>
               <div class="reservoir_chart_content">
                 <div class="reservoir_chart_bar">
                   <div class="reservoir_chart_capacity">
                     <div
+                      v-if="index == 0"
                       class="reservoir_chart_value"
+                      style="width: 100%"
+                    ></div>
+                    <div
+                      class="reservoir_chart_value"
+                      v-else
                       :style="{ width: getPercentage(reservoir) + '%' }"
                     ></div>
                   </div>
@@ -232,7 +239,6 @@ import Bowser from "bowser";
 import laptopLogo from "../assets/image/title/logo-laptop.svg";
 import phoneLogo from "../assets/image/title/logo-phone.svg";
 
-import tainanReservoirData from "@/assets/open-data/tainan-reservoir-data.json";
 import VueScrollTo from "vue-scrollto";
 import Resources from "@/components/Resources.vue";
 
@@ -251,60 +257,34 @@ export default {
         resource: false,
       },
       reservoirs: [],
-      reservoirLiveData: [
+      reservoirInfo: [
         {
-          ReservoirIdentifier: "30401",
-          EffectiveWaterStorageCapacity: String(Math.random() * 1000),
-          ObservationTime: "2021-04-22T16:00:00",
-        },
-        {
-          ReservoirIdentifier: "30502",
+          ReservoirName: "曾文水庫",
+          ReservoirIdentifier: "",
+          EffectiveCapacity: "",
           EffectiveWaterStorageCapacity: "",
-          ObservationTime: "2021-04-23T16:00:00",
+          ObservationTime: "",
         },
         {
-          ReservoirIdentifier: "30501",
-          EffectiveWaterStorageCapacity: String(Math.random() * 1000),
-          ObservationTime: "2021-04-23T07:00:00",
+          ReservoirName: "南化",
+          ReservoirIdentifier: "",
+          EffectiveCapacity: "",
+          EffectiveWaterStorageCapacity: "",
+          ObservationTime: "",
         },
         {
-          ReservoirIdentifier: "30503",
-          EffectiveWaterStorageCapacity: String(Math.random() * 1000),
-          ObservationTime: "2021-04-23T07:00:00",
-        },
+          ReservoirName: "烏山頭",
+          ReservoirIdentifier: "",
+          EffectiveCapacity: "",
+          EffectiveWaterStorageCapacity: "",
+          ObservationTime: "",
+        }
       ],
-      reservoirInfo: {
-        曾文水庫: {
-          ReservoirIdentifier: 30502,
-          EffectiveCapacity: 50956,
-          tabs: ["嘉義", "台南"],
-        },
-        南化水庫: {
-          ReservoirIdentifier: 30503,
-          EffectiveCapacity: 9097.9,
-          tabs: ["台南", "高雄"],
-        },
-        烏山頭水庫: {
-          ReservoirIdentifier: 30501,
-          EffectiveCapacity: 7876.5,
-          tabs: ["台南"],
-        },
-        白河水庫: {
-          ReservoirIdentifier: 30401,
-          EffectiveCapacity: 1173.45,
-          tabs: ["台南"],
-        },
-      },
       loadingText: "",
       errorText: "",
       resourceType: null,
       totalStorage: 0,
       resource: {
-        // well: wellData,
-        // farmwell: farmwellData,
-        // recycle: recycleData,
-        // ro: roData,
-        // car: _.filter(carData, (row) => row["縣市"] == "臺南市"),
         well: [],
         farmwell: [],
         recycle: [],
@@ -323,31 +303,15 @@ export default {
       await axios.get("https://goodideas-studio.com/water/resources/?t=3")
     ).data;
 
+    this.loadingText = "計算中請稍後...";
+    this.fetchApi()
+
     if (browser.getBrowserName().includes("Internet Explorer")) {
       alert(
         "如要享有最佳網站體驗，請使用支援的最新版瀏覽器\n例如：Chrome、Firefox、Safari 或 Microsoft Edge"
       );
     }
     return false;
-  },
-  mounted() {
-    this.reservoirs = tainanReservoirData;
-    this.loadingText = "計算中請稍後...";
-    // this.reservoirLiveData = reservoirLiveData.ReservoirConditionData_OPENDATA;
-    axios
-      .get("https://goodideas-studio.com/water/")
-      .then((res) => {
-        this.reservoirLiveData = res.data.ReservoirConditionData_OPENDATA;
-        // 測試 api response 失敗
-        // this.reservoirLiveData = [];
-        this.setLastEffectiveWaterStorageCapacity();
-        this.setTotalStorage();
-        this.loadingText = "";
-      })
-      .catch((error) => {
-        console.log(error);
-        this.errorText = "資料接取異常，請重新整理網頁";
-      });
   },
   computed: {
     totalCapacity() {
@@ -368,17 +332,34 @@ export default {
         );
       }
     },
+    getLastUpdate() {
+      const  zengwenReservoir = _.filter(this.reservoirInfo, {"ReservoirName": "曾文水庫"})
+      return zengwenReservoir[0].ObservationTime
+    },
+    formatUpdateTime(){
+      const time = this.getLastUpdate ? dayjs(this.getLastUpdate).format("YYYY.MM.DD HH:mm:ss"): "-"
+      return time
+    },
+    sortReservoir(){
+      return _.orderBy(this.reservoirInfo, ["EffectiveWaterStorageCapacity"], ["desc"])
+    }
   },
   methods: {
-    getTimeFormat(reservoir) {
-      return dayjs(reservoir.ObservationTime).format("YYYY.MM.DD HH:mm:ss");
-    },
-    getLastUpdate() {
-      return this.reservoirInfo.曾文水庫.ObservationTime
-        ? dayjs(this.reservoirInfo.曾文水庫.ObservationTime).format(
-            "YYYY.MM.DD HH:mm:ss"
-          )
-        : "-";
+    fetchApi() {
+      axios
+      .get("https://dashboard.tainan.gov.tw/api/ReservoirApi?api_key=f3133ba5-186d-4a3a-145c-9c54d9ef87b0/")
+      .then((res) => {
+        this.reservoirInfo = res.data;
+        // 測試 api response 失敗
+        // this.reservoirInfo = [];
+        this.setLastEffectiveWaterStorageCapacity();
+        this.setTotalStorage();
+        this.loadingText = "";
+      })
+      .catch((error) => {
+        console.log(error);
+        this.errorText = "資料接取異常，請重新整理網頁";
+      });
     },
     setTotalStorage() {
       let sumEffectiveWaterStorageCapacit = _.reduce(
@@ -442,7 +423,7 @@ export default {
           reservoir.EffectiveWaterStorageCapacity = parseFloat(
             last.EffectiveWaterStorageCapacity
           );
-          reservoir.ObservationTime = last.ObservationTime;
+          // reservoir.ObservationTime = last.ObservationTime;
         }
       });
     },
