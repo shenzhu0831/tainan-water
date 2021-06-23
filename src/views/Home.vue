@@ -89,7 +89,7 @@
           <span class="water_regime_name">目前水情</span>
           <div class="water_regime_content">
             <div class="water_regime_badge green"></div>
-            <span class="water_regime_value">減量供水</span>
+            <span class="water_regime_value">水情提醒</span>
             <div
               class="water_regime_info pointer"
               @click="display.popoverContainer = true"
