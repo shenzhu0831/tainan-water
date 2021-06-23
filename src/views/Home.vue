@@ -525,15 +525,15 @@ export default {
 }
 
 .green {
-    background-color: #27ae60;
-  }
-  .yellow {
-    background-color: #f2c94c;
-  }
-  .orange_400 {
-    background-color: #f88824;
-  }
-  .orange_600 {
-    background-color: #eb5757;
-  }
+  background-color: #27ae60;
+}
+.yellow {
+  background-color: #f2c94c;
+}
+.orange_400 {
+  background-color: #f88824;
+}
+.orange_600 {
+  background-color: #eb5757;
+}
 </style>
