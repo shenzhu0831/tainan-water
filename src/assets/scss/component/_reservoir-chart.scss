@@ -21,6 +21,7 @@
 .reservoir_storage_info {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   flex: 0 0 60%;
   order: 2;
   @media (min-width: 768px) {
@@ -115,6 +116,7 @@
   }
   &_capacity {
     height: 20px;
+    margin-bottom: 5px;
     position: relative;
     border-radius: 0 3px 3px 0;
     // background-color: #eee;
@@ -126,6 +128,10 @@
     border-radius: 0 3px 3px 0;
     background: linear-gradient(-90deg, #C0ECF2, #22BCD1)
   }
+}
+
+.reservoir_value {
+  color: color.$white
 }
 
 .reservoir_storage {

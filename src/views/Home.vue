@@ -139,7 +139,7 @@
                       :style="{ width: getReservoirChartValue(reservoir) }"
                     ></div>
                   </div>
-                  <p class="reservoir_update">
+                  <p class="reservoir_value">
                     有效蓄水量
                     {{ getEffectiveWaterStorageCapacity(reservoir) }} 萬立方公尺
                   </p>
