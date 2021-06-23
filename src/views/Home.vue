@@ -100,7 +100,8 @@
           <span
             v-if="!loadingText && !errorText"
             class="reservoir_regime_value"
-            >{{ totalPercentage }}
+            >
+            {{ totalPercentage }}
           </span>
           <span v-else class="error_message" @click="showReservoir()">{{
             errorText

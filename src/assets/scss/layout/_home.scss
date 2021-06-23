@@ -12,14 +12,14 @@
 
 .web_info {
   margin: 0 auto;
-  padding: 100px 0 60px;
+  padding: 190px 0 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   @media (min-width: 768px) {
     width: fit-content;
-    padding: 60px 0 30px;
+    padding: 60px 0;
   }
   &_title {
     margin-bottom: 20px;
