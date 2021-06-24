@@ -262,14 +262,21 @@ export default {
           ObservationTime: "",
         },
         {
-          ReservoirName: "南化",
+          ReservoirName: "南化水庫",
           ReservoirIdentifier: "",
           EffectiveCapacity: "",
           EffectiveWaterStorageCapacity: "",
           ObservationTime: "",
         },
         {
-          ReservoirName: "烏山頭",
+          ReservoirName: "烏山頭水庫",
+          ReservoirIdentifier: "",
+          EffectiveCapacity: "",
+          EffectiveWaterStorageCapacity: "",
+          ObservationTime: "",
+        },
+        {
+          ReservoirName: "白河水庫",
           ReservoirIdentifier: "",
           EffectiveCapacity: "",
           EffectiveWaterStorageCapacity: "",
@@ -407,8 +414,8 @@ export default {
       }
     },
     getReservoirChartValue(reservoir){
-      const reservoirMaxValue = this.sortReservoir.map(value => value.EffectiveCapacity);
-      return `${((reservoir.EffectiveCapacity / reservoirMaxValue[0]) * 100).toFixed(2)}%`
+      const reservoirMaxValue = this.sortReservoir.map(value => value.EffectiveWaterStorageCapacity);
+      return `${((reservoir.EffectiveWaterStorageCapacity / reservoirMaxValue[0]) * 100).toFixed(2)}%`
     },
     setLastEffectiveWaterStorageCapacity() {
       _.each(this.reservoirInfo, (reservoir, name) => {
@@ -422,7 +429,7 @@ export default {
           reservoir.EffectiveWaterStorageCapacity = parseFloat(
             last.EffectiveWaterStorageCapacity
           );
-          // reservoir.ObservationTime = last.ObservationTime;
+          reservoir.ObservationTime = last.ObservationTime;
         }
       });
     },
