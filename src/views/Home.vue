@@ -328,8 +328,12 @@ export default {
       ).toFixed(2);
     },
     totalPercentage() {
+      console.log(Number(this.totalStorage));
       if (Number.isNaN(Number(this.totalStorage))) {
-        return this.errorText = `目前缺少水庫即時資料，無法計算總蓄水率`;
+        return this.errorText = "目前缺少水庫即時資料，無法計算總蓄水率";
+      }
+      else if(Number(this.totalStorage) == 0) {
+        return this.loadingText = "計算中請稍後...";
       }
       else {
         return ((this.totalStorage / this.totalCapacity) * 100).toFixed(2) + "%"
