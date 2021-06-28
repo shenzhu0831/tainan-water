@@ -103,7 +103,7 @@
             >
             {{ totalPercentage }}
           </span>
-          <span v-else class="error_message" @click="showReservoir()">{{
+          <span v-else class="error_message">{{
             errorText
           }}</span>
         </div>
@@ -141,16 +141,17 @@
                   </div>
                   <p class="reservoir_value">
                     有效蓄水量
-                    {{ getEffectiveWaterStorageCapacity(reservoir) }} 萬立方公尺
+                    {{ getEffectiveWaterStorageCapacity(reservoir) }}
+                    萬立方公尺
                   </p>
                 </div>
               </div>
               <div class="reservoir_storage_info">
                 <div class="reservoir_storage">
-                  {{ reservoir.EffectiveCapacity }}
+                  {{ getReservoirCapacity(reservoir) }}
                 </div>
                 <div class="reservoir_capacity">
-                  {{getPercentage(reservoir) === null ? "無" : getPercentage(reservoir) + "%"}}
+                  {{getPercentage(reservoir)}} %
                 </div>
               </div>
             </div>
@@ -259,7 +260,7 @@ export default {
           ReservoirIdentifier: "",
           EffectiveCapacity: "",
           EffectiveWaterStorageCapacity: "",
-          ObservationTime: "",
+          ObservationTime: "2021-06-28T08:00:00",
         },
         {
           ReservoirName: "南化水庫",
@@ -327,12 +328,11 @@ export default {
       ).toFixed(2);
     },
     totalPercentage() {
-      if (isNaN(this.totalStorage)) {
-        return (this.errorText = `目前缺少水庫即時資料，無法計算總蓄水率`);
-      } else {
-        return (
-          ((this.totalStorage / this.totalCapacity) * 100).toFixed(2) + "%"
-        );
+      if (Number.isNaN(Number(this.totalStorage))) {
+        return this.errorText = `目前缺少水庫即時資料，無法計算總蓄水率`;
+      }
+      else {
+        return ((this.totalStorage / this.totalCapacity) * 100).toFixed(2) + "%"
       }
     },
     getLastUpdate() {
@@ -374,10 +374,14 @@ export default {
         0
       );
 
-      if (isNaN(sumEffectiveWaterStorageCapacit)) {
-        return (this.totalStorage = "無");
-      } else {
-        return (this.totalStorage = sumEffectiveWaterStorageCapacit.toFixed(2));
+      if (Number.isNaN(sumEffectiveWaterStorageCapacit)) {
+        return this.totalStorage = "無";
+      }
+      else if(Number(sumEffectiveWaterStorageCapacit) == 0) {
+        return this.totalStorage = "無"
+      }
+      else {
+        return this.totalStorage = sumEffectiveWaterStorageCapacit.toFixed(2);
       }
     },
     showReservoir() {
@@ -398,18 +402,38 @@ export default {
     },
     getPercentage(reservoir) {
       const percentage = (reservoir.EffectiveWaterStorageCapacity /reservoir.EffectiveCapacity) * 100
-      if (isNaN(reservoir.EffectiveWaterStorageCapacity)) {
-        return null;
+      if (Number.isNaN(Number(reservoir.EffectiveWaterStorageCapacity))){
+        return `無`;
       }
-      if(percentage >= 100) {
+      else if(Number(reservoir.EffectiveWaterStorageCapacity) == 0){
+        return `無`;
+      }
+      else if(percentage >= 100) {
         return 100
       }
-      return percentage.toFixed(2);
+      else {
+        return percentage.toFixed(2);
+      }
     },
     getEffectiveWaterStorageCapacity(reservoir) {
-      if (isNaN(reservoir.EffectiveWaterStorageCapacity)) {
+      if (Number.isNaN(Number(reservoir.EffectiveWaterStorageCapacity))) {
         return `無`;
-      } else {
+      }
+      else if(Number(reservoir.EffectiveWaterStorageCapacity) == 0){
+        return `無`;
+      }
+      else {
+        return reservoir.EffectiveWaterStorageCapacity;
+      }
+    },
+    getReservoirCapacity(reservoir){
+      if (Number.isNaN(Number(reservoir.EffectiveWaterStorageCapacity))) {
+        return `無`;
+      }
+      else if(Number(reservoir.EffectiveWaterStorageCapacity) == 0){
+        return `無`;
+      }
+      else {
         return reservoir.EffectiveWaterStorageCapacity;
       }
     },
@@ -429,6 +453,7 @@ export default {
           reservoir.EffectiveWaterStorageCapacity = parseFloat(
             last.EffectiveWaterStorageCapacity
           );
+          console.log("a");
           reservoir.ObservationTime = last.ObservationTime;
         }
       });
@@ -524,11 +549,6 @@ export default {
   opacity: 0.3;
   filter: alpha(opacity=30);
   cursor: not-allowed;
-}
-
-.error_message {
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 .green {
