@@ -328,7 +328,6 @@ export default {
       ).toFixed(2);
     },
     totalPercentage() {
-      console.log(Number(this.totalStorage));
       if (Number.isNaN(Number(this.totalStorage))) {
         return this.errorText = "目前缺少水庫即時資料，無法計算總蓄水率";
       }
