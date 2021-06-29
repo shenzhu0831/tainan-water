@@ -430,14 +430,14 @@ export default {
       }
     },
     getReservoirCapacity(reservoir){
-      if (Number.isNaN(Number(reservoir.EffectiveWaterStorageCapacity))) {
+      if (Number.isNaN(Number(reservoir.EffectiveCapacity))) {
         return `無`;
       }
-      else if(Number(reservoir.EffectiveWaterStorageCapacity) == 0){
+      else if(Number(reservoir.EffectiveCapacity) == 0){
         return `無`;
       }
       else {
-        return reservoir.EffectiveWaterStorageCapacity;
+        return reservoir.EffectiveCapacity;
       }
     },
     getReservoirChartValue(reservoir){
