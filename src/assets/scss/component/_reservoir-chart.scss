@@ -45,8 +45,6 @@
   order: 2;
   text-align: right;
   color: color.$white;
-  @media (min-width: 768px) {
-  }
 }
 
 .reservoir_chart_item {
@@ -132,10 +130,4 @@
 
 .reservoir_value {
   color: color.$white
-}
-
-.reservoir_storage {
-  margin-top: 6px;
-  font-size: 15px;
-  color: color.$white;
 }
