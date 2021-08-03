@@ -15,6 +15,13 @@
           <div class="popover_body">
             <div class="light_sign">
               <div class="light_sign_info">
+                <div class="light_sign_badge blue"></div>
+                <span class="light_sign_name">供需穩定</span>
+              </div>
+              <p class="light_sign_content">供需穩定。</p>
+            </div>
+            <div class="light_sign">
+              <div class="light_sign_info">
                 <div class="light_sign_badge green"></div>
                 <span class="light_sign_name">水情提醒</span>
               </div>
@@ -81,8 +88,8 @@
         <div class="water_regime">
           <span class="water_regime_name">目前水情</span>
           <div class="water_regime_content">
-            <div class="water_regime_badge green"></div>
-            <span class="water_regime_value">水情提醒</span>
+            <div class="water_regime_badge blue"></div>
+            <span class="water_regime_value">供需穩定</span>
             <div
               class="water_regime_info pointer"
               @click="display.popoverContainer = true"
@@ -554,6 +561,9 @@ export default {
   cursor: not-allowed;
 }
 
+.blue {
+  background-color: #22BCD1;
+}
 .green {
   background-color: #27ae60;
 }
