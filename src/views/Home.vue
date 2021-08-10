@@ -16,7 +16,7 @@
             <div class="light_sign">
               <div class="light_sign_info">
                 <div class="light_sign_badge blue"></div>
-                <span class="light_sign_name">供需穩定</span>
+                <span class="light_sign_name">水情正常</span>
               </div>
               <p class="light_sign_content">供需穩定。</p>
             </div>
@@ -89,7 +89,7 @@
           <span class="water_regime_name">目前水情</span>
           <div class="water_regime_content">
             <div class="water_regime_badge blue"></div>
-            <span class="water_regime_value">供需穩定</span>
+            <span class="water_regime_value">水情正常</span>
             <div
               class="water_regime_info pointer"
               @click="display.popoverContainer = true"
